@@ -406,16 +406,28 @@ VALUES
 
 INSERT INTO DETE_RODITELJ (ID_Deteta, Ime_roditelja)
 VALUES
-	(1, 'Dragan Jankovic,Marija Jankovic');
+	(1, 'Dragan Jankovic');
 INSERT INTO DETE_RODITELJ (ID_Deteta, Ime_roditelja)
 VALUES
-	(2, 'Dusko Novak,Leontina Novak');
+	(1, 'Marija Jankovic');
 INSERT INTO DETE_RODITELJ (ID_Deteta, Ime_roditelja)
 VALUES
-	(3, 'Aleksa Horvat,Kasandra Horvat');
+	(2, 'Dusko Novak');
+INSERT INTO DETE_RODITELJ (ID_Deteta, Ime_roditelja)
+VALUES
+	(2, 'Leontina Novak');
+INSERT INTO DETE_RODITELJ (ID_Deteta, Ime_roditelja)
+VALUES
+	(3, 'Danijel Horvat');
+INSERT INTO DETE_RODITELJ (ID_Deteta, Ime_roditelja)
+VALUES
+	(3, 'Sandra Horvat');
 INSERT INTO DETE_RODITELJ (ID_Deteta, Ime_roditelja)
 VALUES
 	(4, 'Slobodan Popovic');
+INSERT INTO DETE_RODITELJ (ID_Deteta, Ime_roditelja)
+VALUES
+	(5, 'Milutin Kovac');
 INSERT INTO DETE_RODITELJ (ID_Deteta, Ime_roditelja)
 VALUES
 	(5, 'Aleksandra Kovac');
