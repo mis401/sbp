@@ -112,7 +112,7 @@
 	(
 		ID NUMBER(10),
 		ID_Vilenjaka NUMBER(10) NOT NULL,
-		Naziv VARCHAR2(20) NOT NULL,  
+		Naziv VARCHAR2(50) NOT NULL,  
 		Tekst VARCHAR2(2000) NOT NULL
 	);
 
@@ -174,9 +174,9 @@
 		ID_Tovara NUMBER(10),
 		Tip_materijala VARCHAR2(50),
 		Flag_koordinator NUMBER(1) CHECK (Flag_koordinator IN (0, 1)),
-		ID_Tima NUMBER(10) NOT NULL,
+		ID_Tima NUMBER(10),
 		Flag_sef NUMBER(1) CHECK (Flag_sef IN (0, 1)),
-		Datum_postavljanja DATE,
+		Datum_postavljanja DATE ,
 		ID_Dela_radionice NUMBER(10),
 		ID_Mentora NUMBER(10),
 		Ocena NUMBER(2) CHECK (Ocena BETWEEN 1 AND 10), 
