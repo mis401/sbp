@@ -1,17 +1,4 @@
---dete
---pismo
---lista
---deo radionice
---vestina
---tovar
---irvas
---tim
---vilenjak
---pesma
---poklon
---igracka
 
---------------------------------------------
 INSERT INTO DETE (Ime, Prezime, Drzava, Grad, Adresa, Datum_rodjenja) 
 VALUES 
 ('Ana', 'Jankovic', 'Srbija', 'Beograd', 'Kneza Milosa 45', TO_DATE('15.05.2020', 'DD.MM.YYYY'));
@@ -72,15 +59,15 @@ INSERT INTO DEO_RADIONICE (ID, Naziv, Tip_igracke) VALUES
 
 -- Unos torki u tabelu MAGIcNA_VEsTINA
 INSERT INTO MAGICNA_VESTINA (Naziv, ID_Dela_radionice) VALUES
-('Lebdeci stapic', 1);
+('Lebdeci stapici', 1);
 INSERT INTO MAGICNA_VESTINA (Naziv, ID_Dela_radionice) VALUES
-('carobna sesira', 2);
+('Carobni sesiri', 2);
 INSERT INTO MAGICNA_VESTINA (Naziv, ID_Dela_radionice) VALUES
-('Mehanicki medved', 3);
+('Magicni plis', 3);
 INSERT INTO MAGICNA_VESTINA (Naziv, ID_Dela_radionice) VALUES
-('Sjajni mac', 4);
+('Sjajna mehanika', 4);
 INSERT INTO MAGICNA_VESTINA (Naziv, ID_Dela_radionice) VALUES
-('Magicni prsten', 1);
+('Rastegljiva plastika', 1);
 INSERT INTO MAGICNA_VESTINA (Naziv, ID_Dela_radionice) VALUES
 ('Knjiga cini', 2);
 
@@ -146,7 +133,7 @@ VALUES
     ('Stidljivko', 'Svedska', TO_DATE('12.10.2021', 'DD.MM.YYYY'), 'Irvasi', 4, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, NULL, NULL);
 INSERT INTO VILENJAK (Ime, Zemlja_porekla, Datum_zaposljavanja, Vrsta_vilenjaka, ID_Irvasa, ID_Tovara, Tip_materijala, Flag_koordinator, ID_tima, Flag_sef, Datum_postavljanja, ID_Dela_radionice, ID_Mentora, Ocena, Duzina_obuke)
 VALUES
-    ('Kijavko', 'Island', TO_DATE('23.08.2021', 'DD.MM.YYYY'), 'Izrada igracaka', NULL, NULL, 'Drvo', 0, 3, 1, TO_DATE('30.09.2021', 'DD.MM.YYYY'), 1, 2, 8, NULL);
+    ('Kijavko', 'Island', TO_DATE('23.08.2021', 'DD.MM.YYYY'), 'Izrada igracaka', NULL, NULL, 'Drvo', 0, 3, 1, TO_DATE('30.09.2021', 'DD.MM.YYYY'), 1, 2, 8, 3);
 INSERT INTO VILENJAK (Ime, Zemlja_porekla, Datum_zaposljavanja, Vrsta_vilenjaka, ID_Irvasa, ID_Tovara, Tip_materijala, Flag_koordinator, ID_tima, Flag_sef, Datum_postavljanja, ID_Dela_radionice, ID_Mentora, Ocena, Duzina_obuke)
 VALUES
     ('Tupko', 'Danska', TO_DATE('05.12.2021', 'DD.MM.YYYY'), 'Isporuka poklona', NULL, 4, NULL, 0, NULL, 0, NULL, NULL, NULL, NULL, NULL);
@@ -155,35 +142,35 @@ VALUES
     ('Srecko', 'Norveska', TO_DATE('14.11.2019', 'DD.MM.YYYY'), 'Pakovanje poklona', NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, NULL, NULL);
 INSERT INTO VILENJAK (Ime, Zemlja_porekla, Datum_zaposljavanja, Vrsta_vilenjaka, ID_Irvasa, ID_Tovara, Tip_materijala, Flag_koordinator, ID_tima, Flag_sef, Datum_postavljanja, ID_Dela_radionice, ID_Mentora, Ocena, Duzina_obuke)
 VALUES
-    ('Mrgud', 'Belgija', TO_DATE('17.11.2021', 'DD.MM.YYYY'), 'Izrada igracaka', NULL, NULL, 'Plastika', 1, 1, 1, TO_DATE('03.07.2022', 'DD.MM.YYYY'), 4, 4, 10, NULL);
+    ('Mrgud', 'Belgija', TO_DATE('17.11.2021', 'DD.MM.YYYY'), 'Izrada igracaka', NULL, NULL, 'Plastika', 1, 1, 1, TO_DATE('03.07.2022', 'DD.MM.YYYY'), 4, 4, 10, 4);
 INSERT INTO VILENJAK (Ime, Zemlja_porekla, Datum_zaposljavanja, Vrsta_vilenjaka, ID_Irvasa, ID_Tovara, Tip_materijala, Flag_koordinator, ID_tima, Flag_sef, Datum_postavljanja, ID_Dela_radionice, ID_Mentora, Ocena, Duzina_obuke)
 VALUES
-    ('Gricko', 'Francuska', TO_DATE('08.12.2021', 'DD.MM.YYYY'), 'Izrada igracaka', NULL, NULL, 'Metal', 0, 5, 0, NULL, 1, 4, 6, NULL);
+    ('Gricko', 'Francuska', TO_DATE('08.12.2021', 'DD.MM.YYYY'), 'Izrada igracaka', NULL, NULL, 'Metal', 0, 5, 0, NULL, 1, 4, 6, 2);
 INSERT INTO VILENJAK (Ime, Zemlja_porekla, Datum_zaposljavanja, Vrsta_vilenjaka, ID_Irvasa, ID_Tovara, Tip_materijala, Flag_koordinator, ID_tima, Flag_sef, Datum_postavljanja, ID_Dela_radionice, ID_Mentora, Ocena, Duzina_obuke)
 VALUES
-    ('Cekicar', 'Italija', TO_DATE('17.05.2021', 'DD.MM.YYYY'), 'Izrada igracaka', NULL, NULL, 'Tkanina', 1, 5, 1, TO_DATE('01.02.2022', 'DD.MM.YYYY'), 2, 8, 9, NULL);
+    ('Cekicar', 'Italija', TO_DATE('17.05.2021', 'DD.MM.YYYY'), 'Izrada igracaka', NULL, NULL, 'Tkanina', 1, 5, 1, TO_DATE('01.02.2022', 'DD.MM.YYYY'), 2, 8, 9, 7);
 INSERT INTO VILENJAK (Ime, Zemlja_porekla, Datum_zaposljavanja, Vrsta_vilenjaka, ID_Irvasa, ID_Tovara, Tip_materijala, Flag_koordinator, ID_tima, Flag_sef, Datum_postavljanja, ID_Dela_radionice, ID_Mentora, Ocena, Duzina_obuke)
 VALUES
-    ('Njuskalo', 'Nemacka', TO_DATE('15.03.2020', 'DD.MM.YYYY'), 'Izrada igracaka', NULL, NULL, 'Plastika', 0, 1, 0, NULL, 2, 8, 7, NULL);
+    ('Njuskalo', 'Nemacka', TO_DATE('15.03.2020', 'DD.MM.YYYY'), 'Izrada igracaka', NULL, NULL, 'Plastika', 0, 1, 0, NULL, 2, 8, 7, 1);
 
 
 
 
-INSERT INTO POKLON (ID, Boja, Posveta, ID_Liste_zelja, ID_Tovara)
+INSERT INTO POKLON (Boja, Posveta, ID_Liste_zelja, ID_Tovara)
 VALUES 
-    (1, 'Crvena', 'Za najposlusnijeg decka', 2, 3);
-INSERT INTO POKLON (ID, Boja, Posveta, ID_Liste_zelja, ID_Tovara)
+    ('Crvena', 'Za najposlusnijeg decka', 2, 3);
+INSERT INTO POKLON (Boja, Posveta, ID_Liste_zelja, ID_Tovara)
 VALUES 
-    (2, 'Plava', 'Srecan Bozic', 1, 1);
-INSERT INTO POKLON (ID, Boja, Posveta, ID_Liste_zelja, ID_Tovara)
+    ('Plava', 'Srecan Bozic', 1, 1);
+INSERT INTO POKLON (Boja, Posveta, ID_Liste_zelja, ID_Tovara)
 VALUES 
-    (3, 'Zelena', 'Za divnu devojcicu', 3, 2);
-INSERT INTO POKLON (ID, Boja, Posveta, ID_Liste_zelja, ID_Tovara)
+    ('Zelena', 'Za divnu devojcicu', 3, 2);
+INSERT INTO POKLON (Boja, Posveta, ID_Liste_zelja, ID_Tovara)
 VALUES 
-    (11, 'Crvena', 'Za moju dragu', 5, 3);
-INSERT INTO POKLON (ID, Boja, Posveta, ID_Liste_zelja, ID_Tovara)
+    ('Crvena', 'Za moju dragu', 5, 3);
+INSERT INTO POKLON (Boja, Posveta, ID_Liste_zelja, ID_Tovara)
 VALUES 
-   (12, 'Roza', 'Srecan rodjendan, junace!', 4, 2);
+   ('Roza', 'Srecan rodjendan, junace!', 4, 2);
 
 
 
@@ -351,6 +338,84 @@ Ahh, steadily emerging with grace
 Ahh, felling any foe with my gaze
 Ahh, steadily emerging with grace');
 
-IRVAS_ISPORUCUUJE_TOVAR (ID_Irvasa, ID_Tovara)
+INSERT INTO IRVAS_ISPORUCUJE_TOVAR (ID_Irvasa, ID_Tovara)
 VALUES
-	()
+	(2,3);
+INSERT INTO IRVAS_ISPORUCUJE_TOVAR (ID_Irvasa, ID_Tovara)
+VALUES
+	(6,3);
+INSERT INTO IRVAS_ISPORUCUJE_TOVAR (ID_Irvasa, ID_Tovara)
+VALUES
+	(6,4);
+INSERT INTO IRVAS_ISPORUCUJE_TOVAR (ID_Irvasa, ID_Tovara)
+VALUES
+	(3,3);
+INSERT INTO IRVAS_ISPORUCUJE_TOVAR (ID_Irvasa, ID_Tovara)
+VALUES
+	(1,1);
+INSERT INTO IRVAS_ISPORUCUJE_TOVAR (ID_Irvasa, ID_Tovara)
+VALUES
+	(5,1);
+INSERT INTO IRVAS_ISPORUCUJE_TOVAR (ID_Irvasa, ID_Tovara)
+VALUES
+	(2,2);
+INSERT INTO IRVAS_ISPORUCUJE_TOVAR (ID_Irvasa, ID_Tovara)
+VALUES
+	(4,5);
+	
+	
+	
+INSERT INTO PAKOVANJE_POKLONA (ID_Vilenjaka, ID_Poklona)
+VALUES
+	(6, 4);
+INSERT INTO PAKOVANJE_POKLONA (ID_Vilenjaka, ID_Poklona)
+VALUES
+	(6, 2);
+INSERT INTO PAKOVANJE_POKLONA (ID_Vilenjaka, ID_Poklona)
+VALUES
+	(6, 1);
+INSERT INTO PAKOVANJE_POKLONA (ID_Vilenjaka, ID_Poklona)
+VALUES
+	(6, 3);
+	
+	
+INSERT INTO VILENJAK_POSEDUJE_VESTINU (ID_Vilenjaka, ID_Vestine)
+VALUES
+	(9,3);
+INSERT INTO VILENJAK_POSEDUJE_VESTINU (ID_Vilenjaka, ID_Vestine)
+VALUES
+	(10,2);
+INSERT INTO VILENJAK_POSEDUJE_VESTINU (ID_Vilenjaka, ID_Vestine)
+VALUES
+	(7,5);
+INSERT INTO VILENJAK_POSEDUJE_VESTINU (ID_Vilenjaka, ID_Vestine)
+VALUES
+	(2,3);
+INSERT INTO VILENJAK_POSEDUJE_VESTINU (ID_Vilenjaka, ID_Vestine)
+VALUES
+	(7,3);
+INSERT INTO VILENJAK_POSEDUJE_VESTINU (ID_Vilenjaka, ID_Vestine)
+VALUES
+	(9,2);
+INSERT INTO VILENJAK_POSEDUJE_VESTINU (ID_Vilenjaka, ID_Vestine)
+VALUES
+	(2,6);
+INSERT INTO VILENJAK_POSEDUJE_VESTINU (ID_Vilenjaka, ID_Vestine)
+VALUES
+	(8,6);
+
+INSERT INTO DETE_RODITELJ (ID_Deteta, Ime_roditelja)
+VALUES
+	(1, 'Dragan Jankovic,Marija Jankovic');
+INSERT INTO DETE_RODITELJ (ID_Deteta, Ime_roditelja)
+VALUES
+	(2, 'Dusko Novak,Leontina Novak');
+INSERT INTO DETE_RODITELJ (ID_Deteta, Ime_roditelja)
+VALUES
+	(3, 'Aleksa Horvat,Kasandra Horvat');
+INSERT INTO DETE_RODITELJ (ID_Deteta, Ime_roditelja)
+VALUES
+	(4, 'Slobodan Popovic');
+INSERT INTO DETE_RODITELJ (ID_Deteta, Ime_roditelja)
+VALUES
+	(5, 'Aleksandra Kovac');
