@@ -350,3 +350,7 @@ Ahh, felling any foe with my gaze
 Ahh, steadily emerging with grace
 Ahh, felling any foe with my gaze
 Ahh, steadily emerging with grace');
+
+IRVAS_ISPORUCUUJE_TOVAR (ID_Irvasa, ID_Tovara)
+VALUES
+	()
