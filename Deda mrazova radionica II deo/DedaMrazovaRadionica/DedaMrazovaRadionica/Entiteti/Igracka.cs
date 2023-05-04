@@ -9,9 +9,13 @@ namespace DedaMrazovaRadionica.Entiteti
     public class Igracka
     {
         public virtual int ID { get; set; }
-        public virtual int Redni_broj { get; set; }
+        public virtual int RedniBroj { get; set; }
         public virtual string Tip { get; set; }
         public virtual string Opis { get; set; }
+        public virtual Poklon PripadaPoklonu { get; set; }
+        public virtual DeoRadionice PripadaDeluRadionice { get; set; }
+        public virtual ListaZelja PripadaListiZelja { get; set; }
+        public virtual Vilenjak VilenjakZaIzraduIgracaka {  get; set; }
         public Igracka() { }
 
     }

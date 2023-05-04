@@ -14,9 +14,12 @@ namespace DedaMrazovaRadionica.Entiteti
         public virtual string Adresa { get; set; }
         public virtual string Grad { get; set; }
         public virtual string Drzava { get; set; }
-        public virtual DateTime Datum_rodjenja { get; set; }
+        public virtual DateTime DatumRodjenja { get; set; }
+        public virtual IList<Pismo> Pisma { get; set; }
 
-
-        public Dete() { }
+        public Dete() 
+        {
+            Pisma = new List<Pismo>();
+        }
     }
 }

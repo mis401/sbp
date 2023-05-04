@@ -10,7 +10,12 @@ namespace DedaMrazovaRadionica.Entiteti
     {
         public virtual int ID { get; set; }
         public virtual string Naziv { get; set; }
-        public MagicnaVestina() { }
+        public virtual DeoRadionice PripadaDeluRadionice {  get; set; }
+
+        public MagicnaVestina() 
+        {
+       
+        }
 
     }
 }

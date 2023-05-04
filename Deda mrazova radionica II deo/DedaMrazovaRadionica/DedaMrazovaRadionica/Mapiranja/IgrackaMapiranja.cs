@@ -16,7 +16,7 @@ namespace DedaMrazovaRadionica.Mapiranja
 
             Id(x => x.ID, "ID").GeneratedBy.TriggerIdentity();
 
-            Map(x => x.Redni_broj, "REDNI_BROJ");
+            Map(x => x.RedniBroj, "REDNI_BROJ");
             Map(x => x.Tip, "TIP");
             Map(x => x.Opis, "OPIS");
         }

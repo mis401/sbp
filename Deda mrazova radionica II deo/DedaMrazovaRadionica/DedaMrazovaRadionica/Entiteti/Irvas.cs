@@ -12,9 +12,13 @@ namespace DedaMrazovaRadionica.Entiteti
         public virtual string Ime { get; set; }
         public virtual string Nadimak { get; set; }
         public virtual char Pol { get; set; }
-        public virtual DateTime Datum_rodjenja { get; set; }
+        public virtual DateTime DatumRodjenja { get; set; }
+        public virtual IList<Vilenjak> VilenjaciZaIrvase { get; set; }
 
         public virtual int Starost { get; set; }
-        public Irvas() { }
+        public Irvas()
+        {
+            VilenjaciZaIrvase= new List<Vilenjak>();
+        }
     }
 }

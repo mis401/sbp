@@ -17,7 +17,7 @@ namespace DedaMrazovaRadionica.Entiteti
             Id(x => x.ID, "ID").GeneratedBy.TriggerIdentity();
 
             Map(x => x.Naziv, "NAZIV");
-            Map(x => x.Tip_igracke, "TIP_IGRACKE");
+            Map(x => x.TipIgracke, "TIP_IGRACKE");
 
         }
 

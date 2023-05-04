@@ -21,7 +21,7 @@ namespace DedaMrazovaRadionica.Mapiranja
             Map(x => x.Drzava, "DRZAVA");
             Map(x => x.Grad, "GRAD");
             Map(x => x.Adresa, "ADRESA");
-            Map(x => x.Datum_rodjenja, "DATUM_RODJENJA");
+            Map(x => x.DatumRodjenja, "DATUM_RODJENJA");
         }
     }
 }

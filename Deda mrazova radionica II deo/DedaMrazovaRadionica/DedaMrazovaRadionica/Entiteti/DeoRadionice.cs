@@ -10,9 +10,17 @@ namespace DedaMrazovaRadionica.Entiteti
     {
         public virtual int ID { get; set; }
         public virtual string Naziv { get; set; }
-        public virtual string Tip_igracke { get; set; }
-        public virtual int Broj_angazovanih_vilenjaka { get; set; }
+        public virtual string TipIgracke { get; set; }
+        public virtual int BrojAngazovanihVilenjaka { get; set; }
+        public virtual IList<Igracka> IgrackeIstogTipa { get; set; }
+        public virtual IList<MagicnaVestina> ZahtevaVestinu { get; set; }
+        public virtual IList<Vilenjak> VilenjaciZaIzraduIgracaka { get; set; }
 
-        public DeoRadionice() { }
+        public DeoRadionice() 
+        { 
+            IgrackeIstogTipa = new List<Igracka>();
+            VilenjaciZaIzraduIgracaka = new List<Vilenjak>();
+            ZahtevaVestinu = new List<MagicnaVestina>();
+        }
     }
 }
