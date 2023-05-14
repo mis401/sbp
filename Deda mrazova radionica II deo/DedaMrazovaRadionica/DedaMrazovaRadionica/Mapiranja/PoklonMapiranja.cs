@@ -19,6 +19,8 @@ namespace DedaMrazovaRadionica.Mapiranja
 
             Map(x => x.Boja, "BOJA");
             Map(x => x.Posveta, "POSVETA");
+
+            References(x => x.PripadaTovaru).Column("ID_TOVARA").LazyLoad();
         }
     }
 }

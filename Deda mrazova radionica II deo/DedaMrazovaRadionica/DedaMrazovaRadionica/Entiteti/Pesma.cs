@@ -11,7 +11,7 @@ namespace DedaMrazovaRadionica.Entiteti
         public virtual int ID { get; set; }
         public virtual string Naziv { get; set; }
         public virtual string Tekst { get; set; }
-        public virtual Vilenjak PripadaVelenjakuZaIrvase { get; set; }
+        //public virtual Vilenjak PripadaVelenjakuZaIrvase { get; set; }
         public Pesma() { }
     }
 }

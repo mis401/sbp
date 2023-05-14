@@ -10,11 +10,11 @@ namespace DedaMrazovaRadionica.Entiteti
     {
         public virtual int ID { get; set; }
         public virtual string Naziv { get; set; }
-        public virtual IList<Vilenjak> VilejnaciZaIzraduIgracaka { get; set; }
+        //public virtual IList<Vilenjak> VilejnaciZaIzraduIgracaka { get; set; }
 
         public Tim() 
         {
-            VilejnaciZaIzraduIgracaka = new List<Vilenjak>();
+          //  VilejnaciZaIzraduIgracaka = new List<Vilenjak>();
         }
     }
 }

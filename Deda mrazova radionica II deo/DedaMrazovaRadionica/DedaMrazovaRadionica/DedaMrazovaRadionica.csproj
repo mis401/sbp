@@ -112,7 +112,6 @@
     <Compile Include="Entiteti\Poklon.cs" />
     <Compile Include="Entiteti\Tim.cs" />
     <Compile Include="Entiteti\Tovar.cs" />
-    <Compile Include="Entiteti\Vilenjak.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -130,7 +129,6 @@
     <Compile Include="Mapiranja\PoklonMapiranja.cs" />
     <Compile Include="Mapiranja\TimMapiranja.cs" />
     <Compile Include="Mapiranja\TovarMapiranja.cs" />
-    <Compile Include="Mapiranja\VilenjakMapiranja.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">

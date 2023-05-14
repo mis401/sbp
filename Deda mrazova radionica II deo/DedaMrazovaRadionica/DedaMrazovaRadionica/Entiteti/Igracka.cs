@@ -13,9 +13,9 @@ namespace DedaMrazovaRadionica.Entiteti
         public virtual string Tip { get; set; }
         public virtual string Opis { get; set; }
         public virtual Poklon PripadaPoklonu { get; set; }
-        public virtual DeoRadionice PripadaDeluRadionice { get; set; }
+        public virtual DeoRadionice IzradjenaUDeluRadionice { get; set; }
         public virtual ListaZelja PripadaListiZelja { get; set; }
-        public virtual Vilenjak VilenjakZaIzraduIgracaka {  get; set; }
+        //public virtual Vilenjak VilenjakZaIzraduIgracaka {  get; set; }
         public Igracka() { }
 
     }

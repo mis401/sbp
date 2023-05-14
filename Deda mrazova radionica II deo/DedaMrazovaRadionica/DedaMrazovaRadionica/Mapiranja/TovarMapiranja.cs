@@ -17,6 +17,8 @@ namespace DedaMrazovaRadionica.Mapiranja
             Id(x => x.ID, "ID").GeneratedBy.TriggerIdentity();
 
             Map(x => x.Grad, "GRAD");
+
+            HasMany(x => x.Pokloni).KeyColumn("ID_TOVARA").Cascade.All().Inverse();
         }
     }
 }
