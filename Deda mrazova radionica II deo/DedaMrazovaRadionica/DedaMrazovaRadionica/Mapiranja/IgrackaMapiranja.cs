@@ -22,6 +22,7 @@ namespace DedaMrazovaRadionica.Mapiranja
 
             References(x => x.IzradjenaUDeluRadionice).Column("ID_DELA_RADIONICE").LazyLoad();
             References(x => x.Vilenjak).Column("ID_VILENJAKA_ZA_IGRACKE").LazyLoad();
+            References(x => x.PripadaListiZelja).Column("ID_LISTE_ZELJA").LazyLoad();
         }
     }
 }

@@ -25,13 +25,18 @@ namespace DedaMrazovaRadionica.Mapiranja
             Map(x => x.DuzinaObuke, "DUZINA_OBUKE");
 
             HasMany(x => x.Igracke).KeyColumn("ID_VILENJAKA_ZA_IGRACKE").Cascade.All().Inverse();
-            //mentor
-            References(x => x.DeoRadionice).Column("ID_DELA_RADIONICE").LazyLoad();
+            HasMany(x => x.JeMentor).KeyColumn("ID_MENTORA").Cascade.All().Inverse();
+            HasMany(x => x.VilenjakZaIgrackeVestinaSpoj).KeyColumn("ID_VILENJAKA_ZA_IGRACKE").Cascade.All().Inverse();
 
-            HasManyToMany(x => x.MagicneVestine)
-               .Table("ZA_IGRACKE_POSEDUJE_VESTINU")
-               .ParentKeyColumn("ID_VILENJAKA_ZA_IGRACKE")
-               .ChildKeyColumn("ID_VESTINE").Cascade.All().Inverse();
+            References(x => x.DeoRadionice).Column("ID_DELA_RADIONICE").LazyLoad();
+            References(x => x.ImaMentora).Column("ID_MENTORA").LazyLoad();
+            References(x => x.PripadaTimu).Column("ID_TIMA").LazyLoad();
+
+            References(x => x.PripadaTimu, "ID_TIMA");
+
+            
+
+
 
         }
 

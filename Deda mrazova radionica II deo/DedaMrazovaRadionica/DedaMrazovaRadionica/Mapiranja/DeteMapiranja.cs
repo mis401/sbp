@@ -24,6 +24,7 @@ namespace DedaMrazovaRadionica.Mapiranja
             Map(x => x.DatumRodjenja, "DATUM_RODJENJA");
 
             HasMany(x => x.Pisma).KeyColumn("ID_DETETA").Cascade.All().Inverse();
+            HasMany(x=>x.Roditelji).KeyColumn("ID_DETETA").Cascade.All().Inverse();
         }
     }
 }

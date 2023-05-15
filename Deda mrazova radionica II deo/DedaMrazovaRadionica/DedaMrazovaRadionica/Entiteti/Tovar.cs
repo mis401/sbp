@@ -12,11 +12,12 @@ namespace DedaMrazovaRadionica.Entiteti
         public virtual string Grad { get; set; }
         public virtual IList<Poklon> Pokloni { get; set; }
         public virtual IList<VilenjakZaIsporukuPoklona> Vilenjaci { get; set; }
-        public virtual IList<Irvas> Irvasi { get; set; }
+       
+        public virtual IList<IrvasIsporucujeTovar> IrvasIsporucujeTovar { get; set; }
         public Tovar() 
         {
             Pokloni = new List<Poklon>();
-            Irvasi = new List<Irvas>();
+            IrvasIsporucujeTovar = new List<IrvasIsporucujeTovar>();
             Vilenjaci = new List<VilenjakZaIsporukuPoklona>();
         }
     }

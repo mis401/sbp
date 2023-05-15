@@ -15,12 +15,12 @@ namespace DedaMrazovaRadionica.Entiteti
         public virtual Tovar PripadaTovaru { get; set; }
         public virtual ListaZelja ZaListuZelja { get; set; }
 
-        public virtual IList<VilenjakZaPoklone> Vilenjaci { get; set; }
+        public virtual IList<PakovanjePoklona> PakovanjePoklona{ get; set; }
 
         public Poklon() 
         {
            // IgrackeZaPoklon = new List<Igracka>();
-           Vilenjaci = new List <VilenjakZaPoklone>();
+           PakovanjePoklona = new List<PakovanjePoklona>();
         }
     }
 }

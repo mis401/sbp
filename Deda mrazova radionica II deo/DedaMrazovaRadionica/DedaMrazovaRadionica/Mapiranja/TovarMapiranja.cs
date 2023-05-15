@@ -20,11 +20,7 @@ namespace DedaMrazovaRadionica.Mapiranja
 
             HasMany(x => x.Pokloni).KeyColumn("ID_TOVARA").Cascade.All().Inverse();
             HasMany(x => x.Vilenjaci).KeyColumn("ID_TOVARA").Cascade.All().Inverse();
-
-            HasManyToMany(x => x.Irvasi)
-                .Table("IRVAS_ISPORUCUJE_TOVAR")
-                .ParentKeyColumn("ID_TOVARA")
-                .ChildKeyColumn("ID_IRVASA");
+            HasMany(x=>x.IrvasIsporucujeTovar).KeyColumn("ID_TOVARA").Cascade.All().Inverse();
         }
     }
 }

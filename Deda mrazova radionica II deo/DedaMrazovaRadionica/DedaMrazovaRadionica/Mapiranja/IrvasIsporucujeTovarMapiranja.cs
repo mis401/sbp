@@ -8,19 +8,16 @@ using System.Threading.Tasks;
 
 namespace DedaMrazovaRadionica.Mapiranja
 {
-    class VilenjakZaIsporukuPoklonaMapiranja:SubclassMap<VilenjakZaIsporukuPoklona>
+    class IrvasIsporucujeTovarMapiranja :ClassMap<IrvasIsporucujeTovar>
     {
-        public VilenjakZaIsporukuPoklonaMapiranja()
+        public IrvasIsporucujeTovarMapiranja() 
         {
-            Table("VILENJAK_ZA_ISPORUKU_POKLONA");
+            Table("IRVAS_ISPORUCUJE_TOVAR");
 
-            Abstract();
+            Id(x => x.ID, "ID").GeneratedBy.TriggerIdentity();
 
+            References(x => x.Irvas).Column("ID_IRVASA").LazyLoad();
             References(x => x.Tovar).Column("ID_TOVARA").LazyLoad();
-
-            HasMany(x => x.VilenjakZaIsporukuVestinaSpoj).KeyColumn("ID_VILENJAKA_ZA_TOVAR").Cascade.All().Inverse();
-
-
         }
     }
 }

@@ -20,25 +20,10 @@ namespace DedaMrazovaRadionica.Mapiranja
 
             References(x => x.PotrebnaDeluRadionice).Column("ID_DELA_RADIONICE").LazyLoad();
 
-            HasManyToMany(x => x.VilenjaciZaIrvase)
-                .Table("ZA_IRVASE_POSEDUJE_VESTINU")
-                .ParentKeyColumn("ID_VESTINE")
-                .ChildKeyColumn("ID_VILENJAKA_ZA_IRVASE");
-
-            HasManyToMany(x => x.VilenjaciZaIsporukuPoklona)
-                .Table("ZA_ISPORUKU_POSEDUJE_VESTINU")
-                .ParentKeyColumn("ID_VESTINE")
-                .ChildKeyColumn("ID_VILENJAKA_ZA_TOVAR");
-
-            HasManyToMany(x => x.VilenjaciZaIzraduIgracaka)
-                .Table("ZA_IGRACKE_POSEDUJE_VESTINU")
-                .ParentKeyColumn("ID_VESTINE")
-                .ChildKeyColumn("ID_VILENJAKA_ZA_IGRACKE");
-
-            HasManyToMany(x => x.VilenjaciZaPoklone)
-                .Table("ZA_POKLON_POSEDUJE_VESTINU")
-                .ParentKeyColumn("ID_VESTINE")
-                .ChildKeyColumn("ID_VILENJAKA_ZA_POKLONE");
+            HasMany(x => x.VilenjakZaIrvaseVestinaSpoj).KeyColumn("ID_VESTINE").Cascade.All().Inverse();
+            HasMany(x => x.VilenjakZaIsporukuVestinaSpoj).KeyColumn("ID_VESTINE").Cascade.All().Inverse();
+            HasMany(x => x.VilenjakZaIgrackeVestinaSpoj).KeyColumn("ID_VESTINE").Cascade.All().Inverse();
+            HasMany(x => x.VilenjakZaPokloneVestinaSpoj).KeyColumn("ID_VESTINE").Cascade.All().Inverse();
         }
     }
 }

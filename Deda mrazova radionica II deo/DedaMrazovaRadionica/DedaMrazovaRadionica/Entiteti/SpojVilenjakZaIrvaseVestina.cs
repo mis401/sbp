@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace DedaMrazovaRadionica.Entiteti
 {
-    public class Pesma
+    public class SpojVilenjakZaIrvaseVestina
     {
         public virtual int ID { get; set; }
-        public virtual string Naziv { get; set; }
-        public virtual string Tekst { get; set; }
         public virtual VilenjakZaIrvase VilenjakZaIrvase { get; set; }
-        public Pesma() 
+        public virtual MagicnaVestina MagicnaVestina { get; set; }
+
+        public SpojVilenjakZaIrvaseVestina()
         {
-            
+
         }
     }
 }

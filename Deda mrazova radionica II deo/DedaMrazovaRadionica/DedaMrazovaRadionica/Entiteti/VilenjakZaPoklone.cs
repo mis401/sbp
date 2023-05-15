@@ -8,10 +8,12 @@ namespace DedaMrazovaRadionica.Entiteti
 {
     public class VilenjakZaPoklone : Vilenjak
     {
-        public virtual IList<Poklon> Pokloni { get; set; }
+        public virtual IList<PakovanjePoklona> PakovanjePoklona { get; set; }
+        public virtual IList<SpojVilenjakZaPokloneVestina> VilenjakZaPokloneVestinaSpoj { get; set; }
         public VilenjakZaPoklone() : base()
         {
-            Pokloni = new List<Poklon>();
+            PakovanjePoklona = new List<PakovanjePoklona>();
+            VilenjakZaPokloneVestinaSpoj = new List<SpojVilenjakZaPokloneVestina>();
         }
     }
 }

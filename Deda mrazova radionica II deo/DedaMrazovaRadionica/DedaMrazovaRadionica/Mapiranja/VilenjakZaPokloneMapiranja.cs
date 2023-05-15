@@ -16,15 +16,8 @@ namespace DedaMrazovaRadionica.Mapiranja
 
             Abstract();
 
-            HasManyToMany(x => x.MagicneVestine)
-               .Table("ZA_POKLON_POSEDUJE_VESTINU")
-               .ParentKeyColumn("ID_VILENJAKA_ZA_POKLONE")
-               .ChildKeyColumn("ID_VESTINE").Cascade.All().Inverse();
-
-            HasManyToMany(x => x.Pokloni)
-              .Table("PAKOVANJE_POKLONA")
-              .ParentKeyColumn("ID_VILENJAKA_ZA_POKLONE")
-              .ChildKeyColumn("ID_POKLONA").Cascade.All().Inverse();
+            HasMany(x => x.PakovanjePoklona).KeyColumn("ID_VILENJAKA_ZA_POKLONE").Cascade.All().Inverse();
+            HasMany(x => x.VilenjakZaPokloneVestinaSpoj).KeyColumn("ID_VILENJAKA_ZA_POKLONE").Cascade.All().Inverse();
         }
     }
 }

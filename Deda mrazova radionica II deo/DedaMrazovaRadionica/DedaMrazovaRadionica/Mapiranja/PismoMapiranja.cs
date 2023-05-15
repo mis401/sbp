@@ -21,6 +21,8 @@ namespace DedaMrazovaRadionica.Mapiranja
 
             References(x => x.PripadaDetetu).Column("ID_DETETA").LazyLoad();
 
+            HasOne(x => x.ListaZelja).PropertyRef(x => x.PripadaPismu);
+
         }
     }
 }

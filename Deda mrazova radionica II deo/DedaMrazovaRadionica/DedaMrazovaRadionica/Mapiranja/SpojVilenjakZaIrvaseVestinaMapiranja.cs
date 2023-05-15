@@ -8,19 +8,17 @@ using System.Threading.Tasks;
 
 namespace DedaMrazovaRadionica.Mapiranja
 {
-    class PesmaMapiranja : ClassMap<Pesma>
+    class SpojVilenjakZaIrvaseVestinaMapiranja:ClassMap<SpojVilenjakZaIrvaseVestina>
     {
-        public PesmaMapiranja() 
+        public SpojVilenjakZaIrvaseVestinaMapiranja()
         {
-            Table("PESMA");
+            Table("ZA_IGRACKE_POSEDUJE_VESTINU");
 
             Id(x => x.ID, "ID").GeneratedBy.TriggerIdentity();
 
-            Map(x => x.Naziv, "NAZIV");
-            Map(x => x.Tekst, "TEKST");
-
             References(x => x.VilenjakZaIrvase).Column("ID_VILENJAKA_ZA_IRVASE").LazyLoad();
-        }
+            References(x => x.MagicnaVestina).Column("ID_VESTINE").LazyLoad();
 
+        }
     }
 }

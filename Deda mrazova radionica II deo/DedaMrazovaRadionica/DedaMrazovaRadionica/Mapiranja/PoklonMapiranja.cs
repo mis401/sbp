@@ -22,10 +22,9 @@ namespace DedaMrazovaRadionica.Mapiranja
 
             References(x => x.PripadaTovaru).Column("ID_TOVARA").LazyLoad();
 
-            HasManyToMany(x => x.Vilenjaci)
-              .Table("PAKOVANJE_POKLONA")
-              .ParentKeyColumn("ID_POKLONA")
-              .ChildKeyColumn("ID_VILENJAKA_ZA_POKLONE");
+            HasMany(x => x.PakovanjePoklona).KeyColumn("ID_POKLONA").Cascade.All().Inverse();
+
+            References(x => x.ZaListuZelja, "ID_LISTE_ZELJA");
         }
     }
 }
