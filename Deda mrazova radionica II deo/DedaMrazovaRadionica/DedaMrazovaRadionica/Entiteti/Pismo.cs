@@ -13,8 +13,8 @@ namespace DedaMrazovaRadionica.Entiteti
         public virtual string Tekst { get; set; }
         public virtual DateTime DatumSlanja { get; set; }
         public virtual DateTime DatumPrijema { get; set; }
-        public virtual Dete PripadaDetetu { get; set; }
-        public virtual ListaZelja ListaZelja { get; set; }
+        public virtual Dete PripadaDetetu { get; set; }//
+        public virtual ListaZelja ListaZelja { get; set; }//
         
         public Pismo() { }
 

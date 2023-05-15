@@ -20,11 +20,12 @@ namespace DedaMrazovaRadionica.Mapiranja
             Map(x => x.Boja, "BOJA");
             Map(x => x.Posveta, "POSVETA");
 
-            References(x => x.PripadaTovaru).Column("ID_TOVARA").LazyLoad();
+            References(x => x.PripadaTovaru).Column("ID_TOVARA").LazyLoad();//
 
-            HasMany(x => x.PakovanjePoklona).KeyColumn("ID_POKLONA").Cascade.All().Inverse();
+            HasMany(x => x.PakovanjePoklona).KeyColumn("ID_POKLONA").Cascade.All().Inverse();//
+            HasMany(x => x.IgrackeZaPoklon).KeyColumn("ID_POKLONA").Cascade.All().Inverse();//
 
-            References(x => x.ZaListuZelja, "ID_LISTE_ZELJA");
+            References(x => x.ZaListuZelja, "ID_LISTE_ZELJA");//
         }
     }
 }

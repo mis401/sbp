@@ -12,10 +12,10 @@ namespace DedaMrazovaRadionica.Entiteti
         public virtual int RedniBroj { get; set; }
         public virtual string Tip { get; set; }
         public virtual string Opis { get; set; }
-        public virtual Poklon PripadaPoklonu { get; set; }
-        public virtual DeoRadionice IzradjenaUDeluRadionice { get; set; }
-        public virtual ListaZelja PripadaListiZelja { get; set; }
-        public virtual VilenjakZaIzraduIgracaka Vilenjak { get; set; }
+        public virtual Poklon PripadaPoklonu { get; set; }//
+        public virtual DeoRadionice IzradjenaUDeluRadionice { get; set; }//
+        public virtual ListaZelja PripadaListiZelja { get; set; }//
+        public virtual VilenjakZaIzraduIgracaka Vilenjak { get; set; }//
         public Igracka() { }
 
     }

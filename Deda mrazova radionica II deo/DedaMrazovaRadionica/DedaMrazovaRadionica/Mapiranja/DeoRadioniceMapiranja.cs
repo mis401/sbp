@@ -19,8 +19,11 @@ namespace DedaMrazovaRadionica.Entiteti
             Map(x => x.Naziv, "NAZIV");
             Map(x => x.TipIgracke, "TIP_IGRACKE");
 
-            HasMany(x => x.IgrackeIstogTipa).KeyColumn("ID_DELA_RADIONICE").Cascade.All().Inverse();
-            HasMany(x => x.ZahtevaVestinu).KeyColumn("ID_DELA_RADIONICE").Cascade.All().Inverse();
+            HasMany(x => x.IgrackeIstogTipa).KeyColumn("ID_DELA_RADIONICE").Cascade.All().Inverse();//
+            HasMany(x => x.ZahtevaVestinu).KeyColumn("ID_DELA_RADIONICE").Cascade.All().Inverse();//
+            HasMany(x => x.VilenjaciZaIzraduIgracaka).KeyColumn("ID_DELA_RADIONICE").Cascade.All().Inverse();//
+
+            HasOne(x => x.Sef).PropertyRef(x => x.DeoRadionice);//
 
         }
 

@@ -10,8 +10,8 @@ namespace DedaMrazovaRadionica.Entiteti
     {
         public virtual int ID { get; set; }
         public virtual string Grad { get; set; }
-        public virtual IList<Poklon> Pokloni { get; set; }
-        public virtual IList<VilenjakZaIsporukuPoklona> Vilenjaci { get; set; }
+        public virtual IList<Poklon> Pokloni { get; set; }//
+        public virtual IList<VilenjakZaIsporukuPoklona> Vilenjaci { get; set; }//
        
         public virtual IList<IrvasIsporucujeTovar> IrvasIsporucujeTovar { get; set; }
         public Tovar() 

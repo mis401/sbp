@@ -13,8 +13,10 @@ namespace DedaMrazovaRadionica.Mapiranja
         public DeteRoditeljMapiranja() 
         {
             Table("DETE_RODITELJ");
-
+            
             Id(x => x.ID, "ID").GeneratedBy.TriggerIdentity();
+
+            Map(x => x.Roditelj, "IME_RODITELJA");
 
             References(x => x.Dete).Column("ID_DETETA").LazyLoad();
         }

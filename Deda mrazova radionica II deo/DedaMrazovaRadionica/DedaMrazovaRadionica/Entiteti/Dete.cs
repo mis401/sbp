@@ -15,7 +15,7 @@ namespace DedaMrazovaRadionica.Entiteti
         public virtual string Grad { get; set; }
         public virtual string Drzava { get; set; }
         public virtual DateTime DatumRodjenja { get; set; }
-        public virtual IList<Pismo> Pisma { get; set; }
+        public virtual IList<Pismo> Pisma { get; set; }//
         public virtual IList<DeteRoditelj> Roditelji { get; set; }
 
         public Dete() 
