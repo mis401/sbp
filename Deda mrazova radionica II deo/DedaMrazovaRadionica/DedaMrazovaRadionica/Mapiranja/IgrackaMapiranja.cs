@@ -19,6 +19,9 @@ namespace DedaMrazovaRadionica.Mapiranja
             Map(x => x.RedniBroj, "REDNI_BROJ");
             Map(x => x.Tip, "TIP");
             Map(x => x.Opis, "OPIS");
+
+            References(x => x.IzradjenaUDeluRadionice).Column("ID_DELA_RADIONICE").LazyLoad();
+            References(x => x.Vilenjak).Column("ID_VILENJAKA_ZA_IGRACKE").LazyLoad();
         }
     }
 }

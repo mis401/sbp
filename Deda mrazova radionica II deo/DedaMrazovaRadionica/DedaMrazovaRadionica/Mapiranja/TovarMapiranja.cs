@@ -19,6 +19,12 @@ namespace DedaMrazovaRadionica.Mapiranja
             Map(x => x.Grad, "GRAD");
 
             HasMany(x => x.Pokloni).KeyColumn("ID_TOVARA").Cascade.All().Inverse();
+            HasMany(x => x.Vilenjaci).KeyColumn("ID_TOVARA").Cascade.All().Inverse();
+
+            HasManyToMany(x => x.Irvasi)
+                .Table("IRVAS_ISPORUCUJE_TOVAR")
+                .ParentKeyColumn("ID_TOVARA")
+                .ChildKeyColumn("ID_IRVASA");
         }
     }
 }

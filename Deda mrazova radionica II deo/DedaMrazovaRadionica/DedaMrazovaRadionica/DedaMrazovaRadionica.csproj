@@ -112,6 +112,11 @@
     <Compile Include="Entiteti\Poklon.cs" />
     <Compile Include="Entiteti\Tim.cs" />
     <Compile Include="Entiteti\Tovar.cs" />
+    <Compile Include="Entiteti\Vilenjak.cs" />
+    <Compile Include="Entiteti\VilenjakZaIrvase.cs" />
+    <Compile Include="Entiteti\VilenjakZaIsporukuPoklona.cs" />
+    <Compile Include="Entiteti\VilenjakZaIzraduIgracaka.cs" />
+    <Compile Include="Entiteti\VilenjakZaPoklone.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -129,6 +134,11 @@
     <Compile Include="Mapiranja\PoklonMapiranja.cs" />
     <Compile Include="Mapiranja\TimMapiranja.cs" />
     <Compile Include="Mapiranja\TovarMapiranja.cs" />
+    <Compile Include="Mapiranja\VilenjakMapiranja.cs" />
+    <Compile Include="Mapiranja\VilenjakZaIrvaseMapiranja.cs" />
+    <Compile Include="Mapiranja\VilenjakZaIsporukuPoklonaMapiranja.cs" />
+    <Compile Include="Mapiranja\VilenjakZaIzraduIgracakaMapiranja.cs" />
+    <Compile Include="Mapiranja\VilenjakZaPokloneMapiranja.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
