@@ -16,8 +16,8 @@ namespace DedaMrazovaRadionica.Mapiranja
 
             Id(x => x.ID, "ID").GeneratedBy.TriggerIdentity();
 
-            References(x => x.Irvas).Column("ID_IRVASA").LazyLoad();//
-            References(x => x.Tovar).Column("ID_TOVARA").LazyLoad();//
+            References(x => x.Irvas).Column("ID_IRVASA").LazyLoad();
+            References(x => x.Tovar).Column("ID_TOVARA").LazyLoad();
         }
     }
 }

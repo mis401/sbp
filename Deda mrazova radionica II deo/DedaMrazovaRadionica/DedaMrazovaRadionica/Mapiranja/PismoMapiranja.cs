@@ -19,9 +19,9 @@ namespace DedaMrazovaRadionica.Mapiranja
             Map(x => x.Tekst, "TEKST");
             Map(x => x.IndeksDobrote, "INDEKS_DOBROTE");
 
-            References(x => x.PripadaDetetu).Column("ID_DETETA").LazyLoad();//
+            References(x => x.PripadaDetetu).Column("ID_DETETA").LazyLoad();
 
-            HasOne(x => x.ListaZelja).PropertyRef(x => x.PripadaPismu);//
+            HasOne(x => x.ListaZelja).PropertyRef(x => x.PripadaPismu);
 
         }
     }

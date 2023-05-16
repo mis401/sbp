@@ -19,9 +19,9 @@ namespace DedaMrazovaRadionica.Mapiranja
 
             Map(x => x.Naziv, "NAZIV");
 
-            HasMany(x => x.Vilejnaci).KeyColumn("ID_TIMA").Cascade.All().Inverse();//
+            HasMany(x => x.Vilejnaci).KeyColumn("ID_TIMA").Cascade.All().Inverse();
 
-            HasOne(x => x.Koordinator).PropertyRef(x => x.PripadaTimu);//
+            HasOne(x => x.Koordinator).PropertyRef(x => x.PripadaTimu);
         }
 
     }

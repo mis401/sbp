@@ -19,7 +19,7 @@ namespace DedaMrazovaRadionica.Mapiranja
             Map(x => x.Naziv, "NAZIV");
             Map(x => x.Tekst, "TEKST");
 
-            References(x => x.VilenjakZaIrvase).Column("ID_VILENJAKA_ZA_IRVASE").LazyLoad();//
+            References(x => x.VilenjakZaIrvase).Column("ID_VILENJAKA_ZA_IRVASE").LazyLoad();
         }
 
     }

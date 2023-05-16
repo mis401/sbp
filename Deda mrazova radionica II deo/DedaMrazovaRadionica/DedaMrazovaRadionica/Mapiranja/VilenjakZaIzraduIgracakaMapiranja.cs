@@ -25,11 +25,11 @@ namespace DedaMrazovaRadionica.Mapiranja
             Map(x => x.DuzinaObuke, "DUZINA_OBUKE");
 
             
-            HasMany(x => x.JeMentor).KeyColumn("ID_MENTORA").Cascade.All().Inverse();//
-            HasMany(x => x.VilenjakZaIgrackeVestinaSpoj).KeyColumn("ID_VILENJAKA_ZA_IGRACKE").Cascade.All().Inverse();//
+            HasMany(x => x.JeMentor).KeyColumn("ID_MENTORA").Cascade.All().Inverse();
+            HasMany(x => x.VilenjakZaIgrackeVestinaSpoj).KeyColumn("ID_VILENJAKA_ZA_IGRACKE").Cascade.All().Inverse();
 
-            References(x => x.DeoRadionice).Column("ID_DELA_RADIONICE").LazyLoad();//
-            References(x => x.ImaMentora).Column("ID_MENTORA").LazyLoad();//
+            References(x => x.DeoRadionice).Column("ID_DELA_RADIONICE").LazyLoad();
+            References(x => x.ImaMentora).Column("ID_MENTORA").LazyLoad();
             References(x => x.PripadaTimu).Column("ID_TIMA").LazyLoad();// za one to many, da li treba odvojeno?
 
             References(x => x.PripadaTimu, "ID_TIMA");//za one to one

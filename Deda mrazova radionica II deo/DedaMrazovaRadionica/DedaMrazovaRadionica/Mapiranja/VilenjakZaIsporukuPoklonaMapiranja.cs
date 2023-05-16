@@ -16,9 +16,9 @@ namespace DedaMrazovaRadionica.Mapiranja
 
             Abstract();
 
-            References(x => x.Tovar).Column("ID_TOVARA").LazyLoad();//
+            References(x => x.Tovar).Column("ID_TOVARA").LazyLoad();
 
-            HasMany(x => x.VilenjakZaIsporukuVestinaSpoj).KeyColumn("ID_VILENJAKA_ZA_TOVAR").Cascade.All().Inverse();//
+            HasMany(x => x.VilenjakZaIsporukuVestinaSpoj).KeyColumn("ID_VILENJAKA_ZA_TOVAR").Cascade.All().Inverse();
 
 
         }

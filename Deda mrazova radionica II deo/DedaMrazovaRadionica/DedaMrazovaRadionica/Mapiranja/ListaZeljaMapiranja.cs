@@ -16,11 +16,11 @@ namespace DedaMrazovaRadionica.Mapiranja
 
             Id(x => x.ID, "ID").GeneratedBy.TriggerIdentity();
 
-            HasOne(x => x.Poklon).PropertyRef(x => x.ZaListuZelja);//
+            HasOne(x => x.Poklon).PropertyRef(x => x.ZaListuZelja);
 
-            References(x => x.PripadaPismu, "ID_PISMA");//
+            References(x => x.PripadaPismu, "ID_PISMA");
 
-            HasMany(x => x.ZeljeneIgracke).KeyColumn("ID_LISTE_ZELJA").Cascade.All().Inverse();//
+            HasMany(x => x.ZeljeneIgracke).KeyColumn("ID_LISTE_ZELJA").Cascade.All().Inverse();
 
         }
     }

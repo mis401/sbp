@@ -20,10 +20,10 @@ namespace DedaMrazovaRadionica.Mapiranja
             Map(x => x.Tip, "TIP");
             Map(x => x.Opis, "OPIS");
 
-            References(x => x.IzradjenaUDeluRadionice).Column("ID_DELA_RADIONICE").LazyLoad();//
-            References(x => x.Vilenjak).Column("ID_VILENJAKA_ZA_IGRACKE").LazyLoad();//
-            References(x => x.PripadaListiZelja).Column("ID_LISTE_ZELJA").LazyLoad();//
-            References(x => x.PripadaPoklonu).Column("ID_POKLONA").LazyLoad();//
+            References(x => x.IzradjenaUDeluRadionice).Column("ID_DELA_RADIONICE").LazyLoad();
+            References(x => x.Vilenjak).Column("ID_VILENJAKA_ZA_IGRACKE").LazyLoad();
+            References(x => x.PripadaListiZelja).Column("ID_LISTE_ZELJA").LazyLoad();
+            References(x => x.PripadaPoklonu).Column("ID_POKLONA").LazyLoad();
 
         }
     }
