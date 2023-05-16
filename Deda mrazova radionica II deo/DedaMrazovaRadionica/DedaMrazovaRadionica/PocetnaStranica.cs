@@ -1,4 +1,5 @@
 ﻿using DedaMrazovaRadionica.Entiteti;
+using DedaMrazovaRadionica.Forme;
 using NHibernate;
 using Prodavnica;
 using System;
@@ -20,6 +21,10 @@ namespace DedaMrazovaRadionica
             InitializeComponent();
         }
 
-      
+        private void btnAdministracija_Click(object sender, EventArgs e)
+        {
+            AdministracijaForma administracija = new AdministracijaForma();
+            administracija.ShowDialog();
+        }
     }
 }

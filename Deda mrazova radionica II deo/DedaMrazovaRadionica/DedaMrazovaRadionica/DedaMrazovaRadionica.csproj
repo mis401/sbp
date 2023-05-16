@@ -101,6 +101,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataLayer.cs" />
+    <Compile Include="DTOManager.cs" />
+    <Compile Include="DTOs.cs" />
     <Compile Include="Entiteti\DeoRadionice.cs" />
     <Compile Include="Entiteti\Dete.cs" />
     <Compile Include="Entiteti\DeteRoditelj.cs" />
@@ -124,6 +126,18 @@
     <Compile Include="Entiteti\SpojVilenjakZaIsporukuVestina.cs" />
     <Compile Include="Entiteti\VilenjakZaIzraduIgracaka.cs" />
     <Compile Include="Entiteti\VilenjakZaPoklone.cs" />
+    <Compile Include="Forme\AdministracijaForma.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forme\AdministracijaForma.Designer.cs">
+      <DependentUpon>AdministracijaForma.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forme\DodajNovogVilenjakaForma.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forme\DodajNovogVilenjakaForma.Designer.cs">
+      <DependentUpon>DodajNovogVilenjakaForma.cs</DependentUpon>
+    </Compile>
     <Compile Include="PocetnaStranica.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -155,6 +169,12 @@
     <Compile Include="Mapiranja\VilenjakZaPokloneMapiranja.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forme\AdministracijaForma.resx">
+      <DependentUpon>AdministracijaForma.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forme\DodajNovogVilenjakaForma.resx">
+      <DependentUpon>DodajNovogVilenjakaForma.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PocetnaStranica.resx">
       <DependentUpon>PocetnaStranica.cs</DependentUpon>
     </EmbeddedResource>

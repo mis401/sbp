@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PocetnaStranica));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.btnAdministracija = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -43,34 +43,34 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
-            // label1
+            // btnAdministracija
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(522, 259);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(233, 20);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "DEDA MRAZOVA RADIONICA";
+            this.btnAdministracija.Location = new System.Drawing.Point(448, 42);
+            this.btnAdministracija.Name = "btnAdministracija";
+            this.btnAdministracija.Size = new System.Drawing.Size(277, 65);
+            this.btnAdministracija.TabIndex = 1;
+            this.btnAdministracija.Text = "ADMINISTRACIJA";
+            this.btnAdministracija.UseVisualStyleBackColor = true;
+            this.btnAdministracija.Click += new System.EventHandler(this.btnAdministracija_Click);
             // 
             // PocetnaStranica
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 819);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.btnAdministracija);
             this.Controls.Add(this.pictureBox1);
             this.Name = "PocetnaStranica";
             this.Text = "PocetnaStranica";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnAdministracija;
     }
 }
 
