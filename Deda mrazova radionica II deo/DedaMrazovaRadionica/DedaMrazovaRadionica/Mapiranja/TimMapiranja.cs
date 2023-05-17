@@ -21,7 +21,7 @@ namespace DedaMrazovaRadionica.Mapiranja
 
             HasMany(x => x.Vilejnaci).KeyColumn("ID_TIMA").Cascade.All().Inverse();
 
-           // HasOne(x => x.Koordinator).PropertyRef(x => x.PripadaTimu);
+        
         }
 
     }

@@ -12,7 +12,7 @@ namespace DedaMrazovaRadionica.Entiteti
         public virtual string JedinstvenoIme { get; set; }
         public virtual string ZemljaPorekla { get; set; }
         public virtual DateTime DatumZaposlenja { get; set; }
-        //public virtual IList<MagicnaVestina> MagicneVestine { get; set; }
+    
         public Vilenjak()
         {
          //   MagicneVestine = new List<MagicnaVestina>();
