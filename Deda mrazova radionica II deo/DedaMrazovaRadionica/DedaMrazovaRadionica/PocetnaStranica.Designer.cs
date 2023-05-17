@@ -39,13 +39,13 @@
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(12, 12);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(403, 356);
+            this.pictureBox1.Size = new System.Drawing.Size(618, 490);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
             // btnAdministracija
             // 
-            this.btnAdministracija.Location = new System.Drawing.Point(448, 42);
+            this.btnAdministracija.Location = new System.Drawing.Point(658, 30);
             this.btnAdministracija.Name = "btnAdministracija";
             this.btnAdministracija.Size = new System.Drawing.Size(277, 65);
             this.btnAdministracija.TabIndex = 1;
@@ -57,7 +57,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 819);
+            this.ClientSize = new System.Drawing.Size(979, 819);
             this.Controls.Add(this.btnAdministracija);
             this.Controls.Add(this.pictureBox1);
             this.Name = "PocetnaStranica";

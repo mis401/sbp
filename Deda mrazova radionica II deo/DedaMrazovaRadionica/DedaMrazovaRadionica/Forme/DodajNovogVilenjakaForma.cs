@@ -16,6 +16,7 @@ namespace DedaMrazovaRadionica.Forme
         {
             InitializeComponent();
             popuniVrsteVilenjaka();
+            popuniMentor();
          
         }
 
@@ -29,6 +30,13 @@ namespace DedaMrazovaRadionica.Forme
                 comboVrstaVilenjaka.Items.Add(tip);
             }
 
+        }
+
+        private void popuniMentor()
+        {
+            List<VilenjakZaIzraduIgracakaMentor> mentori = DTOManager.vratiSveMentore();
+            foreach (VilenjakZaIzraduIgracakaMentor v in mentori)
+                comboMentor.Items.Add(v.jedinstvenoIme);
         }
         private void comboVrstaVilenjaka_SelectedIndexChanged(object sender, EventArgs e)
         {

@@ -19,10 +19,10 @@ namespace DedaMrazovaRadionica
             {
                 ISession s = DataLayer.GetSession();
 
-                IEnumerable<VilenjakZaIzraduIgracaka> svi = from o in s.Query<VilenjakZaIzraduIgracaka>()
+                IEnumerable<VilenjakZaIzraduIgracaka> vilenjaci = from o in s.Query<VilenjakZaIzraduIgracaka>()
                                                             select o;
 
-                foreach (VilenjakZaIzraduIgracaka v in svi)
+                foreach (VilenjakZaIzraduIgracaka v in vilenjaci)
                 {
                     mentori.Add(new VilenjakZaIzraduIgracakaMentor(v.JedinstvenoIme, v.ZemljaPorekla, v.DatumZaposlenja));
                 }
