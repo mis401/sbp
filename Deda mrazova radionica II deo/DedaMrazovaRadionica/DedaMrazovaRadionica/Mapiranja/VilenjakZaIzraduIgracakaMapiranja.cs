@@ -19,7 +19,7 @@ namespace DedaMrazovaRadionica.Mapiranja
 
             Map(x => x.TipMaterijala, "TIP_MATERIJALA");
             Map(x => x.FlagKoordinator, "FLAG_KOORDINATOR");
-            Map(x => x.FlagSef, "FLAG,SEF");
+            Map(x => x.FlagSef, "FLAG_SEF");
             Map(x => x.DatumPostavljanja, "DATUM_POSTAVLJANJA");
             Map(x => x.Ocena, "OCENA");
             Map(x => x.DuzinaObuke, "DUZINA_OBUKE");
