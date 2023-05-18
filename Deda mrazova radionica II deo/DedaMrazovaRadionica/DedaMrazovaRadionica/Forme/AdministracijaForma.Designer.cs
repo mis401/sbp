@@ -37,17 +37,18 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(20, 28);
+            this.label1.Location = new System.Drawing.Point(18, 22);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(91, 20);
+            this.label1.Size = new System.Drawing.Size(73, 16);
             this.label1.TabIndex = 0;
             this.label1.Text = "VILENJACI";
             // 
             // btnDodajNovogVilenjaka
             // 
-            this.btnDodajNovogVilenjaka.Location = new System.Drawing.Point(25, 78);
+            this.btnDodajNovogVilenjaka.Location = new System.Drawing.Point(22, 62);
+            this.btnDodajNovogVilenjaka.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnDodajNovogVilenjaka.Name = "btnDodajNovogVilenjaka";
-            this.btnDodajNovogVilenjaka.Size = new System.Drawing.Size(220, 40);
+            this.btnDodajNovogVilenjaka.Size = new System.Drawing.Size(196, 32);
             this.btnDodajNovogVilenjaka.TabIndex = 1;
             this.btnDodajNovogVilenjaka.Text = "Dodaj novog vilenjaka";
             this.btnDodajNovogVilenjaka.UseVisualStyleBackColor = true;
@@ -55,31 +56,35 @@
             // 
             // btnObrisiPostojecegVilenjaka
             // 
-            this.btnObrisiPostojecegVilenjaka.Location = new System.Drawing.Point(25, 124);
+            this.btnObrisiPostojecegVilenjaka.Location = new System.Drawing.Point(22, 99);
+            this.btnObrisiPostojecegVilenjaka.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnObrisiPostojecegVilenjaka.Name = "btnObrisiPostojecegVilenjaka";
-            this.btnObrisiPostojecegVilenjaka.Size = new System.Drawing.Size(220, 39);
+            this.btnObrisiPostojecegVilenjaka.Size = new System.Drawing.Size(196, 31);
             this.btnObrisiPostojecegVilenjaka.TabIndex = 2;
             this.btnObrisiPostojecegVilenjaka.Text = "Obriši postojećeg vilenjaka";
             this.btnObrisiPostojecegVilenjaka.UseVisualStyleBackColor = true;
             // 
             // btnAzurirajPodatkeOVilenjaku
             // 
-            this.btnAzurirajPodatkeOVilenjaku.Location = new System.Drawing.Point(25, 169);
+            this.btnAzurirajPodatkeOVilenjaku.Location = new System.Drawing.Point(22, 135);
+            this.btnAzurirajPodatkeOVilenjaku.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAzurirajPodatkeOVilenjaku.Name = "btnAzurirajPodatkeOVilenjaku";
-            this.btnAzurirajPodatkeOVilenjaku.Size = new System.Drawing.Size(220, 41);
+            this.btnAzurirajPodatkeOVilenjaku.Size = new System.Drawing.Size(196, 33);
             this.btnAzurirajPodatkeOVilenjaku.TabIndex = 3;
             this.btnAzurirajPodatkeOVilenjaku.Text = "Ažuriraj podatke o vilenjaku";
             this.btnAzurirajPodatkeOVilenjaku.UseVisualStyleBackColor = true;
+            this.btnAzurirajPodatkeOVilenjaku.Click += new System.EventHandler(this.btnAzurirajPodatkeOVilenjaku_Click);
             // 
             // AdministracijaForma
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(711, 360);
             this.Controls.Add(this.btnAzurirajPodatkeOVilenjaku);
             this.Controls.Add(this.btnObrisiPostojecegVilenjaka);
             this.Controls.Add(this.btnDodajNovogVilenjaka);
             this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "AdministracijaForma";
             this.Text = "AdministracijaForma";
             this.ResumeLayout(false);

@@ -176,5 +176,24 @@ namespace DedaMrazovaRadionica
             return vilenjak;
         }
 
+        public static bool obirisiVilenjakaZaIzraduIgracaka(int id)
+        {
+            ISession s = null;
+            try
+            {
+                s = DataLayer.GetSession();
+                VilenjakZaIzraduIgracaka vilenjak = s.Get<VilenjakZaIzraduIgracaka>(id);
+                if(vilenjak != null)
+                    s.Delete(vilenjak);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+            finally { s?.Close(); }
+            return true;
+        }
+
     }
 }

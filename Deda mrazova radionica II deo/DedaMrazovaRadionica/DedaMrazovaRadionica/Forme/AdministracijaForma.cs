@@ -22,5 +22,11 @@ namespace DedaMrazovaRadionica.Forme
             DodajNovogVilenjakaForma noviVilenjak = new DodajNovogVilenjakaForma();
             noviVilenjak.ShowDialog();
         }
+
+        private void btnAzurirajPodatkeOVilenjaku_Click(object sender, EventArgs e)
+        {
+            AzuriranjeVilenjakaForma azuriranje = new AzuriranjeVilenjakaForma();
+            azuriranje.ShowDialog();
+        }
     }
 }

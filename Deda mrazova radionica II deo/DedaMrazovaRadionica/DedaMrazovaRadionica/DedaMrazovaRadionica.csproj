@@ -132,6 +132,12 @@
     <Compile Include="Forme\AdministracijaForma.Designer.cs">
       <DependentUpon>AdministracijaForma.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forme\AzuriranjeVilenjakaForma.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forme\AzuriranjeVilenjakaForma.Designer.cs">
+      <DependentUpon>AzuriranjeVilenjakaForma.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forme\DodajNovogVilenjakaForma.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -171,6 +177,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forme\AdministracijaForma.resx">
       <DependentUpon>AdministracijaForma.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forme\AzuriranjeVilenjakaForma.resx">
+      <DependentUpon>AzuriranjeVilenjakaForma.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forme\DodajNovogVilenjakaForma.resx">
       <DependentUpon>DodajNovogVilenjakaForma.cs</DependentUpon>
