@@ -68,7 +68,28 @@ namespace DedaMrazovaRadionica
             return true;
         }
 
+        public static bool dodajVilenjakaZaIrvase(VilenjakZaIrvaseBasic vib)
+        {
+            ISession s = null;
+            VilenjakZaIrvase vie = new VilenjakZaIrvase();
+            try
+            {
+                s = DataLayer.GetSession();
 
+                vie.JedinstvenoIme = vib.jedinstvenoIme;
+                vie.ZemljaPorekla = vib.zemljaPorekla;
+                vie.DatumZaposlenja = vib.datumZaposlenja;
+
+                s.SaveOrUpdate(vie);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+            finally { s?.Close(); }
+            return true;
+        }
         public static IList<DeoRadioniceID> vratiNaziveRadionica()
         {
             ISession s = null;
