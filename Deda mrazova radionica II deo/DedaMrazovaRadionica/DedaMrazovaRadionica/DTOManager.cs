@@ -159,6 +159,7 @@ namespace DedaMrazovaRadionica
             return tim;
         }
 
+
         public static VilenjakZaIzraduIgracaka vratiVilenjakaZaIzraduIgracaka(int id)
         {
             ISession s = null;
@@ -195,5 +196,27 @@ namespace DedaMrazovaRadionica
             return true;
         }
 
-    }
+    
+        public static IList<PismoPregled> vratiSvaPisma() //ne vraca nista
+        {
+            IList<PismoPregled> pisma = new List<PismoPregled>();
+            ISession s = null;
+            try
+            {
+                s = DataLayer.GetSession();
+
+                pisma = s.Query<Pismo>()
+                    .Select(pismo => new PismoPregled(pismo.ID, pismo.Tekst, pismo.IndeksDobrote))
+                    .ToList();
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Neuspelo!");
+            }
+            finally { s?.Close(); }
+            return pisma;
+  
+        }
 }
+    }

@@ -26,5 +26,11 @@ namespace DedaMrazovaRadionica
             AdministracijaForma administracija = new AdministracijaForma();
             administracija.ShowDialog();
         }
+
+        private void btnSlanjePoklona_Click(object sender, EventArgs e)
+        {
+            SlanjePoklonaForma slanjePoklona = new SlanjePoklonaForma();
+            slanjePoklona.ShowDialog();
+        }
     }
 }

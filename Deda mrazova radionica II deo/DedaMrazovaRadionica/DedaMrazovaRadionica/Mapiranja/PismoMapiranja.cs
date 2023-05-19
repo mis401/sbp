@@ -18,6 +18,8 @@ namespace DedaMrazovaRadionica.Mapiranja
 
             Map(x => x.Tekst, "TEKST");
             Map(x => x.IndeksDobrote, "INDEKS_DOBROTE");
+            Map(x => x.DatumSlanja, "DATUM_SLANJA");
+            Map(x => x.DatumPrijema, "DATUM_PRIJEMA");
 
             References(x => x.PripadaDetetu).Column("ID_DETETA").LazyLoad();
 

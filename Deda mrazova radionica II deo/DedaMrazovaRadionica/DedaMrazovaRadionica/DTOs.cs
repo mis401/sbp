@@ -109,4 +109,53 @@ namespace DedaMrazovaRadionica
             this.naziv = naziv;
         }
     }
+
+    public class PismoPregled
+    {
+        public int ID;
+        public string tekst;
+        public float indDobrote;
+        
+        public PismoPregled(int id, string t, float i)
+        {
+            this.ID = id;
+            this.tekst = t;
+            this.indDobrote = i;
+        }
+    }
+
+    public class PismoBasic
+    {
+        public int ID;
+        public string tekst;
+        public float indDobrote;
+        public DateTime datumSlanja;
+        public DateTime datumPrijema;
+        public DeteBasic dete;
+
+        public PismoBasic(int iD, string tekst, float indDobrote, DateTime datumSlanja, DateTime datumPrijema, DeteBasic dete)
+        {
+            ID = iD;
+            this.tekst = tekst;
+            this.indDobrote = indDobrote;
+            this.datumSlanja = datumSlanja;
+            this.datumPrijema = datumPrijema;
+            this.dete = dete;
+        }
+    }
+
+    public class DeteBasic
+    {
+
+    }
+    public class ListaZeljaBasic
+    {
+        public int ID;
+        public PismoBasic pismo;
+        
+        public ListaZeljaBasic(PismoBasic pismo)
+        {
+            this.pismo = pismo;
+        }
+    }
 }
