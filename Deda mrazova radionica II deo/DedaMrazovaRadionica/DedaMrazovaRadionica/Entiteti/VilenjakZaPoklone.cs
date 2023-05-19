@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,7 @@ namespace DedaMrazovaRadionica.Entiteti
     {
         public virtual IList<PakovanjePoklona> PakovanjePoklona { get; set; }
         public virtual IList<SpojVilenjakZaPokloneVestina> VilenjakZaPokloneVestinaSpoj { get; set; }
+
         public VilenjakZaPoklone() : base()
         {
             PakovanjePoklona = new List<PakovanjePoklona>();
