@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,6 +20,7 @@ namespace DedaMrazovaRadionica.Entiteti
         public virtual int DuzinaObuke { get; set; }
         public virtual int Ocena { get; set; }
         public virtual IList<Igracka> Igracke { get; set; }//
+
         public virtual IList<SpojVilenjakZaIgrackeVestina> VilenjakZaIgrackeVestinaSpoj { get; set; }
 
         public VilenjakZaIzraduIgracaka() : base()
