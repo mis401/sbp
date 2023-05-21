@@ -17,7 +17,7 @@ namespace DedaMrazovaRadionica.Mapiranja
             Abstract();
 
             HasMany(x => x.PakovanjePoklona).KeyColumn("ID_VILENJAKA_ZA_POKLONE").Cascade.All().Inverse();
-            HasMany(x => x.VilenjakZaPokloneVestinaSpoj).KeyColumn("ID_VILENJAKA_ZA_POKLONE").Cascade.All().Inverse();
+            HasMany(x => x.VilenjakZaPokloneVestinaSpoj).KeyColumn("ID_VILENJAKA_ZA_POKLONE").Cascade.AllDeleteOrphan().Inverse();
         }
     }
 }

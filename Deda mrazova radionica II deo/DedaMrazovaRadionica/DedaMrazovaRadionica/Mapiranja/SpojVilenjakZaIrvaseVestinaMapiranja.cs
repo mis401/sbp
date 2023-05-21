@@ -12,7 +12,7 @@ namespace DedaMrazovaRadionica.Mapiranja
     {
         public SpojVilenjakZaIrvaseVestinaMapiranja()
         {
-            Table("ZA_IGRACKE_POSEDUJE_VESTINU");
+            Table("ZA_IRVASE_POSEDUJE_VESTINU");
 
             Id(x => x.ID, "ID").GeneratedBy.TriggerIdentity();
 

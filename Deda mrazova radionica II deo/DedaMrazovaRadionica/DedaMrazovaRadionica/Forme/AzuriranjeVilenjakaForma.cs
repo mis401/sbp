@@ -13,8 +13,11 @@ namespace DedaMrazovaRadionica.Forme
 {
     public partial class AzuriranjeVilenjakaForma : Form
     {
-        private Vilenjak vilenjak;
+        private VilenjakBasic vilenjak;
+        private Vilenjak vilenjakEntitet;
         private IList<MagicnaVestina> magicnaVestinaList;
+        private IList<PesmaDTO> pesme;
+        private IList<PoklonBasic> pokloni;
         public AzuriranjeVilenjakaForma()
         {
             InitializeComponent();
@@ -22,7 +25,7 @@ namespace DedaMrazovaRadionica.Forme
             grupaIrvas.Hide();
             panelBasic.Hide();
             labelPogresnoIme.Hide();
-            vilenjak=new Vilenjak();
+            vilenjak=new VilenjakBasic();
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -53,27 +56,47 @@ namespace DedaMrazovaRadionica.Forme
         private void btnNadji_Click(object sender, EventArgs e)
         {
             labelPogresnoIme.Hide();
-            vilenjak = DTOManager.vratiVilenjaka(txtIme.Text);
+            listVestine.Items.Clear();
+            vilenjak = DTOManager.vratiVilenjakaSaVestinama(txtIme.Text);
             if (vilenjak != null )
             {
                 panelBasic.Show();
-                if (vilenjak is VilenjakZaIrvase)
+                if (vilenjak is VilenjakZaIrvaseSaVestinama)
                 {
-                    
                     grupaIgracke.Hide();
+                    panelPokloni.Hide();
                     grupaIrvas.Show();
-                    foreach(var vestina in (vilenjak as VilenjakZaIrvase).VilenjakZaIrvaseVestinaSpoj)
+                    foreach (var vestina in (vilenjak as VilenjakZaIrvaseSaVestinama).vestine)
                     {
-                        listVestine.Items.Add(vestina.MagicnaVestina.Naziv);//ne radi
+                        listVestine.Items.Add(vestina.naziv);
+                    }
+                    txtTrenutniIrvas.Text = (vilenjak as VilenjakZaIrvaseSaVestinama).irvas.ime;
+                    pesme = DTOManager.vratiPesme();
+                    cmbPesme.Items.Clear();
+                    foreach(var pesma in pesme)
+                    {
+                        cmbPesme.Items.Add(pesma.naziv);
                     }
                 }
-                else if (vilenjak is VilenjakZaIzraduIgracaka)
+                else if (vilenjak is VilenjakZaIzraduIgracakaSaVestinama)
                 {
                     grupaIrvas.Hide();
+                    panelPokloni.Hide();
                     grupaIgracke.Show();
-                    foreach (var vestina in (vilenjak as VilenjakZaIzraduIgracaka).VilenjakZaIgrackeVestinaSpoj)
+                    foreach(var vestina in (vilenjak as VilenjakZaIzraduIgracakaSaVestinama).vestine)
                     {
-                        listVestine.Items.Add(vestina.MagicnaVestina.Naziv);
+                        listVestine.Items.Add(vestina.naziv);
+                    }
+                }
+                else if (vilenjak is VilenjakZaPoklone)
+                {
+                    grupaIrvas.Hide();
+                    grupaIgracke.Hide();
+                    panelPokloni.Show();
+                    pokloni = DTOManager.vratiPokloneVilenjaka(vilenjak);
+                    foreach(var item in pokloni)
+                    {
+                        listaPokloni.Items.Add(item);
                     }
                 }
                 
@@ -82,6 +105,70 @@ namespace DedaMrazovaRadionica.Forme
             {
                 labelPogresnoIme.Show();
             }
+        }
+
+        private void btnDodajPesmuVilenjaku_Click(object sender, EventArgs e)
+        {
+            if(DTOManager.dodajPesmuVilenjaku(pesme[cmbPesme.SelectedIndex].naziv, vilenjak))
+            {
+                MessageBox.Show("Dodata pesma");
+            }
+        }
+
+        private void txtImePesme_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnUkloniPesmuVilenjaku_Click(object sender, EventArgs e)
+        {
+            if(DTOManager.ukloniPesmuVilenjaku(pesme[cmbPesme.SelectedIndex].naziv, vilenjak))
+            {
+                cmbPesme.Items.Remove(cmbPesme.SelectedItem);
+                txtPesme.Text = "";
+            }
+        }
+
+        private void label1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnDodajVestinu_Click(object sender, EventArgs e)
+        {
+            //var vestina = DTOManager.vratiMagicnuVestinu(txtNovaVestina.Text);
+            if (DTOManager.dodajVestinuVilenjaku(txtNovaVestina.Text, vilenjak))
+            listVestine.Items.Add(txtNovaVestina.Text);
+        }
+
+        private void btnPromeniIme_Click(object sender, EventArgs e)
+        {
+            if (DTOManager.promeniImeVilenjaku(txtNovoIme.Text, vilenjak))
+            {
+
+                MessageBox.Show($"Uspesno promenjeno ime vilenjaka iz {vilenjak.jedinstvenoIme} u {txtNovoIme}");
+                txtIme.Text = txtNovoIme.Text;
+            }
+        }
+
+        private void buttonUkloniVestinu_Click(object sender, EventArgs e)
+        {
+            if(DTOManager.ukloniVestinuVilenjaku(txtNovaVestina.Text, vilenjak))
+            {
+                listVestine.Items.Remove(txtNovaVestina.Text);
+            }
+        }
+
+        private void btnPromeniIrvasa_Click(object sender, EventArgs e)
+        {
+            if (DTOManager.promeniIrvasaVilenjaku(txtNoviIrvas.Text, vilenjak)){
+                MessageBox.Show("Uspesno promenjen irvas");
+            }
+        }
+
+        private void cmbPesme_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            txtPesme.Text = pesme[cmbPesme.SelectedIndex].tekst;
         }
     }
 }
