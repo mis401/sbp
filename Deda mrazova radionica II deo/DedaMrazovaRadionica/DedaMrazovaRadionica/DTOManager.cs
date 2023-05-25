@@ -33,76 +33,6 @@ namespace DedaMrazovaRadionica
             finally { s?.Close(); }
             return mentori;
         }
-
-        public static IList<TimID> vratiNaziveTimova()
-        {
-            ISession s = null;
-            IList<TimID> timovi = new List<TimID>();
-            try
-            {
-                s = DataLayer.GetSession();
-
-                timovi = s.Query<Tim>().Select(tim => new TimID(tim.ID, tim.Naziv)).ToList();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally { s?.Close(); }
-            return timovi;
-        }
-
-        public static DeoRadionice vratiRadionicu(int id)
-        {
-            ISession s = null;
-            DeoRadionice radionica = null;
-            try
-            {
-                s = DataLayer.GetSession();
-                radionica = s.Get<DeoRadionice>(id);
-            }
-            catch (Exception ex) { MessageBox.Show(ex.Message); }
-            finally { s?.Close(); }
-            return radionica;
-        }
-
-        public static Tim vratiTim(int id)
-        {
-            ISession s = null;
-            Tim tim = null;
-            try
-            {
-                s = DataLayer.GetSession();
-                tim = s.Get<Tim>(id);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally { s?.Close(); }
-            return tim;
-        }
-
-        public static IList<DeoRadioniceID> vratiNaziveRadionica()
-        {
-            ISession s = null;
-            IList<DeoRadioniceID> deloviRadionice = new List<DeoRadioniceID>();
-            try
-            {
-                s = DataLayer.GetSession();
-
-                deloviRadionice = s.Query<DeoRadionice>()
-                                    .Select(dr => new DeoRadioniceID(dr.ID, dr.Naziv))
-                                    .ToList();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally { s?.Close(); }
-            return deloviRadionice;
-        }
-
         public static bool dodajVilenjakaZaIgracke(VilenjakZaIzraduIgracakaBasic vib)
         {
             ISession s = null;
@@ -160,7 +90,6 @@ namespace DedaMrazovaRadionica
             finally { s?.Close(); }
             return true;
         }
-<<<<<<< HEAD
         public static IList<DeoRadioniceID> vratiNaziveRadionica()
         {
             ISession s = null;
@@ -248,8 +177,6 @@ namespace DedaMrazovaRadionica
             return vilenjak;
         }
 
-=======
->>>>>>> 192751453f3e4d3555ae59886b4a7b4582869c31
         public static bool obirisiVilenjakaZaIzraduIgracaka(int id)
         {
             ISession s = null;
@@ -268,83 +195,16 @@ namespace DedaMrazovaRadionica
             finally { s?.Close(); }
             return true;
         }
-        public static Vilenjak vratiVilenjaka(string ime)
-        {
-            Vilenjak vilenjak = null;
-            vilenjak = vratiVilenjakaZaIrvase(ime);
-            if (vilenjak != null)
-                return vilenjak;
-            vilenjak = vratiVilenjakaZaIzraduIgracaka(ime);
-            if (vilenjak != null)
-                return vilenjak;
-            vilenjak = vratiVilenjakaZaPoklone(ime);
-            if (vilenjak != null)
-                return vilenjak;
-            vilenjak = vratiVilenjakaZaIsporukuPoklona(ime);
-            return vilenjak;
-            
-        }
-        public static VilenjakZaIzraduIgracaka vratiVilenjakaZaIzraduIgracaka(int id)
-        {
-            ISession s = null;
-            VilenjakZaIzraduIgracaka vilenjak = null;
-            try
-            {
-                s = DataLayer.GetSession();
-                vilenjak = s.Get<VilenjakZaIzraduIgracaka>(id);
-            }
-            catch (Exception ex)
-            {
-                //MessageBox.Show(ex.Message);
-            }
-            finally { s?.Close(); }
-            return vilenjak;
-        }
-        
-        public static VilenjakZaIzraduIgracaka vratiVilenjakaZaIzraduIgracaka(string ime)
-        {
-            ISession s = null;
-            VilenjakZaIzraduIgracaka vilenjak = null;
-            try
-            {
-                s = DataLayer.GetSession();
 
-<<<<<<< HEAD
     
         public static IList<PismoPregled> vratiSvaPisma() //ne vraca nista
         {
             IList<PismoPregled> pisma = new List<PismoPregled>();
             ISession s = null;
-=======
-                vilenjak = s.Query<VilenjakZaIzraduIgracaka>()
-                    .Where(v => v.JedinstvenoIme.Equals(ime))
-                    .ToList().First();
-
-                var magicneVestine = s.Query<SpojVilenjakZaIgrackeVestina>()
-                                      .Where(skill => skill.VilenjakZaIzraduIgracaka.ID == vilenjak.ID).ToList();
-                vilenjak.VilenjakZaIgrackeVestinaSpoj = magicneVestine;
-            }
-            catch (Exception ex)
-            {
-                //MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                s?.Close();
-            }
-            return vilenjak;
-        }
-
-        public static VilenjakZaIrvase vratiVilenjakaZaIrvase(string ime)
-        {
-            ISession s = null;
-            VilenjakZaIrvase vilenjak = null;
->>>>>>> 192751453f3e4d3555ae59886b4a7b4582869c31
             try
             {
                 s = DataLayer.GetSession();
 
-<<<<<<< HEAD
                 pisma = s.Query<Pismo>()
                     .Select(pismo => new PismoPregled(pismo.ID, pismo.Tekst, pismo.IndeksDobrote))
                     .ToList();
@@ -358,87 +218,5 @@ namespace DedaMrazovaRadionica
             return pisma;
   
         }
-=======
-                vilenjak = s.Query<VilenjakZaIrvase>()
-                    .Where(v => v.JedinstvenoIme.Equals(ime))
-                    .ToList().First();
-            }
-            catch (Exception ex)
-            {
-                //MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                s?.Close();
-            }
-            return vilenjak;
-        }
-
-        public static VilenjakZaIsporukuPoklona vratiVilenjakaZaIsporukuPoklona(string ime)
-        {
-            ISession s = null;
-            VilenjakZaIsporukuPoklona vilenjak = null;
-            try
-            {
-                s = DataLayer.GetSession();
-
-                vilenjak = s.Query<VilenjakZaIsporukuPoklona>()
-                    .Where(v => v.JedinstvenoIme.Equals(ime))
-                    .ToList().First();
-            }
-            catch (Exception ex)
-            {
-                //MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                s?.Close();
-            }
-            return vilenjak;
-        }
-
-        public static VilenjakZaPoklone vratiVilenjakaZaPoklone(string ime)
-        {
-            ISession s = null;
-            VilenjakZaPoklone vilenjak = null;
-            try
-            {
-                s = DataLayer.GetSession();
-
-                vilenjak = s.Query<VilenjakZaPoklone>()
-                    .Where(v => v.JedinstvenoIme.Equals(ime))
-                    .ToList().First();
-            }
-            catch (Exception ex)
-            {
-                //MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                s?.Close();
-            }
-            return vilenjak;
-        }
-
-        public static IList<MagicnaVestina> vratiMagicneVestine()
-        {
-            ISession s = null;
-            IList<MagicnaVestina> lista = null;
-            try
-            {
-                s = DataLayer.GetSession();
-                lista = s.Query<MagicnaVestina>().ToList();
-            }
-            catch (Exception ex)
-            {
-
-            }
-            finally { s?.Close(); }
-            return lista;
-        }
-
-        
-    }
->>>>>>> 192751453f3e4d3555ae59886b4a7b4582869c31
 }
     }
