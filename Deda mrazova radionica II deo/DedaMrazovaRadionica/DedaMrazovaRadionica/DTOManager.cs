@@ -14,6 +14,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using FluentNHibernate.Conventions;
 using NHibernate.Context;
+using FluentNHibernate;
 
 namespace DedaMrazovaRadionica
 {
@@ -173,24 +174,25 @@ namespace DedaMrazovaRadionica
         public static VilenjakBasic vratiVilenjakaSaVestinama(string ime)
         {
             VilenjakBasic vilenjak = null;
+     
             vilenjak = vratiVilenjakaZaIrvaseSaVestinama(ime);
+            //MessageBox.Show("1");
             if (vilenjak != null)
                 return vilenjak;
             vilenjak = vratiVilenjakaZaIzraduIgracakaSaVestinama(ime);
+            //MessageBox.Show("2");
             if (vilenjak != null)
                 return vilenjak;
             vilenjak = vratiVilenjakaZaPokloneSaVestinama(ime);
+            //MessageBox.Show("3");
             if (vilenjak != null)
                 return vilenjak;
-            vilenjak = vratiVilenjakaZaIsporukuPoklona(ime);
+            vilenjak = vratiVilenjakaZaIsporukuPoklonaSaVestinama(ime);
+            //MessageBox.Show("4");
             return vilenjak;
 
         }
 
-        private static VilenjakBasic vratiVilenjakaZaIsporukuPoklona(string ime)
-        {
-            throw new NotImplementedException();
-        }
 
         public static VilenjakZaIzraduIgracaka vratiVilenjakaZaIzraduIgracaka(int id)
         {
@@ -220,7 +222,7 @@ namespace DedaMrazovaRadionica
 
                 var vilenjak = s.Query<VilenjakZaIzraduIgracaka>()
                     .Where(v => v.JedinstvenoIme.Equals(ime))
-                    .ToList().First();
+                    .ToList().FirstOrDefault();
                 if (!vilenjak.VilenjakZaIgrackeVestinaSpoj.IsEmpty())
                 {
                     var vestineSpojevi = vilenjak.VilenjakZaIgrackeVestinaSpoj;
@@ -249,8 +251,8 @@ namespace DedaMrazovaRadionica
                     (vilenjak.ID, vilenjak.JedinstvenoIme,
                     vilenjak.ZemljaPorekla,
                     vilenjak.DatumZaposlenja, vilenjak.TipMaterijala,
-                    new DeoRadioniceID(vilenjak.DeoRadionice.ID, vilenjak.DeoRadionice.Naziv),
-                    new TimID(vilenjak.PripadaTimu.ID, vilenjak.PripadaTimu.Naziv), vilenjak.DuzinaObuke, vilenjak.Ocena,
+                    new DeoRadioniceID(vilenjak.DeoRadionice.ID, vilenjak.DeoRadionice.Naziv), vilenjak.FlagSef,
+                    new TimID(vilenjak.PripadaTimu.ID, vilenjak.PripadaTimu.Naziv), vilenjak.FlagKoordinator, vilenjak.DuzinaObuke, vilenjak.Ocena,
                     new VilenjakZaIzraduIgracakaMentor(vilenjak.ImaMentora.ID, vilenjak.ImaMentora.JedinstvenoIme, vilenjak.ImaMentora.ZemljaPorekla, vilenjak.ImaMentora.DatumZaposlenja),
                     vestine
                     );
@@ -327,7 +329,8 @@ namespace DedaMrazovaRadionica
             }
             finally
             {
-                s?.Flush(); s?.Close();
+                
+                s?.Close();
             }
             return v;
         }
@@ -367,7 +370,7 @@ namespace DedaMrazovaRadionica
             }
             finally
             {
-                s?.Flush(); s?.Close();
+                s?.Close();
             }
             return ret;
         }
@@ -400,12 +403,17 @@ namespace DedaMrazovaRadionica
                     vestine = new List<MagicnaVestinaPrikaz>();
                 }
 
-                IList<PoklonBasic> poklonBasics= new List<PoklonBasic>();
-                foreach(var item in vilenjak.PakovanjePoklona)
+                IList<PoklonBasic> poklonBasics = new List<PoklonBasic>();
+                foreach (var item in vilenjak.PakovanjePoklona)
                 {
-                    poklonBasics.Add(new PoklonBasic(item.Poklon.ID, item.Poklon.Boja, item.Poklon.Posveta, item.Poklon.ZaListuZelja, item.Poklon.PripadaTovaru));
+                    var poklon = s.Query<Poklon>().Where(p => p.ID == item.Poklon.ID).FirstOrDefault();
+                    var lz = s.Query<ListaZelja>().Where(l => l.ID == poklon.ZaListuZelja.ID).FirstOrDefault();
+                    var pismo = s.Query<Pismo>().Where(p => p.ID == lz.ID).FirstOrDefault();
+                    var dete = s.Query<Dete>().Where(d => d.ID == pismo.PripadaDetetu.ID).FirstOrDefault();
+                    var grad = item.Poklon.PripadaTovaru.Grad;
+                    poklonBasics.Add(new PoklonBasic(poklon.ID, poklon.Boja, poklon.Posveta, poklon.ZaListuZelja, poklon.PripadaTovaru, grad, dete.Ime));
                 }
-                v = new VilenjakZaPokloneSaVestinama(vilenjak.ID, vilenjak.JedinstvenoIme, vilenjak.ZemljaPorekla, vilenjak.DatumZaposlenja, poklonBasics);
+                v = new VilenjakZaPokloneSaVestinama(vilenjak.ID, vilenjak.JedinstvenoIme, vilenjak.ZemljaPorekla, vilenjak.DatumZaposlenja, poklonBasics, vestine);
             }
             catch (Exception ex)
             {
@@ -413,7 +421,7 @@ namespace DedaMrazovaRadionica
             }
             finally
             {
-                s?.Flush(); s?.Close();
+                s?.Close();
             }
             return v;
         }
@@ -469,7 +477,7 @@ namespace DedaMrazovaRadionica
         }
 
 
-        public static IList<PismoPregled> vratiSvaPisma() //ne vraca nista
+        public static IList<PismoPregled> vratiSvaPisma()
         {
             IList<PismoPregled> pisma = new List<PismoPregled>();
             ISession s = null;
@@ -615,13 +623,13 @@ namespace DedaMrazovaRadionica
             {
                 s = DataLayer.GetSession();
 
-                    vilenjak = s.Query<Vilenjak>()
-                        .Where(v => v.JedinstvenoIme
-                        .Equals(vb.jedinstvenoIme)).ToList().FirstOrDefault();
-                    vilenjak.JedinstvenoIme = novoIme;
-                    s.SaveOrUpdate(vilenjak);
-                
-                
+                vilenjak = s.Query<Vilenjak>()
+                    .Where(v => v.JedinstvenoIme
+                    .Equals(vb.jedinstvenoIme)).ToList().FirstOrDefault();
+                vilenjak.JedinstvenoIme = novoIme;
+                s.SaveOrUpdate(vilenjak);
+
+
             }
             catch (Exception ex)
             {
@@ -678,11 +686,11 @@ namespace DedaMrazovaRadionica
                 }
                 s.SaveOrUpdate(vilenjak);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return false;
             }
-            finally { s?.Flush();  s?.Close(); }
+            finally { s?.Flush(); s?.Close(); }
             return true;
         }
 
@@ -718,7 +726,7 @@ namespace DedaMrazovaRadionica
                     var spoj = s.Query<SpojVilenjakZaPokloneVestina>()
                         .Where(skill => skill.MagicnaVestina.ID == vestina.ID)
                         .FirstOrDefault();
-                    s.Delete(spoj); 
+                    s.Delete(spoj);
                 }
                 else if (vilenjak is VilenjakZaIsporukuPoklona)
                 {
@@ -760,11 +768,11 @@ namespace DedaMrazovaRadionica
                 {
                     return false;
                 }
-                finally { s?.Flush(); s?.Close();}
+                finally { s?.Flush(); s?.Close(); }
                 return true;
             }
         }
- 
+
         public static IList<PesmaDTO> vratiPesme()
         {
             ISession s = null;
@@ -775,7 +783,7 @@ namespace DedaMrazovaRadionica
 
                 pesme = s.Query<Pesma>().Select(p => new PesmaDTO(p.ID, p.Naziv, p.Tekst)).ToList();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show("Greska u vracanju pesama");
             }
@@ -799,7 +807,7 @@ namespace DedaMrazovaRadionica
 
                 s.Delete(pesma);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return false;
             }
@@ -820,11 +828,11 @@ namespace DedaMrazovaRadionica
                 vilenjak.Pesme.Add(pesma);
                 s.SaveOrUpdate(vilenjak);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return false;
             }
-            finally { s.Flush(); s.Close();}
+            finally { s.Flush(); s.Close(); }
             return true;
         }
 
@@ -840,12 +848,12 @@ namespace DedaMrazovaRadionica
                 vilenjak = s.Query<VilenjakZaPoklone>().Where(v => v.ID == vb.id).FirstOrDefault();
 
                 IList<PakovanjePoklona> spakovaniPokloni = new List<PakovanjePoklona>();
-                foreach(var item in vilenjak.PakovanjePoklona)
+                foreach (var item in vilenjak.PakovanjePoklona)
                 {
                     spakovaniPokloni.Add(item);
                 }
 
-                pokloni = spakovaniPokloni.Select(p => new PoklonBasic(p.Poklon.ID, p.Poklon.Boja, p.Poklon.Posveta, p.Poklon.ZaListuZelja, p.Poklon.PripadaTovaru)).ToList();
+                pokloni = spakovaniPokloni.Select(p => new PoklonBasic(p.Poklon.ID, p.Poklon.Boja, p.Poklon.Posveta, p.Poklon.ZaListuZelja, p.Poklon.PripadaTovaru, p.Poklon.PripadaTovaru.Grad, p.Poklon.ZaListuZelja.PripadaPismu.PripadaDetetu.Ime)).ToList();
             }
             catch (Exception ex)
             {
@@ -859,7 +867,7 @@ namespace DedaMrazovaRadionica
             return pokloni;
         }
 
-        public static IList<PismoPregled> vratiSvaPisma() //ne vraca nista
+        /*public static IList<PismoPregled> vratiSvaPisma() //ne vraca nista
         {
             IList<PismoPregled> pisma = new List<PismoPregled>();
             ISession s = null;
@@ -883,10 +891,10 @@ namespace DedaMrazovaRadionica
             finally { s?.Close(); }
             return pisma;
 
-        }
+        }*/
 
 
-        public static int dodajPoklon(PoklonBasic poklon)
+        /*public static int dodajPoklon(PoklonBasic poklon)
         {
             ISession s = null;
             Poklon p = new Poklon();
@@ -910,48 +918,48 @@ namespace DedaMrazovaRadionica
             finally { s?.Close(); }
             return p.ID;
 
-        }
-        public static ListaZelja dodajListuZelja(ListaZeljaBasic lz)
-        {
-            ISession s = null;
-            ListaZelja listazelja = new ListaZelja();
-            try
-            {
-                s = DataLayer.GetSession();
+        }*/
+        /*        public static ListaZelja dodajListuZelja(ListaZeljaBasic lz)
+                {
+                    ISession s = null;
+                    ListaZelja listazelja = new ListaZelja();
+                    try
+                    {
+                        s = DataLayer.GetSession();
 
-                listazelja.PripadaPismu = lz.pismo;
+                        listazelja.PripadaPismu = lz.pismo;
 
-                s.SaveOrUpdate(listazelja);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-                return null;
-            }
-            finally { s?.Close(); }
-            return listazelja;
-        }
+                        s.SaveOrUpdate(listazelja);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                        return null;
+                    }
+                    finally { s?.Close(); }
+                    return listazelja;
+                }*/
 
-        public static Tovar dodajTovar(TovarBasic tb)
-        {
-            ISession s = null;
-            Tovar t = new Tovar();
-            try
-            {
-                s = DataLayer.GetSession();
+        /*        public static Tovar dodajTovar(TovarBasic tb)
+                {
+                    ISession s = null;
+                    Tovar t = new Tovar();
+                    try
+                    {
+                        s = DataLayer.GetSession();
 
-                t.Grad = tb.Grad;
+                        t.Grad = tb.Grad;
 
-                s.SaveOrUpdate(t);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-                return null;
-            }
-            finally { s?.Close(); }
-            return t;
-        }
+                        s.SaveOrUpdate(t);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                        return null;
+                    }
+                    finally { s?.Close(); }
+                    return t;
+                }*/
 
         public static Igracka dodajIgracka(IgrackaPregled igr)
         {
@@ -971,7 +979,7 @@ namespace DedaMrazovaRadionica
                 s.SaveOrUpdate(igracka);
 
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
                 return null;
@@ -980,28 +988,28 @@ namespace DedaMrazovaRadionica
             return igracka;
         }
 
-        public static Pismo vratiPismoID(int ID)
-        {
-            ISession s = null;
-            Pismo pismo = null;
-            try
-            {
-                s = DataLayer.GetSession();
+        /*        public static Pismo vratiPismoID(int ID)
+                {
+                    ISession s = null;
+                    Pismo pismo = null;
+                    try
+                    {
+                        s = DataLayer.GetSession();
 
-                pismo = s.Query<Pismo>()
-                    .Where(p => p.ID.Equals(ID))
-                    .ToList().First();
-            }
-            catch (Exception ex)
-            {
-                //MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                s?.Close();
-            }
-            return pismo;
-        }
+                        pismo = s.Query<Pismo>()
+                            .Where(p => p.ID.Equals(ID))
+                            .ToList().First();
+                    }
+                    catch (Exception ex)
+                    {
+                        //MessageBox.Show(ex.Message);
+                    }
+                    finally
+                    {
+                        s?.Close();
+                    }
+                    return pismo;
+                }*/
 
         public static Poklon vratiPoklon(int ID)
         {
@@ -1066,49 +1074,92 @@ namespace DedaMrazovaRadionica
             finally { s?.Close(); }
             return vilenjak;
         }
-    }
-    public class IgrackaPregled
-    {
-        public int ID;
-        public int redniBroj;
-        public string tip;
-        public string opis;
-        public Poklon pripadaPoklonu;
-        public DeoRadionice izradjenaUDeluRadionice;
-        public ListaZelja pripadaListiZelja;
-        public VilenjakZaIzraduIgracaka vilenjak;
 
 
-        public IgrackaPregled(int redniBroj, string tip, string opis, Poklon pripadaPoklonu, DeoRadionice izradjenaUDeluRadionice, ListaZelja pripadaListiZelja, VilenjakZaIzraduIgracaka vilenjak)
+        public static bool unapredjenjeUSefa(VilenjakBasic vb)
         {
-            this.redniBroj = redniBroj;
-            this.tip = tip;
-            this.opis = opis;
-            this.pripadaPoklonu = pripadaPoklonu;
-            this.izradjenaUDeluRadionice = izradjenaUDeluRadionice;
-            this.pripadaListiZelja = pripadaListiZelja;
-            this.vilenjak = vilenjak;
+            ISession s = null;
+            try
+            {
+                s = DataLayer.GetSession();
+                var ve = s.Get<VilenjakZaIzraduIgracaka>(vb.id);
+                ve.FlagSef = 1;
+                ve.DatumPostavljanja = DateTime.Now;
+                s.SaveOrUpdate(ve);
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+            finally
+            {
+                s?.Flush();
+                s?.Close();
+            }
+            return true;
+        }
+
+
+
+        public static bool unapredjenjeUKoordinatora(VilenjakBasic vb)
+        {
+            ISession s = null;
+            try
+            {
+                s = DataLayer.GetSession();
+                var ve = s.Get<VilenjakZaIzraduIgracaka>(vb.id);
+                ve.FlagKoordinator = 1;
+                s.SaveOrUpdate(ve);
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+            finally
+            {
+                s?.Flush();
+                s?.Close();
+            }
+            return true;
+        }
+
+
+        public static bool izmenaTima(VilenjakBasic vb, string noviTim) 
+        {
+            ISession s = null;
+            try
+            {
+                s = DataLayer.GetSession();
+                var ve = s.Get<VilenjakZaIzraduIgracaka>(vb.id);
+                var tim = s.Query<Tim>().Where(t => t.Naziv.Equals(noviTim)).FirstOrDefault();
+                ve.PripadaTimu = tim;
+                ve.FlagKoordinator = 0;
+                s.SaveOrUpdate(ve);
+            }
+            catch(Exception ex) { return false; }
+            finally { s?.Flush(); s?.Close(); }
+            return true;
+        }
+
+        public static bool izmenaRadionice(VilenjakBasic vb, string novaRadionica)
+        {
+            ISession s = null;
+            try
+            {
+                s = DataLayer.GetSession();
+                var ve = s.Get<VilenjakZaIzraduIgracaka>(vb.id);
+                var rad = s.Query<DeoRadionice>().Where(r => r.Naziv.Equals(novaRadionica)).FirstOrDefault();
+                ve.DeoRadionice = rad;
+                ve.FlagSef = 0;
+                s.SaveOrUpdate(ve);
+            }
+            catch (Exception ex) { return false; }
+            finally { s?.Flush(); s?.Close(); }
+            return true;
         }
     }
-    public class VilenjakZaIzraduIgracakaPoklon : VilenjakBasic
-    {
-        public string materijal;
-        public TimID pripadaTimu;
-        public DeoRadionice deoRadionice;
-        public int duzinaObuke;
-        public int ocena;
-        public VilenjakZaIzraduIgracakaMentor mentor;
-        public VilenjakZaIzraduIgracakaPoklon(int id,
-            string jedIme, string zemPor, DateTime datZap, string materijal,
-            DeoRadionice deoRadionice, TimID tim, int duzinaObuke, int ocena,
-            VilenjakZaIzraduIgracakaMentor mentor) : base(id, jedIme, zemPor, datZap)
-        {
-            this.materijal = materijal;
-            this.deoRadionice = deoRadionice;
-            this.pripadaTimu = tim;
-            this.duzinaObuke = duzinaObuke;
-            this.ocena = ocena;
-            this.mentor = mentor;
-        }
-    }
+
+    
+
 }
+

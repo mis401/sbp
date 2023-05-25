@@ -83,7 +83,7 @@ namespace DedaMrazovaRadionica.Forme
 
             //nakon toga kreiramo poklon
 
-            PoklonBasic poklon = new PoklonBasic(0, txtBojaPoklona.Text, txtPosveta.Text, lista, tovar);
+            PoklonBasic poklon = new PoklonBasic(0, txtBojaPoklona.Text, txtPosveta.Text, lista, tovar, tovar.Grad, lista.PripadaPismu.PripadaDetetu.Ime);
 
             DTOManager.dodajPoklon(poklon);
 

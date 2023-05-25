@@ -33,10 +33,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtNovoIme = new System.Windows.Forms.TextBox();
             this.labelTim = new System.Windows.Forms.Label();
-            this.txtTim = new System.Windows.Forms.TextBox();
             this.btnKoordinator = new System.Windows.Forms.Button();
             this.labelRadionica = new System.Windows.Forms.Label();
-            this.txtRadionica = new System.Windows.Forms.TextBox();
             this.btnSef = new System.Windows.Forms.Button();
             this.grupaIgracke = new System.Windows.Forms.GroupBox();
             this.grupaIrvas = new System.Windows.Forms.GroupBox();
@@ -60,12 +58,16 @@
             this.btnDodajVestinu = new System.Windows.Forms.Button();
             this.txtNovaVestina = new System.Windows.Forms.TextBox();
             this.labelPogresnoIme = new System.Windows.Forms.Label();
-            this.panelPokloni = new System.Windows.Forms.Panel();
-            this.listaPokloni = new System.Windows.Forms.ListBox();
+            this.cmbTimovi = new System.Windows.Forms.ComboBox();
+            this.cmbRadionice = new System.Windows.Forms.ComboBox();
+            this.btnIzmenaTima = new System.Windows.Forms.Button();
+            this.grupaPokloni = new System.Windows.Forms.GroupBox();
+            this.tabelaPoklona = new System.Windows.Forms.DataGridView();
             this.grupaIgracke.SuspendLayout();
             this.grupaIrvas.SuspendLayout();
             this.panelBasic.SuspendLayout();
-            this.panelPokloni.SuspendLayout();
+            this.grupaPokloni.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tabelaPoklona)).BeginInit();
             this.SuspendLayout();
             // 
             // txtIme
@@ -109,63 +111,51 @@
             // labelTim
             // 
             this.labelTim.AutoSize = true;
-            this.labelTim.Location = new System.Drawing.Point(41, 18);
+            this.labelTim.Location = new System.Drawing.Point(174, 18);
             this.labelTim.Name = "labelTim";
             this.labelTim.Size = new System.Drawing.Size(30, 16);
             this.labelTim.TabIndex = 4;
             this.labelTim.Text = "Tim";
             // 
-            // txtTim
-            // 
-            this.txtTim.Location = new System.Drawing.Point(44, 57);
-            this.txtTim.Name = "txtTim";
-            this.txtTim.Size = new System.Drawing.Size(100, 22);
-            this.txtTim.TabIndex = 5;
-            // 
             // btnKoordinator
             // 
-            this.btnKoordinator.Location = new System.Drawing.Point(44, 99);
+            this.btnKoordinator.Location = new System.Drawing.Point(177, 99);
             this.btnKoordinator.Name = "btnKoordinator";
             this.btnKoordinator.Size = new System.Drawing.Size(100, 66);
             this.btnKoordinator.TabIndex = 6;
             this.btnKoordinator.Text = "Unapredi u koordinatora tima";
             this.btnKoordinator.UseVisualStyleBackColor = true;
+            this.btnKoordinator.Click += new System.EventHandler(this.btnKoordinator_Click);
             // 
             // labelRadionica
             // 
             this.labelRadionica.AutoSize = true;
-            this.labelRadionica.Location = new System.Drawing.Point(208, 18);
+            this.labelRadionica.Location = new System.Drawing.Point(32, 18);
             this.labelRadionica.Name = "labelRadionica";
             this.labelRadionica.Size = new System.Drawing.Size(92, 16);
             this.labelRadionica.TabIndex = 7;
             this.labelRadionica.Text = "Deo radionice";
             // 
-            // txtRadionica
-            // 
-            this.txtRadionica.Location = new System.Drawing.Point(211, 57);
-            this.txtRadionica.Name = "txtRadionica";
-            this.txtRadionica.Size = new System.Drawing.Size(94, 22);
-            this.txtRadionica.TabIndex = 8;
-            // 
             // btnSef
             // 
-            this.btnSef.Location = new System.Drawing.Point(211, 99);
+            this.btnSef.Location = new System.Drawing.Point(35, 99);
             this.btnSef.Name = "btnSef";
             this.btnSef.Size = new System.Drawing.Size(94, 66);
             this.btnSef.TabIndex = 9;
             this.btnSef.Text = "Unapredi u sefa dela radionice";
             this.btnSef.UseVisualStyleBackColor = true;
+            this.btnSef.Click += new System.EventHandler(this.btnSef_Click);
             // 
             // grupaIgracke
             // 
+            this.grupaIgracke.Controls.Add(this.btnIzmenaTima);
+            this.grupaIgracke.Controls.Add(this.cmbRadionice);
+            this.grupaIgracke.Controls.Add(this.cmbTimovi);
             this.grupaIgracke.Controls.Add(this.btnSef);
-            this.grupaIgracke.Controls.Add(this.txtRadionica);
             this.grupaIgracke.Controls.Add(this.labelRadionica);
-            this.grupaIgracke.Controls.Add(this.grupaIrvas);
             this.grupaIgracke.Controls.Add(this.btnKoordinator);
-            this.grupaIgracke.Controls.Add(this.txtTim);
             this.grupaIgracke.Controls.Add(this.labelTim);
-            this.grupaIgracke.Location = new System.Drawing.Point(416, 20);
+            this.grupaIgracke.Location = new System.Drawing.Point(439, 24);
             this.grupaIgracke.Name = "grupaIgracke";
             this.grupaIgracke.Size = new System.Drawing.Size(339, 182);
             this.grupaIgracke.TabIndex = 10;
@@ -173,8 +163,18 @@
             // 
             // grupaIrvas
             // 
-            this.grupaIrvas.Controls.Add(this.panelPokloni);
-            this.grupaIrvas.Location = new System.Drawing.Point(6, 9);
+            this.grupaIrvas.Controls.Add(this.btnDodajPesmuVilenjaku);
+            this.grupaIrvas.Controls.Add(this.btnPromeniIrvasa);
+            this.grupaIrvas.Controls.Add(this.txtImePesme);
+            this.grupaIrvas.Controls.Add(this.labelPesma);
+            this.grupaIrvas.Controls.Add(this.txtPesme);
+            this.grupaIrvas.Controls.Add(this.txtNoviIrvas);
+            this.grupaIrvas.Controls.Add(this.cmbPesme);
+            this.grupaIrvas.Controls.Add(this.label1);
+            this.grupaIrvas.Controls.Add(this.btnUkloniPesmuVilenjaku);
+            this.grupaIrvas.Controls.Add(this.txtTrenutniIrvas);
+            this.grupaIrvas.Controls.Add(this.labelIrvas);
+            this.grupaIrvas.Location = new System.Drawing.Point(422, 12);
             this.grupaIrvas.Name = "grupaIrvas";
             this.grupaIrvas.Size = new System.Drawing.Size(455, 426);
             this.grupaIrvas.TabIndex = 11;
@@ -182,7 +182,7 @@
             // 
             // btnPromeniIrvasa
             // 
-            this.btnPromeniIrvasa.Location = new System.Drawing.Point(344, 240);
+            this.btnPromeniIrvasa.Location = new System.Drawing.Point(329, 213);
             this.btnPromeniIrvasa.Name = "btnPromeniIrvasa";
             this.btnPromeniIrvasa.Size = new System.Drawing.Size(88, 53);
             this.btnPromeniIrvasa.TabIndex = 10;
@@ -192,15 +192,15 @@
             // 
             // txtNoviIrvas
             // 
-            this.txtNoviIrvas.Location = new System.Drawing.Point(335, 190);
+            this.txtNoviIrvas.Location = new System.Drawing.Point(318, 171);
             this.txtNoviIrvas.Name = "txtNoviIrvas";
-            this.txtNoviIrvas.Size = new System.Drawing.Size(97, 22);
+            this.txtNoviIrvas.Size = new System.Drawing.Size(99, 22);
             this.txtNoviIrvas.TabIndex = 9;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(325, 146);
+            this.label1.Location = new System.Drawing.Point(336, 148);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(67, 16);
             this.label1.TabIndex = 8;
@@ -210,7 +210,7 @@
             // txtTrenutniIrvas
             // 
             this.txtTrenutniIrvas.Enabled = false;
-            this.txtTrenutniIrvas.Location = new System.Drawing.Point(334, 94);
+            this.txtTrenutniIrvas.Location = new System.Drawing.Point(318, 83);
             this.txtTrenutniIrvas.Name = "txtTrenutniIrvas";
             this.txtTrenutniIrvas.Size = new System.Drawing.Size(99, 22);
             this.txtTrenutniIrvas.TabIndex = 7;
@@ -219,7 +219,7 @@
             // 
             this.labelIrvas.AutoSize = true;
             this.labelIrvas.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.labelIrvas.Location = new System.Drawing.Point(356, 43);
+            this.labelIrvas.Location = new System.Drawing.Point(349, 38);
             this.labelIrvas.Name = "labelIrvas";
             this.labelIrvas.Size = new System.Drawing.Size(54, 25);
             this.labelIrvas.TabIndex = 6;
@@ -227,7 +227,7 @@
             // 
             // btnUkloniPesmuVilenjaku
             // 
-            this.btnUkloniPesmuVilenjaku.Location = new System.Drawing.Point(147, 47);
+            this.btnUkloniPesmuVilenjaku.Location = new System.Drawing.Point(143, 70);
             this.btnUkloniPesmuVilenjaku.Name = "btnUkloniPesmuVilenjaku";
             this.btnUkloniPesmuVilenjaku.Size = new System.Drawing.Size(114, 51);
             this.btnUkloniPesmuVilenjaku.TabIndex = 5;
@@ -237,7 +237,7 @@
             // 
             // btnDodajPesmuVilenjaku
             // 
-            this.btnDodajPesmuVilenjaku.Location = new System.Drawing.Point(146, 363);
+            this.btnDodajPesmuVilenjaku.Location = new System.Drawing.Point(170, 382);
             this.btnDodajPesmuVilenjaku.Name = "btnDodajPesmuVilenjaku";
             this.btnDodajPesmuVilenjaku.Size = new System.Drawing.Size(115, 41);
             this.btnDodajPesmuVilenjaku.TabIndex = 4;
@@ -247,7 +247,7 @@
             // 
             // txtImePesme
             // 
-            this.txtImePesme.Location = new System.Drawing.Point(32, 366);
+            this.txtImePesme.Location = new System.Drawing.Point(56, 393);
             this.txtImePesme.Name = "txtImePesme";
             this.txtImePesme.Size = new System.Drawing.Size(108, 22);
             this.txtImePesme.TabIndex = 3;
@@ -255,7 +255,7 @@
             // 
             // txtPesme
             // 
-            this.txtPesme.Location = new System.Drawing.Point(30, 110);
+            this.txtPesme.Location = new System.Drawing.Point(6, 148);
             this.txtPesme.Name = "txtPesme";
             this.txtPesme.Size = new System.Drawing.Size(266, 230);
             this.txtPesme.TabIndex = 2;
@@ -264,7 +264,7 @@
             // cmbPesme
             // 
             this.cmbPesme.FormattingEnabled = true;
-            this.cmbPesme.Location = new System.Drawing.Point(31, 49);
+            this.cmbPesme.Location = new System.Drawing.Point(17, 81);
             this.cmbPesme.Name = "cmbPesme";
             this.cmbPesme.Size = new System.Drawing.Size(109, 24);
             this.cmbPesme.TabIndex = 1;
@@ -273,7 +273,7 @@
             // labelPesma
             // 
             this.labelPesma.AutoSize = true;
-            this.labelPesma.Location = new System.Drawing.Point(28, 14);
+            this.labelPesma.Location = new System.Drawing.Point(36, 47);
             this.labelPesma.Name = "labelPesma";
             this.labelPesma.Size = new System.Drawing.Size(50, 16);
             this.labelPesma.TabIndex = 0;
@@ -368,43 +368,62 @@
             this.labelPogresnoIme.TabIndex = 16;
             this.labelPogresnoIme.Text = "Pogresno ime!";
             // 
-            // panelPokloni
+            // cmbTimovi
             // 
-            this.panelPokloni.Controls.Add(this.listaPokloni);
-            this.panelPokloni.Controls.Add(this.btnPromeniIrvasa);
-            this.panelPokloni.Controls.Add(this.txtNoviIrvas);
-            this.panelPokloni.Controls.Add(this.label1);
-            this.panelPokloni.Controls.Add(this.txtTrenutniIrvas);
-            this.panelPokloni.Controls.Add(this.labelIrvas);
-            this.panelPokloni.Controls.Add(this.btnUkloniPesmuVilenjaku);
-            this.panelPokloni.Controls.Add(this.btnDodajPesmuVilenjaku);
-            this.panelPokloni.Controls.Add(this.txtImePesme);
-            this.panelPokloni.Controls.Add(this.txtPesme);
-            this.panelPokloni.Controls.Add(this.cmbPesme);
-            this.panelPokloni.Controls.Add(this.labelPesma);
-            this.panelPokloni.Location = new System.Drawing.Point(6, 26);
-            this.panelPokloni.Name = "panelPokloni";
-            this.panelPokloni.Size = new System.Drawing.Size(453, 416);
-            this.panelPokloni.TabIndex = 11;
+            this.cmbTimovi.FormattingEnabled = true;
+            this.cmbTimovi.Location = new System.Drawing.Point(177, 58);
+            this.cmbTimovi.Name = "cmbTimovi";
+            this.cmbTimovi.Size = new System.Drawing.Size(94, 24);
+            this.cmbTimovi.TabIndex = 10;
             // 
-            // listaPokloni
+            // cmbRadionice
             // 
-            this.listaPokloni.FormattingEnabled = true;
-            this.listaPokloni.ItemHeight = 16;
-            this.listaPokloni.Location = new System.Drawing.Point(9, 27);
-            this.listaPokloni.Name = "listaPokloni";
-            this.listaPokloni.Size = new System.Drawing.Size(422, 308);
-            this.listaPokloni.TabIndex = 11;
+            this.cmbRadionice.FormattingEnabled = true;
+            this.cmbRadionice.Location = new System.Drawing.Point(35, 58);
+            this.cmbRadionice.Name = "cmbRadionice";
+            this.cmbRadionice.Size = new System.Drawing.Size(98, 24);
+            this.cmbRadionice.TabIndex = 11;
+            // 
+            // btnIzmenaTima
+            // 
+            this.btnIzmenaTima.Location = new System.Drawing.Point(290, 54);
+            this.btnIzmenaTima.Name = "btnIzmenaTima";
+            this.btnIzmenaTima.Size = new System.Drawing.Size(43, 30);
+            this.btnIzmenaTima.TabIndex = 12;
+            this.btnIzmenaTima.Text = "OK";
+            this.btnIzmenaTima.UseVisualStyleBackColor = true;
+            this.btnIzmenaTima.Click += new System.EventHandler(this.btnIzmenaTima_Click);
+            // 
+            // grupaPokloni
+            // 
+            this.grupaPokloni.Controls.Add(this.tabelaPoklona);
+            this.grupaPokloni.Location = new System.Drawing.Point(395, 24);
+            this.grupaPokloni.Name = "grupaPokloni";
+            this.grupaPokloni.Size = new System.Drawing.Size(542, 459);
+            this.grupaPokloni.TabIndex = 17;
+            this.grupaPokloni.TabStop = false;
+            // 
+            // tabelaPoklona
+            // 
+            this.tabelaPoklona.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.tabelaPoklona.Location = new System.Drawing.Point(6, 21);
+            this.tabelaPoklona.Name = "tabelaPoklona";
+            this.tabelaPoklona.RowHeadersWidth = 51;
+            this.tabelaPoklona.RowTemplate.Height = 24;
+            this.tabelaPoklona.Size = new System.Drawing.Size(498, 410);
+            this.tabelaPoklona.TabIndex = 0;
             // 
             // AzuriranjeVilenjakaForma
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(989, 450);
+            this.ClientSize = new System.Drawing.Size(1107, 510);
+            this.Controls.Add(this.grupaPokloni);
+            this.Controls.Add(this.grupaIgracke);
             this.Controls.Add(this.labelPogresnoIme);
             this.Controls.Add(this.panelBasic);
             this.Controls.Add(this.btnNadjiVilenjaka);
-            this.Controls.Add(this.grupaIgracke);
+            this.Controls.Add(this.grupaIrvas);
             this.Controls.Add(this.labelIme);
             this.Controls.Add(this.txtIme);
             this.Name = "AzuriranjeVilenjakaForma";
@@ -413,10 +432,11 @@
             this.grupaIgracke.ResumeLayout(false);
             this.grupaIgracke.PerformLayout();
             this.grupaIrvas.ResumeLayout(false);
+            this.grupaIrvas.PerformLayout();
             this.panelBasic.ResumeLayout(false);
             this.panelBasic.PerformLayout();
-            this.panelPokloni.ResumeLayout(false);
-            this.panelPokloni.PerformLayout();
+            this.grupaPokloni.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.tabelaPoklona)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -429,10 +449,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtNovoIme;
         private System.Windows.Forms.Label labelTim;
-        private System.Windows.Forms.TextBox txtTim;
         private System.Windows.Forms.Button btnKoordinator;
         private System.Windows.Forms.Label labelRadionica;
-        private System.Windows.Forms.TextBox txtRadionica;
         private System.Windows.Forms.Button btnSef;
         private System.Windows.Forms.GroupBox grupaIgracke;
         private System.Windows.Forms.GroupBox grupaIrvas;
@@ -456,7 +474,10 @@
         private System.Windows.Forms.TextBox txtTrenutniIrvas;
         private System.Windows.Forms.Button btnPromeniIrvasa;
         private System.Windows.Forms.TextBox txtNoviIrvas;
-        private System.Windows.Forms.Panel panelPokloni;
-        private System.Windows.Forms.ListBox listaPokloni;
+        private System.Windows.Forms.ComboBox cmbRadionice;
+        private System.Windows.Forms.ComboBox cmbTimovi;
+        private System.Windows.Forms.Button btnIzmenaTima;
+        private System.Windows.Forms.GroupBox grupaPokloni;
+        private System.Windows.Forms.DataGridView tabelaPoklona;
     }
 }

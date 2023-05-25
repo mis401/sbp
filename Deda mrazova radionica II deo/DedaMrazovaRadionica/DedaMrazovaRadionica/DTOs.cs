@@ -71,13 +71,15 @@ namespace DedaMrazovaRadionica
     {
         public string materijal;
         public TimID pripadaTimu;
+        public int flagKoordinator;
         public DeoRadioniceID deoRadionice;
+        public int flagSef;
         public int duzinaObuke;
         public int ocena;
         public VilenjakZaIzraduIgracakaMentor mentor;
         public VilenjakZaIzraduIgracakaBasic(int id,
             string jedIme, string zemPor, DateTime datZap, string materijal,
-            DeoRadioniceID deoRadionice, TimID tim, int duzinaObuke, int ocena,
+            DeoRadioniceID deoRadionice, int fs, TimID tim, int fk, int duzinaObuke, int ocena,
             VilenjakZaIzraduIgracakaMentor mentor) : base(id, jedIme, zemPor, datZap)
         {
             this.materijal = materijal;
@@ -86,6 +88,8 @@ namespace DedaMrazovaRadionica
             this.duzinaObuke = duzinaObuke;
             this.ocena = ocena;
             this.mentor = mentor;
+            this.flagSef = fs;
+            this.flagKoordinator = fk;
         }
     }
     public class VilenjakZaIrvaseSaVestinama: VilenjakZaIrvaseBasic
@@ -145,10 +149,10 @@ namespace DedaMrazovaRadionica
 
         public VilenjakZaIzraduIgracakaSaVestinama(int id,
             string jedIme, string zemPor, DateTime datZap, string materijal,
-            DeoRadioniceID deoRadionice, TimID tim, int duzinaObuke, int ocena,
+            DeoRadioniceID deoRadionice, int fs, TimID tim, int fk, int duzinaObuke, int ocena,
             VilenjakZaIzraduIgracakaMentor mentor, IList<MagicnaVestinaPrikaz> vestine) : base(id,
             jedIme, zemPor, datZap, materijal,
-            deoRadionice, tim, duzinaObuke, ocena, mentor)
+            deoRadionice, fs, tim, fk, duzinaObuke, ocena, mentor)
         {
             this.vestine = vestine;
         }
@@ -293,14 +297,18 @@ namespace DedaMrazovaRadionica
         public string posveta;
         public ListaZelja pripadaListiZelja;
         public Tovar pripadaTovaru;
+        public string destinacija;
+        public string dete;
 
-        public PoklonBasic(int id, string boja, string posveta, ListaZelja lz, Tovar tovar)
+        public PoklonBasic(int id, string boja, string posveta, ListaZelja lz, Tovar tovar, string destinacija, string dete)
         {
             ID = id;
             this.boja = boja;
             this.posveta = posveta;
             pripadaListiZelja = lz;
             pripadaTovaru = tovar;
+            this.destinacija = destinacija;
+            this.dete = dete;
         }
     }
 
@@ -322,11 +330,13 @@ namespace DedaMrazovaRadionica
     
     public class VilenjakZaPokloneSaVestinama : VilenjakBasic
     {
-        IList<PoklonBasic> listaPoklona;
+        public IList<PoklonBasic> listaPoklona;
+        public IList<MagicnaVestinaPrikaz> vestine;
 
-        public VilenjakZaPokloneSaVestinama(int id, string ime, string zemlja, DateTime dz, IList<PoklonBasic> lista) : base(id, ime, zemlja, dz)
+        public VilenjakZaPokloneSaVestinama(int id, string ime, string zemlja, DateTime dz, IList<PoklonBasic> lista, IList<MagicnaVestinaPrikaz> vestine) : base(id, ime, zemlja, dz)
         {
             this.listaPoklona = lista;
+            this.vestine = vestine;
         }
     }
 

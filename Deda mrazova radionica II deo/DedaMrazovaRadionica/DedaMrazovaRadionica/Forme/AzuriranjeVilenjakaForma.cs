@@ -23,6 +23,7 @@ namespace DedaMrazovaRadionica.Forme
             InitializeComponent();
             grupaIgracke.Hide();
             grupaIrvas.Hide();
+            grupaPokloni.Hide();
             panelBasic.Hide();
             labelPogresnoIme.Hide();
             vilenjak=new VilenjakBasic();
@@ -64,7 +65,7 @@ namespace DedaMrazovaRadionica.Forme
                 if (vilenjak is VilenjakZaIrvaseSaVestinama)
                 {
                     grupaIgracke.Hide();
-                    panelPokloni.Hide();
+                    grupaPokloni.Hide();
                     grupaIrvas.Show();
                     foreach (var vestina in (vilenjak as VilenjakZaIrvaseSaVestinama).vestine)
                     {
@@ -73,7 +74,7 @@ namespace DedaMrazovaRadionica.Forme
                     txtTrenutniIrvas.Text = (vilenjak as VilenjakZaIrvaseSaVestinama).irvas.ime;
                     pesme = DTOManager.vratiPesme();
                     cmbPesme.Items.Clear();
-                    foreach(var pesma in pesme)
+                    foreach (var pesma in pesme)
                     {
                         cmbPesme.Items.Add(pesma.naziv);
                     }
@@ -81,23 +82,41 @@ namespace DedaMrazovaRadionica.Forme
                 else if (vilenjak is VilenjakZaIzraduIgracakaSaVestinama)
                 {
                     grupaIrvas.Hide();
-                    panelPokloni.Hide();
+                    grupaPokloni.Hide();
                     grupaIgracke.Show();
-                    foreach(var vestina in (vilenjak as VilenjakZaIzraduIgracakaSaVestinama).vestine)
+                    var radionice = DTOManager.vratiNaziveRadionica();
+                    var timovi = DTOManager.vratiNaziveTimova();
+                    if ((vilenjak as VilenjakZaIzraduIgracakaSaVestinama).flagKoordinator == 1)
+                        btnKoordinator.Enabled = false;
+                    else
+                        btnKoordinator.Enabled = true;
+                    if ((vilenjak as VilenjakZaIzraduIgracakaSaVestinama).flagSef == 1)
+                        btnSef.Enabled = false;
+                    else
+                        btnSef.Enabled = true;
+                    foreach (var vestina in (vilenjak as VilenjakZaIzraduIgracakaSaVestinama).vestine)
                     {
                         listVestine.Items.Add(vestina.naziv);
                     }
+                    foreach (var tim in timovi)
+                    {
+                        cmbTimovi.Items.Add(tim.naziv);
+                    }
+                    cmbTimovi.SelectedIndex = cmbTimovi.Items.IndexOf((vilenjak as VilenjakZaIzraduIgracakaSaVestinama).pripadaTimu.naziv);
+                    foreach(var rad in radionice)
+                    {
+                        cmbRadionice.Items.Add(rad.naziv);
+                    }
+                    cmbRadionice.SelectedIndex = cmbRadionice.Items.IndexOf((vilenjak as VilenjakZaIzraduIgracakaSaVestinama).deoRadionice.naziv);
                 }
-                else if (vilenjak is VilenjakZaPoklone)
+                else if (vilenjak is VilenjakZaPokloneSaVestinama)
                 {
                     grupaIrvas.Hide();
                     grupaIgracke.Hide();
-                    panelPokloni.Show();
-                    pokloni = DTOManager.vratiPokloneVilenjaka(vilenjak);
-                    foreach(var item in pokloni)
-                    {
-                        listaPokloni.Items.Add(item);
-                    }
+                    grupaPokloni.Show();
+                    
+                    //pokloni = DTOManager.vratiPokloneVilenjaka(vilenjak);
+                    tabelaPoklona.DataSource = (vilenjak as VilenjakZaPokloneSaVestinama).listaPoklona.Select(x => new { x.ID, Boja = x.boja, Posveta = x.posveta, Destinacija = x.destinacija, Dete = x.dete }).ToList();
                 }
                 
             }
@@ -169,6 +188,43 @@ namespace DedaMrazovaRadionica.Forme
         private void cmbPesme_SelectedIndexChanged(object sender, EventArgs e)
         {
             txtPesme.Text = pesme[cmbPesme.SelectedIndex].tekst;
+        }
+
+        private void btnKoordinator_Click(object sender, EventArgs e)
+        {
+            if (DTOManager.unapredjenjeUKoordinatora(vilenjak))
+            {
+                MessageBox.Show($"Vilenjak {vilenjak.jedinstvenoIme} je sada koorinator tima {(string)cmbTimovi.SelectedItem}");
+                btnKoordinator.Enabled = false;
+            }
+        }
+        private void btnSef_Click(object sender, EventArgs e)
+        {
+            if (DTOManager.unapredjenjeUSefa(vilenjak))
+            {
+                MessageBox.Show($"Vilenjak {vilenjak.jedinstvenoIme} je sada sef radionice {(string)cmbRadionice.SelectedItem}");
+                btnSef.Enabled = false;
+            }
+        }
+
+        private void btnIzmenaTima_Click(object sender, EventArgs e) //ne radi
+        {
+            if(DTOManager.izmenaTima(vilenjak, (string)cmbTimovi.SelectedItem)
+                && DTOManager.izmenaRadionice(vilenjak, (string)cmbRadionice.SelectedItem))
+            {
+                MessageBox.Show($"Vilenjak {vilenjak.jedinstvenoIme} " +
+                    $"dodeljen je timu {(string)cmbTimovi.SelectedItem} " +
+                    $"u radionici {(string)cmbRadionice.SelectedItem}");
+            }
+            vilenjak = DTOManager.vratiVilenjakaSaVestinama(vilenjak.jedinstvenoIme);
+            if ((vilenjak as VilenjakZaIzraduIgracakaSaVestinama).flagSef == 1)
+                btnSef.Enabled = false;
+            else
+                btnSef.Enabled = true;
+            if ((vilenjak as VilenjakZaIzraduIgracakaSaVestinama).flagKoordinator == 1)
+                btnKoordinator.Enabled = false;
+            else
+                btnKoordinator.Enabled = true;
         }
     }
 }
