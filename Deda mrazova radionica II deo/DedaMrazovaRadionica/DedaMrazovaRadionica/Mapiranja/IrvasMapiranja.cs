@@ -19,7 +19,7 @@ namespace DedaMrazovaRadionica.Mapiranja
             Map(x => x.Ime, "IME");
             Map(x => x.Nadimak, "NADIMAK");
             Map(x => x.Pol, "POL");
-            Map(x => x.DatumRodjenja, "DATUM_RODEJNJA");
+            Map(x => x.DatumRodjenja, "DATUM_RODJENJA");
 
             HasMany(x => x.Vilenjaci).KeyColumn("ID_IRVASA").Cascade.All().Inverse();
             HasMany(x=>x.IrvasIsporucujeTovar).KeyColumn("ID_IRVASA").Cascade.All().Inverse();

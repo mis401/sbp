@@ -38,17 +38,19 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(12, 12);
+            this.pictureBox1.Location = new System.Drawing.Point(11, 10);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(618, 490);
+            this.pictureBox1.Size = new System.Drawing.Size(549, 392);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
             // btnAdministracija
             // 
-            this.btnAdministracija.Location = new System.Drawing.Point(658, 30);
+            this.btnAdministracija.Location = new System.Drawing.Point(585, 24);
+            this.btnAdministracija.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAdministracija.Name = "btnAdministracija";
-            this.btnAdministracija.Size = new System.Drawing.Size(277, 65);
+            this.btnAdministracija.Size = new System.Drawing.Size(246, 52);
             this.btnAdministracija.TabIndex = 1;
             this.btnAdministracija.Text = "ADMINISTRACIJA";
             this.btnAdministracija.UseVisualStyleBackColor = true;
@@ -56,22 +58,34 @@
             // 
             // btnSlanjePoklona
             // 
+<<<<<<< HEAD
             this.btnSlanjePoklona.Location = new System.Drawing.Point(658, 153);
             this.btnSlanjePoklona.Name = "btnSlanjePoklona";
             this.btnSlanjePoklona.Size = new System.Drawing.Size(277, 61);
             this.btnSlanjePoklona.TabIndex = 3;
+=======
+            this.btnSlanjePoklona.Location = new System.Drawing.Point(585, 128);
+            this.btnSlanjePoklona.Name = "btnSlanjePoklona";
+            this.btnSlanjePoklona.Size = new System.Drawing.Size(245, 58);
+            this.btnSlanjePoklona.TabIndex = 2;
+>>>>>>> eea386a205e3fabf15af7496aa13cd7212f619f5
             this.btnSlanjePoklona.Text = "SLANJE POKLONA";
             this.btnSlanjePoklona.UseVisualStyleBackColor = true;
             this.btnSlanjePoklona.Click += new System.EventHandler(this.btnSlanjePoklona_Click);
             // 
             // PocetnaStranica
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+<<<<<<< HEAD
             this.ClientSize = new System.Drawing.Size(979, 819);
+=======
+            this.ClientSize = new System.Drawing.Size(870, 655);
+>>>>>>> eea386a205e3fabf15af7496aa13cd7212f619f5
             this.Controls.Add(this.btnSlanjePoklona);
             this.Controls.Add(this.btnAdministracija);
             this.Controls.Add(this.pictureBox1);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "PocetnaStranica";
             this.Text = "PocetnaStranica";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

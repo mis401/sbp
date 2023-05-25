@@ -1,5 +1,5 @@
 ﻿using NHibernate;
-using Prodavnica;
+using DedaMrazovaRadionica;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DedaMrazovaRadionica.Entiteti;
 
 namespace DedaMrazovaRadionica.Forme
 {
@@ -87,7 +88,26 @@ namespace DedaMrazovaRadionica.Forme
 
         private void btnDodaj_Click(object sender, EventArgs e)
         {
-            if (comboVrstaVilenjaka.SelectedIndex == 2)
+            if (comboVrstaVilenjaka.SelectedIndex == 0)
+            {
+                VilenjakZaIrvaseBasic vilenjak = new VilenjakZaIrvaseBasic(0, txtIme.Text, txtZemljaPorekla.Text, datumZaposljavanja.Value);
+                if (DTOManager.dodajVilenjakaZaIrvase(vilenjak))
+                    MessageBox.Show($"Dodat je vilenjak {vilenjak.jedinstvenoIme} uspesno!");
+            }
+            else if (comboVrstaVilenjaka.SelectedIndex == 1)//za isporuku
+            {
+                VilenjakZaIsporukuPoklona vilenjak = new VilenjakZaIsporukuPoklona();
+                vilenjak.JedinstvenoIme = txtIme.Text;
+                vilenjak.DatumZaposlenja = datumZaposljavanja.Value;
+                vilenjak.ZemljaPorekla = txtZemljaPorekla.Text;
+                vilenjak.Tovar = null;
+                if (DTOManager.dodajVilenjakaZaIsporukuPoklona(vilenjak))
+            
+                {
+                    MessageBox.Show($"Uspesno dodat {vilenjak.JedinstvenoIme}");
+                }
+            }
+            else if (comboVrstaVilenjaka.SelectedIndex == 2)
             {
                 Entiteti.DeoRadionice radionica = DTOManager.vratiRadionicu(radionice[comboDeoRadionice.SelectedIndex].id);
                 Entiteti.Tim tim = DTOManager.vratiTim(timovi[comboTim.SelectedIndex].id);
@@ -95,25 +115,38 @@ namespace DedaMrazovaRadionica.Forme
 
                 try
                 {
-                    VilenjakZaIzraduIgracakaBasic vilenjak =
-                        new VilenjakZaIzraduIgracakaBasic(0, txtIme.Text, txtZemljaPorekla.Text, datumZaposljavanja.Value,
-                        txtTipMaterijala.Text, radionica,
-                        tim, (int)numDuzinaObuke.Value,
-                        (int)numOcena.Value, mentor);
+                    VilenjakZaIzraduIgracaka vilenjak = new VilenjakZaIzraduIgracaka();
+                    vilenjak.JedinstvenoIme = txtIme.Text;
+                    vilenjak.DatumZaposlenja = datumZaposljavanja.Value;
+                    vilenjak.ZemljaPorekla = txtZemljaPorekla.Text;
+                    vilenjak.Ocena = (int)numOcena.Value;
+                    vilenjak.DuzinaObuke = (int)numDuzinaObuke.Value;
+                    vilenjak.TipMaterijala = txtTipMaterijala.Text;
+                    vilenjak.ImaMentora = DTOManager.vratiVilenjakaZaIzraduIgracaka(mentori[comboMentor.SelectedIndex].id);
+                    vilenjak.PripadaTimu = DTOManager.vratiTim(timovi[comboTim.SelectedIndex].id);
+                    vilenjak.DeoRadionice = DTOManager.vratiRadionicu(radionice[comboDeoRadionice.SelectedIndex].id);
+                    vilenjak.FlagKoordinator = 0;
+                    vilenjak.FlagSef = 0;
 
                     if (DTOManager.dodajVilenjakaZaIgracke(vilenjak))
-                        MessageBox.Show($"Dodavanje vilenjaka {vilenjak.jedinstvenoIme} je uspesno!");
+                        MessageBox.Show($"Dodat je vilenjak {vilenjak.JedinstvenoIme}");
+
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show("Dodavanje neuspesno, " + ex.Message);
                 }
             }
-            else if (comboVrstaVilenjaka.SelectedIndex == 0) 
+            else if (comboVrstaVilenjaka.SelectedIndex == 3)
             {
-                VilenjakZaIrvaseBasic vilenjak = new VilenjakZaIrvaseBasic(0, txtIme.Text, txtZemljaPorekla.Text, datumZaposljavanja.Value);
-                if (DTOManager.dodajVilenjakaZaIrvase(vilenjak))
-                    MessageBox.Show($"Dodat je vilenjak {vilenjak.jedinstvenoIme} uspesno!");
+                VilenjakZaPoklone vilenjak = new VilenjakZaPoklone();
+                vilenjak.JedinstvenoIme = txtIme.Text;
+                vilenjak.ZemljaPorekla = txtZemljaPorekla.Text;
+                vilenjak.DatumZaposlenja = datumZaposljavanja.Value;
+                if (DTOManager.dodajVilenjakaZaPripremuPoklona(vilenjak))
+                {
+                    MessageBox.Show($"Uspesno je dodat {vilenjak.JedinstvenoIme}");
+                }
             }
         }
     }

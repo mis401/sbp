@@ -144,11 +144,19 @@
     <Compile Include="Forme\DodajNovogVilenjakaForma.Designer.cs">
       <DependentUpon>DodajNovogVilenjakaForma.cs</DependentUpon>
     </Compile>
+<<<<<<< HEAD
     <Compile Include="Forme\SlanjePoklonaForma.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forme\SlanjePoklonaForma.Designer.cs">
       <DependentUpon>SlanjePoklonaForma.cs</DependentUpon>
+=======
+    <Compile Include="Forme\DodavanjeIgracakaForma.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forme\DodavanjeIgracakaForma.Designer.cs">
+      <DependentUpon>DodavanjeIgracakaForma.cs</DependentUpon>
+>>>>>>> eea386a205e3fabf15af7496aa13cd7212f619f5
     </Compile>
     <Compile Include="PocetnaStranica.cs">
       <SubType>Form</SubType>
@@ -190,8 +198,13 @@
     <EmbeddedResource Include="Forme\DodajNovogVilenjakaForma.resx">
       <DependentUpon>DodajNovogVilenjakaForma.cs</DependentUpon>
     </EmbeddedResource>
+<<<<<<< HEAD
     <EmbeddedResource Include="Forme\SlanjePoklonaForma.resx">
       <DependentUpon>SlanjePoklonaForma.cs</DependentUpon>
+=======
+    <EmbeddedResource Include="Forme\DodavanjeIgracakaForma.resx">
+      <DependentUpon>DodavanjeIgracakaForma.cs</DependentUpon>
+>>>>>>> eea386a205e3fabf15af7496aa13cd7212f619f5
     </EmbeddedResource>
     <EmbeddedResource Include="PocetnaStranica.resx">
       <DependentUpon>PocetnaStranica.cs</DependentUpon>

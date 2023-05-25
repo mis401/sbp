@@ -8,7 +8,7 @@ using FluentNHibernate.Cfg.Db;
 using DedaMrazovaRadionica.Mapiranja;
 using DedaMrazovaRadionica.Entiteti;
 
-namespace Prodavnica
+namespace DedaMrazovaRadionica
 {
     class DataLayer
     {
