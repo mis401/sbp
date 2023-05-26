@@ -342,7 +342,7 @@ namespace DedaMrazovaRadionica
 
     public class VilenjakZaIsporukuPoklonaSaVestinama : VilenjakBasic
     {
-        TovarBasic tovar;
+        public TovarBasic tovar;
 
         public VilenjakZaIsporukuPoklonaSaVestinama(int id, string ime, string zemlja, DateTime dz, TovarBasic tovari) : base(id, ime, zemlja, dz)
         {
