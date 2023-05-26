@@ -1133,20 +1133,7 @@ namespace DedaMrazovaRadionica
             finally { s?.Flush(); s?.Close();}
             return true;
         }
-
-/*        private static bool obrisiVilenjakaZaIgracke(VilenjakZaIzraduIgracaka v)
-        {
-            ISession s = null;
-            try
-            {
-                s = DataLayer.GetSession();
-                var igracka = s.Query<Igracka>().Where(i => i.Vilenjak.ID== v.ID).FirstOrDefault();
-                s.Delete(igracka);
-
-
-            }
-
-        }*/
+        
     }
 }
 

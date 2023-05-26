@@ -102,6 +102,7 @@
   <ItemGroup>
     <Compile Include="DataLayer.cs" />
     <Compile Include="DTOManager.cs" />
+    <Compile Include="DTOManagerBenc.cs" />
     <Compile Include="DTOs.cs" />
     <Compile Include="Entiteti\DeoRadionice.cs" />
     <Compile Include="Entiteti\Dete.cs" />
