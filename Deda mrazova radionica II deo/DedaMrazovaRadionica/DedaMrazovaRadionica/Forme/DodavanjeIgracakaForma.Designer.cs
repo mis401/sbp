@@ -43,8 +43,14 @@
             this.txtPosveta = new System.Windows.Forms.TextBox();
             this.btnKreirajPoklon = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
+            this.labKreiranPoklon = new System.Windows.Forms.Label();
             this.btnDodajIgrackeUPoklon = new System.Windows.Forms.Button();
+            this.cbxVilenjaciZaIgracke = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtTipIgracke = new System.Windows.Forms.TextBox();
+            this.txtOpisIgracke = new System.Windows.Forms.TextBox();
+            this.labTipIgracke = new System.Windows.Forms.Label();
+            this.labOpisIgracke = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // listPisma
@@ -160,37 +166,94 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(555, 499);
+            this.label5.Location = new System.Drawing.Point(555, 436);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(183, 20);
             this.label5.TabIndex = 11;
             this.label5.Text = "Nakon kreiranja poklona:";
             // 
-            // label6
+            // labKreiranPoklon
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(555, 435);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(194, 20);
-            this.label6.TabIndex = 12;
-            this.label6.Text = "Poklon je uspešno kreiran!";
+            this.labKreiranPoklon.AutoSize = true;
+            this.labKreiranPoklon.Location = new System.Drawing.Point(790, 379);
+            this.labKreiranPoklon.Name = "labKreiranPoklon";
+            this.labKreiranPoklon.Size = new System.Drawing.Size(194, 20);
+            this.labKreiranPoklon.TabIndex = 12;
+            this.labKreiranPoklon.Text = "Poklon je uspešno kreiran!";
             // 
             // btnDodajIgrackeUPoklon
             // 
-            this.btnDodajIgrackeUPoklon.Location = new System.Drawing.Point(559, 536);
+            this.btnDodajIgrackeUPoklon.Location = new System.Drawing.Point(559, 602);
             this.btnDodajIgrackeUPoklon.Name = "btnDodajIgrackeUPoklon";
             this.btnDodajIgrackeUPoklon.Size = new System.Drawing.Size(213, 48);
             this.btnDodajIgrackeUPoklon.TabIndex = 13;
             this.btnDodajIgrackeUPoklon.Text = "Dodaj igračke u poklon";
             this.btnDodajIgrackeUPoklon.UseVisualStyleBackColor = true;
+            this.btnDodajIgrackeUPoklon.Click += new System.EventHandler(this.btnDodajIgrackeUPoklon_Click);
+            // 
+            // cbxVilenjaciZaIgracke
+            // 
+            this.cbxVilenjaciZaIgracke.FormattingEnabled = true;
+            this.cbxVilenjaciZaIgracke.Location = new System.Drawing.Point(559, 525);
+            this.cbxVilenjaciZaIgracke.Name = "cbxVilenjaciZaIgracke";
+            this.cbxVilenjaciZaIgracke.Size = new System.Drawing.Size(204, 28);
+            this.cbxVilenjaciZaIgracke.TabIndex = 14;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(555, 466);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(296, 20);
+            this.label7.TabIndex = 15;
+            this.label7.Text = "Izaberi vilenjaka koji ce izradjivati igracke:";
+            // 
+            // txtTipIgracke
+            // 
+            this.txtTipIgracke.Location = new System.Drawing.Point(927, 478);
+            this.txtTipIgracke.Name = "txtTipIgracke";
+            this.txtTipIgracke.Size = new System.Drawing.Size(193, 26);
+            this.txtTipIgracke.TabIndex = 16;
+            // 
+            // txtOpisIgracke
+            // 
+            this.txtOpisIgracke.Location = new System.Drawing.Point(927, 564);
+            this.txtOpisIgracke.Multiline = true;
+            this.txtOpisIgracke.Name = "txtOpisIgracke";
+            this.txtOpisIgracke.Size = new System.Drawing.Size(193, 78);
+            this.txtOpisIgracke.TabIndex = 17;
+            // 
+            // labTipIgracke
+            // 
+            this.labTipIgracke.AutoSize = true;
+            this.labTipIgracke.Location = new System.Drawing.Point(923, 436);
+            this.labTipIgracke.Name = "labTipIgracke";
+            this.labTipIgracke.Size = new System.Drawing.Size(144, 20);
+            this.labTipIgracke.TabIndex = 18;
+            this.labTipIgracke.Text = "Unesite tip igracke:\r\n";
+            // 
+            // labOpisIgracke
+            // 
+            this.labOpisIgracke.AutoSize = true;
+            this.labOpisIgracke.Location = new System.Drawing.Point(923, 533);
+            this.labOpisIgracke.Name = "labOpisIgracke";
+            this.labOpisIgracke.Size = new System.Drawing.Size(100, 20);
+            this.labOpisIgracke.TabIndex = 19;
+            this.labOpisIgracke.Text = "Opis igracke:";
             // 
             // DodavanjeIgracakaForma
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1253, 662);
+            this.Controls.Add(this.labOpisIgracke);
+            this.Controls.Add(this.labTipIgracke);
+            this.Controls.Add(this.txtOpisIgracke);
+            this.Controls.Add(this.txtTipIgracke);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.cbxVilenjaciZaIgracke);
             this.Controls.Add(this.btnDodajIgrackeUPoklon);
-            this.Controls.Add(this.label6);
+            this.Controls.Add(this.labKreiranPoklon);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.btnKreirajPoklon);
             this.Controls.Add(this.txtPosveta);
@@ -226,7 +289,13 @@
         private System.Windows.Forms.TextBox txtPosveta;
         private System.Windows.Forms.Button btnKreirajPoklon;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label labKreiranPoklon;
         private System.Windows.Forms.Button btnDodajIgrackeUPoklon;
+        private System.Windows.Forms.ComboBox cbxVilenjaciZaIgracke;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox txtTipIgracke;
+        private System.Windows.Forms.TextBox txtOpisIgracke;
+        private System.Windows.Forms.Label labTipIgracke;
+        private System.Windows.Forms.Label labOpisIgracke;
     }
 }

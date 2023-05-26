@@ -77,6 +77,7 @@ namespace DedaMrazovaRadionica
         public int duzinaObuke;
         public int ocena;
         public VilenjakZaIzraduIgracakaMentor mentor;
+
         public VilenjakZaIzraduIgracakaBasic(int id,
             string jedIme, string zemPor, DateTime datZap, string materijal,
             DeoRadioniceID deoRadionice, int fs, TimID tim, int fk, int duzinaObuke, int ocena,
@@ -91,7 +92,11 @@ namespace DedaMrazovaRadionica
             this.flagSef = fs;
             this.flagKoordinator = fk;
         }
+
+        
     }
+
+ 
     public class VilenjakZaIrvaseSaVestinama: VilenjakZaIrvaseBasic
     {
         public IList<MagicnaVestinaPrikaz> vestine;
@@ -300,6 +305,15 @@ namespace DedaMrazovaRadionica
         public string destinacija;
         public string dete;
 
+        public PoklonBasic(string boja, string posveta, ListaZelja lz, Tovar tovar)
+        {
+            
+            this.boja = boja;
+            this.posveta = posveta;
+            pripadaListiZelja = lz;
+            pripadaTovaru = tovar;
+        }
+
         public PoklonBasic(int id, string boja, string posveta, ListaZelja lz, Tovar tovar, string destinacija, string dete)
         {
             ID = id;
@@ -392,6 +406,11 @@ namespace DedaMrazovaRadionica
             this.duzinaObuke = duzinaObuke;
             this.ocena = ocena;
             this.mentor = mentor;
+        }
+
+        public VilenjakZaIzraduIgracakaPoklon(int id, string ime, string zemPor, DateTime datZap) : base(id, ime, zemPor, datZap)
+        {
+     
         }
     }
 }

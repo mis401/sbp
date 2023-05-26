@@ -134,13 +134,13 @@ VALUES
 	 ('Kefalo', 'Holandija', TO_DATE('11.12.2018', 'DD.MM.YYYY'), 'Tkanina', 1, 4, 1, TO_DATE('05.06.2020', 'DD.MM.YYYY'), 3, NULL, NULL, NULL);
 INSERT INTO VILENJAK_ZA_IZRADU_IGRACAKA(Ime, Zemlja_porekla, Datum_zaposljavanja, Tip_materijala, Flag_koordinator, ID_tima, Flag_sef, Datum_postavljanja, ID_Dela_radionice, ID_Mentora, Ocena, Duzina_obuke)
 VALUES
-	('Kijavko', 'Island', TO_DATE('23.08.2021', 'DD.MM.YYYY'), 'Drvo', 0, 3, 1, TO_DATE('30.09.2021', 'DD.MM.YYYY'), 1, 2, 8, 3);
+	('Kijavko', 'Island', TO_DATE('23.08.2021', 'DD.MM.YYYY'), 'Drvo', 0, 3, 1, TO_DATE('30.09.2021', 'DD.MM.YYYY'), 1, 1, 8, 3);
 INSERT INTO VILENJAK_ZA_IZRADU_IGRACAKA(Ime, Zemlja_porekla, Datum_zaposljavanja, Tip_materijala, Flag_koordinator, ID_tima, Flag_sef, Datum_postavljanja, ID_Dela_radionice, ID_Mentora, Ocena, Duzina_obuke)
 VALUES	
 	('Mrgud', 'Belgija', TO_DATE('17.11.2021', 'DD.MM.YYYY'),'Plastika', 1, 1, 1, TO_DATE('03.07.2022', 'DD.MM.YYYY'), 4, 2, 10, 4);
 INSERT INTO VILENJAK_ZA_IZRADU_IGRACAKA(Ime, Zemlja_porekla, Datum_zaposljavanja, Tip_materijala, Flag_koordinator, ID_tima, Flag_sef, Datum_postavljanja, ID_Dela_radionice, ID_Mentora, Ocena, Duzina_obuke)
 VALUES	
-	'Gricko', 'Francuska', TO_DATE('08.12.2021', 'DD.MM.YYYY'), 'Metal', 0, 5, 0, NULL, 1, 1, 6, 2);
+	('Gricko', 'Francuska', TO_DATE('08.12.2021', 'DD.MM.YYYY'), 'Metal', 0, 5, 0, NULL, 1, 1, 6, 2);
 INSERT INTO VILENJAK_ZA_IZRADU_IGRACAKA(Ime, Zemlja_porekla, Datum_zaposljavanja, Tip_materijala, Flag_koordinator, ID_tima, Flag_sef, Datum_postavljanja, ID_Dela_radionice, ID_Mentora, Ocena, Duzina_obuke)
 VALUES		
 	('Cekicar', 'Italija', TO_DATE('17.05.2021', 'DD.MM.YYYY'),'Tkanina', 1, 5, 1, TO_DATE('01.02.2022', 'DD.MM.YYYY'), 2, 1, 9, 7);
@@ -374,18 +374,18 @@ VALUES
 	
 	
 	
-INSERT INTO PAKOVANJE_POKLONA (ID_Vilenjaka_za_tovar, ID_Poklona)
+INSERT INTO PAKOVANJE_POKLONA (ID_Vilenjaka_za_poklone, ID_Poklona)
 VALUES
-	(1, 4);
-INSERT INTO PAKOVANJE_POKLONA (ID_Vilenjaka_za_tovar, ID_Poklona)
+	(1,4);
+INSERT INTO PAKOVANJE_POKLONA (ID_Vilenjaka_za_poklone, ID_Poklona)
 VALUES
-	(1, 2);
-INSERT INTO PAKOVANJE_POKLONA (ID_Vilenjaka_za_tovar, ID_Poklona)
+	(1,2);
+INSERT INTO PAKOVANJE_POKLONA (ID_Vilenjaka_za_poklone, ID_Poklona)
 VALUES
-	(1, 1);
-INSERT INTO PAKOVANJE_POKLONA (ID_Vilenjaka_za_tovar, ID_Poklona)
+	(1,1);
+INSERT INTO PAKOVANJE_POKLONA (ID_Vilenjaka_za_poklone, ID_Poklona)
 VALUES
-	(1, 3);
+	(1,3);
 	
 	
 -- INSERT INTO VILENJAK_POSEDUJE_VESTINU (ID_Vilenjaka, ID_Vestine)
