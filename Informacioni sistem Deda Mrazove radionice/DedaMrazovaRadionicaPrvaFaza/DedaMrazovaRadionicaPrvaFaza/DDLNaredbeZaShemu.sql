@@ -231,7 +231,7 @@
 		Datum_postavljanja DATE ,
 		ID_Dela_radionice NUMBER(10),
 		ID_Mentora NUMBER(10),
-		Ocena NUMBER(2) CHECK (Ocena BETWEEN 1 AND 10), 
+		Ocena NUMBER(2) CHECK (Ocena BETWEEN 0 AND 10), 
 		Duzina_obuke NUMBER(5)
 		
 	);

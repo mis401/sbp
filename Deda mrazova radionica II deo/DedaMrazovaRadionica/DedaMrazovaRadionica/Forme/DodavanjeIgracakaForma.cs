@@ -49,7 +49,7 @@ namespace DedaMrazovaRadionica.Forme
         private void DodavanjeIgracakaForma_Load(object sender, EventArgs e)
         {
             popuniListuPismima();
-            popuniImenaVilenjakaZaIgracke();
+            //popuniImenaVilenjakaZaIgracke();
         }
 
        private void popuniIdPisma()
@@ -61,14 +61,14 @@ namespace DedaMrazovaRadionica.Forme
             }
         }
 
-        private void popuniImenaVilenjakaZaIgracke()
+/*        private void popuniImenaVilenjakaZaIgracke()
         {
             IList<VilenjakZaIzraduIgracakaPoklon> vilenjaci = DTOManager.vratiSveVilenjakeZaIgracke();
             foreach(var vilenjak in vilenjaci)
             {
                 cbxVilenjaciZaIgracke.Items.Add(vilenjak.jedinstvenoIme);
             }
-        }
+        }*/
         private void btnKreirajPoklon_Click(object sender, EventArgs e)
         {
 
@@ -101,8 +101,7 @@ namespace DedaMrazovaRadionica.Forme
 
             PoklonBasic poklon = new PoklonBasic(txtBojaPoklona.Text, txtPosveta.Text, lista, tovar);
 
-            DTOManager.dodajPoklon(poklon);
-
+            poklonID = DTOManager.dodajPoklon(poklon).ID;
             labKreiranPoklon.Show();
             rbrIgracke = 0;
             

@@ -175,7 +175,7 @@ namespace DedaMrazovaRadionica
         public static VilenjakBasic vratiVilenjakaSaVestinama(string ime)
         {
             VilenjakBasic vilenjak = null;
-     
+
             vilenjak = vratiVilenjakaZaIrvaseSaVestinama(ime);
             //MessageBox.Show("1");
             if (vilenjak != null)
@@ -330,7 +330,7 @@ namespace DedaMrazovaRadionica
             }
             finally
             {
-                
+
                 s?.Close();
             }
             return v;
@@ -505,14 +505,14 @@ namespace DedaMrazovaRadionica
         }
 
 
-        public static void dodajPoklon(PoklonBasic poklon)
+        public static Poklon dodajPoklon(PoklonBasic poklon)
         {
             ISession s = null;
-            Poklon p = new Poklon();
+            Poklon p = null;
             try
             {
                 s = DataLayer.GetSession();
-
+                p = new Poklon();
                 p.Boja = poklon.boja;
                 p.Posveta = poklon.posveta;
                 p.ZaListuZelja = poklon.pripadaListiZelja;
@@ -526,7 +526,7 @@ namespace DedaMrazovaRadionica
 
             }
             finally { s?.Flush(); s?.Close(); }
-
+            return p;
         }
         public static ListaZelja dodajListuZelja(ListaZeljaBasic lz)
         {
@@ -961,29 +961,29 @@ namespace DedaMrazovaRadionica
             return listaZelja;
         }
 
-       
 
-    /*    public static Poklon vratiPoklonSaNajvecimID()
-        {
-            ISession s = null;
-            Poklon maxPoklon = null;
-            IList<Poklon> pokloni = vratiPoklone();
-            try
-            {
-                s = DataLayer.GetSession();
-                maxPoklon = pokloni.OrderByDescending(z => z.ID).FirstOrDefault();
 
-            }
-            catch (Exception ex)
+        /*    public static Poklon vratiPoklonSaNajvecimID()
             {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                s?.Close();
-            }
-            return maxPoklon;
-        }*/
+                ISession s = null;
+                Poklon maxPoklon = null;
+                IList<Poklon> pokloni = vratiPoklone();
+                try
+                {
+                    s = DataLayer.GetSession();
+                    maxPoklon = pokloni.OrderByDescending(z => z.ID).FirstOrDefault();
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    s?.Close();
+                }
+                return maxPoklon;
+            }*/
 
         public static IList<Poklon> vratiPoklone()
         {
@@ -1075,7 +1075,7 @@ namespace DedaMrazovaRadionica
         }
 
 
-        public static bool izmenaTima(VilenjakBasic vb, string noviTim) 
+        public static bool izmenaTima(VilenjakBasic vb, string noviTim)
         {
             ISession s = null;
             try
@@ -1087,7 +1087,7 @@ namespace DedaMrazovaRadionica
                 ve.FlagKoordinator = 0;
                 s.SaveOrUpdate(ve);
             }
-            catch(Exception ex) { return false; }
+            catch (Exception ex) { return false; }
             finally { s?.Flush(); s?.Close(); }
             return true;
         }
@@ -1109,6 +1109,44 @@ namespace DedaMrazovaRadionica
             return true;
         }
 
+        public static bool obrisiVilenjaka(string ime)
+        {
+            ISession s = null;
+            try
+            {
+                s = DataLayer.GetSession();
+                var vilenjak = s.Query<Vilenjak>().Where(v => v.JedinstvenoIme.Equals(ime)).FirstOrDefault();
+                
+                if (vilenjak is VilenjakZaIzraduIgracaka)
+                {
+                    var ucenici = s.Query<VilenjakZaIzraduIgracaka>().Where(v => v.ImaMentora.ID == vilenjak.ID).ToList();
+                    foreach(var ucenik in ucenici)
+                    {
+                        ucenik.ImaMentora = null;
+                        s.SaveOrUpdate(ucenik);
+                    }
+                }
+                s.Flush();
+                s.Delete(vilenjak);
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message);  return false; }
+            finally { s?.Flush(); s?.Close();}
+            return true;
+        }
 
+/*        private static bool obrisiVilenjakaZaIgracke(VilenjakZaIzraduIgracaka v)
+        {
+            ISession s = null;
+            try
+            {
+                s = DataLayer.GetSession();
+                var igracka = s.Query<Igracka>().Where(i => i.Vilenjak.ID== v.ID).FirstOrDefault();
+                s.Delete(igracka);
+
+
+            }
+
+        }*/
+    }
 }
 
