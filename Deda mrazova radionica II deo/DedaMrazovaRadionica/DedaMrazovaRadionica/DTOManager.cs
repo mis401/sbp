@@ -15,6 +15,7 @@ using System.Runtime.InteropServices;
 using FluentNHibernate.Conventions;
 using NHibernate.Context;
 using FluentNHibernate;
+using FluentNHibernate.Utils;
 
 namespace DedaMrazovaRadionica
 {
@@ -544,8 +545,29 @@ namespace DedaMrazovaRadionica
                 MessageBox.Show(ex.Message);
                 return null;
             }
-            finally { s?.Flush(); s?.Close(); }
+            finally { s?.Close(); }
             return listazelja;
+        }
+
+        public static IList<ListaZeljaBasic> vratiListeZelja()
+        {
+            IList<ListaZeljaBasic> liste = new List<ListaZeljaBasic>();
+            ISession s = null;
+            try
+            {
+                s = DataLayer.GetSession();
+
+                liste = s.Query<ListaZelja>()
+                    .Select(l => new ListaZeljaBasic())
+                    .ToList();
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Neuspelo dodavanje vilenjaka za izradu igracaka!");
+            }
+            finally { s?.Flush(); s?.Close(); }
+            return liste;
         }
 
         public static Tovar dodajTovar(TovarBasic tb)
@@ -1056,6 +1078,53 @@ namespace DedaMrazovaRadionica
             }
             return listaZelja;
         }
+
+       
+
+    /*    public static Poklon vratiPoklonSaNajvecimID()
+        {
+            ISession s = null;
+            Poklon maxPoklon = null;
+            IList<Poklon> pokloni = vratiPoklone();
+            try
+            {
+                s = DataLayer.GetSession();
+                maxPoklon = pokloni.OrderByDescending(z => z.ID).FirstOrDefault();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                s?.Close();
+            }
+            return maxPoklon;
+        }*/
+
+        public static IList<Poklon> vratiPoklone()
+        {
+            IList<Poklon> pokloni = new List<Poklon>();
+            ISession s = null;
+            try
+            {
+                s = DataLayer.GetSession();
+
+                pokloni = s.Query<Poklon>()
+                    .Select(l => new Poklon())
+                    .ToList();
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Neuspelo dodavanje vilenjaka za izradu igracaka!");
+            }
+            finally { s?.Flush(); s?.Close(); }
+            return pokloni;
+        }
+
+
         public static VilenjakZaIzraduIgracaka vratiVilenjakaZaIzraduIgracaka(string ime)
         {
             ISession s = null;
@@ -1157,7 +1226,34 @@ namespace DedaMrazovaRadionica
             finally { s?.Flush(); s?.Close(); }
             return true;
         }
+
+        public static IList<VilenjakZaIzraduIgracakaPoklon> vratiSveVilenjakeZaIgracke()
+        {
+            IList<VilenjakZaIzraduIgracakaPoklon> vilenjak = new List<VilenjakZaIzraduIgracakaPoklon>();
+            ISession s = null;
+            try
+            {
+                s = DataLayer.GetSession();
+
+
+
+                vilenjak = s.Query<VilenjakZaIzraduIgracaka>()
+                .Select(v => new VilenjakZaIzraduIgracakaPoklon(v.ID, v.JedinstvenoIme, v.ZemljaPorekla, v.DatumZaposlenja))
+                .ToList();
+
+
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Neuspelo!");
+            }
+            finally { s?.Flush(); s?.Close(); }
+            return vilenjak;
+        }
     }
+
+
 
     
 

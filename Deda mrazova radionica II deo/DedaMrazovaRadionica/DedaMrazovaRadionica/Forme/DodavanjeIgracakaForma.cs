@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -15,16 +16,19 @@ namespace DedaMrazovaRadionica.Forme
     {
         
         private string tovarGrad;
+        private int listaZeljaID;
+        private int poklonID;
+        private int rbrIgracke;
+        private int vilenjakID;
 
         public DodavanjeIgracakaForma()
         {
             InitializeComponent();
             popuniIdPisma();
-            label6.Enabled = false;
+            labKreiranPoklon.Hide();
         }
 
-        //U KREIRAJ POKLON DODAJ LISTU ZELJA, DODAJ TOVAR, NAKON TOGA KREIRAJ POKLON 
-        //NAKON TOGA UNOS IGRACAKA
+      
 
         private void popuniListuPismima()
         {
@@ -45,6 +49,7 @@ namespace DedaMrazovaRadionica.Forme
         private void DodavanjeIgracakaForma_Load(object sender, EventArgs e)
         {
             popuniListuPismima();
+            popuniImenaVilenjakaZaIgracke();
         }
 
        private void popuniIdPisma()
@@ -56,12 +61,21 @@ namespace DedaMrazovaRadionica.Forme
             }
         }
 
+        private void popuniImenaVilenjakaZaIgracke()
+        {
+            IList<VilenjakZaIzraduIgracakaPoklon> vilenjaci = DTOManager.vratiSveVilenjakeZaIgracke();
+            foreach(var vilenjak in vilenjaci)
+            {
+                cbxVilenjaciZaIgracke.Items.Add(vilenjak.jedinstvenoIme);
+            }
+        }
         private void btnKreirajPoklon_Click(object sender, EventArgs e)
         {
 
             //prvo kreiramo listu zelja
             var pismo = cbxRbrPisma.SelectedItem;//as PismoBasic;
             Pismo p = DTOManager.vratiPismoID((int)pismo);
+
             ListaZeljaBasic lb = new ListaZeljaBasic(p);
             var lista = DTOManager.dodajListuZelja(lb);
             
@@ -70,9 +84,11 @@ namespace DedaMrazovaRadionica.Forme
 
             foreach(PismoPregled pismoPregled in pisma)
             {
-                if(pismoPregled.ID == cbxRbrPisma.SelectedIndex)
+                if(pismoPregled.ID == (int)cbxRbrPisma.SelectedItem)
                 {
                     tovarGrad = pismoPregled.dete.Grad;
+                    break;
+
                 }
             }
 
@@ -83,13 +99,41 @@ namespace DedaMrazovaRadionica.Forme
 
             //nakon toga kreiramo poklon
 
-            PoklonBasic poklon = new PoklonBasic(0, txtBojaPoklona.Text, txtPosveta.Text, lista, tovar, tovar.Grad, lista.PripadaPismu.PripadaDetetu.Ime);
+            PoklonBasic poklon = new PoklonBasic(txtBojaPoklona.Text, txtPosveta.Text, lista, tovar);
 
             DTOManager.dodajPoklon(poklon);
 
-            label6.Enabled = true;
-
+            labKreiranPoklon.Show();
+            rbrIgracke = 0;
             
+
+        }
+
+        private void btnDodajIgrackeUPoklon_Click(object sender, EventArgs e)
+        {
+           /* rbrIgracke++;
+            IList<VilenjakZaIzraduIgracakaPoklon> vilenjaci = DTOManager.vratiSveVilenjakeZaIgracke();
+            string imeVilenjaka = cbxVilenjaciZaIgracke.SelectedItem.ToString();
+
+            foreach(var v in vilenjaci)
+            {
+                if (v.jedinstvenoIme == imeVilenjaka)
+                    vilenjakID = v.id;
+            }
+
+
+            VilenjakZaIzraduIgracaka vilenjak = DTOManager.vratiVilenjakaZaIzraduIgracaka(vilenjakID);
+
+            DeoRadionice rad = vilenjak.DeoRadionice;
+
+           // ListaZelja listaZelja = DTOManager.vratiListuZeljaSaNajvecimID();
+            //Poklon p = DTOManager.vratiPoklonSaNajvecimID();
+
+            IgrackaPregled igracka = new IgrackaPregled(rbrIgracke, txtTipIgracke.Text, txtOpisIgracke.Text, p, rad, listaZelja, vilenjak);
+
+            DTOManager.dodajIgracka(igracka);*/
+
+
 
         }
     }
