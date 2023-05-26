@@ -138,6 +138,12 @@
     <Compile Include="Forme\AzuriranjeVilenjakaForma.Designer.cs">
       <DependentUpon>AzuriranjeVilenjakaForma.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forme\BrisanjeVilenjaka.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forme\BrisanjeVilenjaka.Designer.cs">
+      <DependentUpon>BrisanjeVilenjaka.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forme\DodajNovogVilenjakaForma.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -186,6 +192,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forme\AzuriranjeVilenjakaForma.resx">
       <DependentUpon>AzuriranjeVilenjakaForma.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forme\BrisanjeVilenjaka.resx">
+      <DependentUpon>BrisanjeVilenjaka.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forme\DodajNovogVilenjakaForma.resx">
       <DependentUpon>DodajNovogVilenjakaForma.cs</DependentUpon>

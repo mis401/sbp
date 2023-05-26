@@ -63,6 +63,7 @@
             this.btnObrisiPostojecegVilenjaka.TabIndex = 2;
             this.btnObrisiPostojecegVilenjaka.Text = "Obriši postojećeg vilenjaka";
             this.btnObrisiPostojecegVilenjaka.UseVisualStyleBackColor = true;
+            this.btnObrisiPostojecegVilenjaka.Click += new System.EventHandler(this.btnObrisiPostojecegVilenjaka_Click);
             // 
             // btnAzurirajPodatkeOVilenjaku
             // 

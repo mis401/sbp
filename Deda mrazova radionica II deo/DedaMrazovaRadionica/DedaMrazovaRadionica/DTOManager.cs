@@ -866,101 +866,6 @@ namespace DedaMrazovaRadionica
             }
             return pokloni;
         }
-
-        /*public static IList<PismoPregled> vratiSvaPisma() //ne vraca nista
-        {
-            IList<PismoPregled> pisma = new List<PismoPregled>();
-            ISession s = null;
-            try
-            {
-                s = DataLayer.GetSession();
-
-
-
-                pisma = s.Query<Pismo>()
-                .Select(pismo => new PismoPregled(pismo.ID, pismo.Tekst, pismo.IndeksDobrote, pismo.PripadaDetetu))
-                .ToList();
-
-
-
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show("Neuspelo!");
-            }
-            finally { s?.Close(); }
-            return pisma;
-
-        }*/
-
-
-        /*public static int dodajPoklon(PoklonBasic poklon)
-        {
-            ISession s = null;
-            Poklon p = new Poklon();
-            try
-            {
-                s = DataLayer.GetSession();
-
-                p.Boja = poklon.boja;
-                p.Posveta = poklon.posveta;
-                p.ZaListuZelja = poklon.pripadaListiZelja;
-                p.PripadaTovaru = poklon.pripadaTovaru;
-
-                s.SaveOrUpdate(p);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-                return -1;
-
-            }
-            finally { s?.Close(); }
-            return p.ID;
-
-        }*/
-        /*        public static ListaZelja dodajListuZelja(ListaZeljaBasic lz)
-                {
-                    ISession s = null;
-                    ListaZelja listazelja = new ListaZelja();
-                    try
-                    {
-                        s = DataLayer.GetSession();
-
-                        listazelja.PripadaPismu = lz.pismo;
-
-                        s.SaveOrUpdate(listazelja);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message);
-                        return null;
-                    }
-                    finally { s?.Close(); }
-                    return listazelja;
-                }*/
-
-        /*        public static Tovar dodajTovar(TovarBasic tb)
-                {
-                    ISession s = null;
-                    Tovar t = new Tovar();
-                    try
-                    {
-                        s = DataLayer.GetSession();
-
-                        t.Grad = tb.Grad;
-
-                        s.SaveOrUpdate(t);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message);
-                        return null;
-                    }
-                    finally { s?.Close(); }
-                    return t;
-                }*/
-
         public static Igracka dodajIgracka(IgrackaPregled igr)
         {
             ISession s = null;
@@ -987,29 +892,6 @@ namespace DedaMrazovaRadionica
             finally { s?.Close(); }
             return igracka;
         }
-
-        /*        public static Pismo vratiPismoID(int ID)
-                {
-                    ISession s = null;
-                    Pismo pismo = null;
-                    try
-                    {
-                        s = DataLayer.GetSession();
-
-                        pismo = s.Query<Pismo>()
-                            .Where(p => p.ID.Equals(ID))
-                            .ToList().First();
-                    }
-                    catch (Exception ex)
-                    {
-                        //MessageBox.Show(ex.Message);
-                    }
-                    finally
-                    {
-                        s?.Close();
-                    }
-                    return pismo;
-                }*/
 
         public static Poklon vratiPoklon(int ID)
         {
@@ -1157,9 +1039,20 @@ namespace DedaMrazovaRadionica
             finally { s?.Flush(); s?.Close(); }
             return true;
         }
+
+        public static bool obrisiVilenjaka(string ime)
+        {
+            ISession s = null;
+            try
+            {
+                s = DataLayer.GetSession();
+                var vilenjak = s.Query<Vilenjak>().Where(v => v.JedinstvenoIme.Equals(ime)).FirstOrDefault();
+                s.Delete(vilenjak);
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message); return false; }
+            finally { s?.Flush(); s?.Close(); } return true;
+        }
+
     }
-
-    
-
 }
 

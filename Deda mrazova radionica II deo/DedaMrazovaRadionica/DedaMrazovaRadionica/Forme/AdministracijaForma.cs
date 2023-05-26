@@ -28,5 +28,11 @@ namespace DedaMrazovaRadionica.Forme
             AzuriranjeVilenjakaForma azuriranje = new AzuriranjeVilenjakaForma();
             azuriranje.ShowDialog();
         }
+
+        private void btnObrisiPostojecegVilenjaka_Click(object sender, EventArgs e)
+        {
+            BrisanjeVilenjaka brisanje = new BrisanjeVilenjaka();
+            brisanje.ShowDialog();
+        }
     }
 }
