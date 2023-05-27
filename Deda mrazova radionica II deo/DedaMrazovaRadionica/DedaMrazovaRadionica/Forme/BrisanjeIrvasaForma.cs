@@ -10,19 +10,22 @@ using System.Windows.Forms;
 
 namespace DedaMrazovaRadionica.Forme
 {
-    public partial class BrisanjeVilenjaka : Form
+    public partial class BrisanjeIrvasaForma : Form
     {
-        public BrisanjeVilenjaka()
+        public BrisanjeIrvasaForma()
         {
             InitializeComponent();
         }
 
-        private void btnObrisiVilenjaka_Click(object sender, EventArgs e)
+        private void btnObrisiIrvasa_Click(object sender, EventArgs e)
         {
-            var ime = txtImeVilenjaka.Text;
-            if (DTOManager.obrisiVilenjaka(ime))
+            if (DTOManagerBenc.obrisiIrvasa(txtIme.Text))
             {
-                MessageBox.Show("Obrisan je vilenjak " + ime);
+                MessageBox.Show("Obrisan je irvas");
+            }
+            else
+            {
+                MessageBox.Show("Brisanje neuspesno");
             }
         }
     }

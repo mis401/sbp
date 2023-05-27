@@ -133,17 +133,35 @@
     <Compile Include="Forme\AdministracijaForma.Designer.cs">
       <DependentUpon>AdministracijaForma.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forme\AzuriranjeIrvasaForma.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forme\AzuriranjeIrvasaForma.Designer.cs">
+      <DependentUpon>AzuriranjeIrvasaForma.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forme\AzuriranjeVilenjakaForma.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forme\AzuriranjeVilenjakaForma.Designer.cs">
       <DependentUpon>AzuriranjeVilenjakaForma.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forme\BrisanjeIrvasaForma.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forme\BrisanjeIrvasaForma.Designer.cs">
+      <DependentUpon>BrisanjeIrvasaForma.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forme\BrisanjeVilenjaka.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forme\BrisanjeVilenjaka.Designer.cs">
       <DependentUpon>BrisanjeVilenjaka.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forme\DodajIrvasaForma.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forme\DodajIrvasaForma.Designer.cs">
+      <DependentUpon>DodajIrvasaForma.cs</DependentUpon>
     </Compile>
     <Compile Include="Forme\DodajNovogVilenjakaForma.cs">
       <SubType>Form</SubType>
@@ -191,11 +209,20 @@
     <EmbeddedResource Include="Forme\AdministracijaForma.resx">
       <DependentUpon>AdministracijaForma.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forme\AzuriranjeIrvasaForma.resx">
+      <DependentUpon>AzuriranjeIrvasaForma.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forme\AzuriranjeVilenjakaForma.resx">
       <DependentUpon>AzuriranjeVilenjakaForma.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forme\BrisanjeIrvasaForma.resx">
+      <DependentUpon>BrisanjeIrvasaForma.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forme\BrisanjeVilenjaka.resx">
       <DependentUpon>BrisanjeVilenjaka.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forme\DodajIrvasaForma.resx">
+      <DependentUpon>DodajIrvasaForma.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forme\DodajNovogVilenjakaForma.resx">
       <DependentUpon>DodajNovogVilenjakaForma.cs</DependentUpon>

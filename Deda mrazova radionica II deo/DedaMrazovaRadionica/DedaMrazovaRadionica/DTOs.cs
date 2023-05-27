@@ -114,12 +114,17 @@ namespace DedaMrazovaRadionica
     {
         public int id;
         public string ime;
+        public string nadimak;
+        public char pol;
         public int starost;
+        public DateTime datumRodjenja;
         
-        public IrvasDTO (int id, string ime, int starost)
+        public IrvasDTO (int id, string ime, string nadimak, char pol, int starost)
         {
             this.id = id;
             this.ime = ime;
+            this.nadimak = nadimak;
+            this.pol = pol;
             this.starost = starost;
         }
     }

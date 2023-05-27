@@ -282,7 +282,7 @@ namespace DedaMrazovaRadionica
                     .Where(elf => elf.JedinstvenoIme.Equals(ime))
                     .ToList().First();
                 vilenjak.Irvas.Starost = (int)DateTime.Now.Subtract(vilenjak.Irvas.DatumRodjenja).TotalDays;
-                IrvasDTO irvas = new IrvasDTO(vilenjak.Irvas.ID, vilenjak.Irvas.Nadimak, vilenjak.Irvas.Starost);
+                IrvasDTO irvas = new IrvasDTO(vilenjak.Irvas.ID, vilenjak.Irvas.Ime, vilenjak.Irvas.Nadimak, vilenjak.Irvas.Pol, vilenjak.Irvas.Starost);
                 v = new VilenjakZaIrvaseBasic(vilenjak.ID, vilenjak.JedinstvenoIme, vilenjak.ZemljaPorekla, vilenjak.DatumZaposlenja, irvas);
             }
             catch (Exception ex)
@@ -322,7 +322,7 @@ namespace DedaMrazovaRadionica
                 v = new VilenjakZaIrvaseSaVestinama
                         (vilenjak.ID, vilenjak.JedinstvenoIme,
                         vilenjak.ZemljaPorekla, vilenjak.DatumZaposlenja,
-                        vestine, new IrvasDTO(vilenjak.Irvas.ID, vilenjak.Irvas.Nadimak, vilenjak.Irvas.Starost));
+                        vestine, new IrvasDTO(vilenjak.Irvas.ID, vilenjak.Irvas.Ime, vilenjak.Irvas.Nadimak, vilenjak.Irvas.Pol, vilenjak.Irvas.Starost));
             }
             catch (Exception ex)
             {

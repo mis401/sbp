@@ -34,5 +34,28 @@ namespace DedaMrazovaRadionica.Forme
             BrisanjeVilenjaka brisanje = new BrisanjeVilenjaka();
             brisanje.ShowDialog();
         }
+
+        private void btnDodajIrvasa_Click(object sender, EventArgs e)
+        {
+            DodajIrvasaForma dodajIrvasaForma = new DodajIrvasaForma();
+            dodajIrvasaForma.ShowDialog();
+        }
+
+        private void btnObrisiIrvasa_Click(object sender, EventArgs e)
+        {
+            BrisanjeIrvasaForma bif = new BrisanjeIrvasaForma();
+            bif.ShowDialog();
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void btnAzurirajIrvasa_Click(object sender, EventArgs e)
+        {
+            AzuriranjeIrvasaForma aif = new AzuriranjeIrvasaForma();
+            aif.ShowDialog();
+        }
     }
 }
