@@ -141,6 +141,19 @@ namespace DedaMrazovaRadionica
         }
     }
 
+    public class DeoRadioniceBasic
+    {
+        public int id;
+        public string naziv;
+        public string tipIgr;
+
+        public DeoRadioniceBasic(string naziv, string tipIgr)
+        {
+            this.naziv = naziv;
+            this.tipIgr = tipIgr;
+        }
+    }
+
     public class TimID
     {
         public int id;
@@ -265,6 +278,27 @@ namespace DedaMrazovaRadionica
         }
 
 
+    }
+
+    public class DeteBasic
+    {
+        public int ID;
+        public string ime;
+        public string prezime;
+        public string grad;
+        public string drzava;
+        public string adresa;
+        public DateTime datumRodjenja;
+
+        public DeteBasic(string ime, string prezime, string grad, string drzava, string adresa,  DateTime datumRodjenja)
+        {
+            this.ime = ime;
+            this.prezime = prezime;
+            this.grad = grad;
+            this.drzava = drzava;
+            this.adresa = adresa;
+            this.datumRodjenja = datumRodjenja;
+        }
     }
 
     public class ListaZeljaBasic

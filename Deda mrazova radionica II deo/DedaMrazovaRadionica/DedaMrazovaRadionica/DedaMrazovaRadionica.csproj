@@ -169,11 +169,29 @@
     <Compile Include="Forme\DodajNovogVilenjakaForma.Designer.cs">
       <DependentUpon>DodajNovogVilenjakaForma.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forme\DodajPismoDeteForma.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forme\DodajPismoDeteForma.Designer.cs">
+      <DependentUpon>DodajPismoDeteForma.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forme\DodajRadionicuForma.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forme\DodajRadionicuForma.Designer.cs">
+      <DependentUpon>DodajRadionicuForma.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forme\DodavanjeIgracakaForma.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forme\DodavanjeIgracakaForma.Designer.cs">
       <DependentUpon>DodavanjeIgracakaForma.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forme\ObrisiRadionicuForma.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forme\ObrisiRadionicuForma.Designer.cs">
+      <DependentUpon>ObrisiRadionicuForma.cs</DependentUpon>
     </Compile>
     <Compile Include="PocetnaStranica.cs">
       <SubType>Form</SubType>
@@ -227,8 +245,17 @@
     <EmbeddedResource Include="Forme\DodajNovogVilenjakaForma.resx">
       <DependentUpon>DodajNovogVilenjakaForma.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forme\DodajPismoDeteForma.resx">
+      <DependentUpon>DodajPismoDeteForma.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forme\DodajRadionicuForma.resx">
+      <DependentUpon>DodajRadionicuForma.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forme\DodavanjeIgracakaForma.resx">
       <DependentUpon>DodavanjeIgracakaForma.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forme\ObrisiRadionicuForma.resx">
+      <DependentUpon>ObrisiRadionicuForma.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PocetnaStranica.resx">
       <DependentUpon>PocetnaStranica.cs</DependentUpon>

@@ -57,5 +57,25 @@ namespace DedaMrazovaRadionica.Forme
             AzuriranjeIrvasaForma aif = new AzuriranjeIrvasaForma();
             aif.ShowDialog();
         }
+
+        private void btnDodajNovoPismo_Click(object sender, EventArgs e)
+        {
+            DodajPismoDeteForma pismoDete = new DodajPismoDeteForma();
+            pismoDete.ShowDialog();
+        }
+
+       
+
+        private void btnDodajRadionicu_Click(object sender, EventArgs e)
+        {
+            DodajRadionicuForma rad = new DodajRadionicuForma();
+            rad.ShowDialog();
+        }
+
+        private void btnObrisiRadionicu_Click(object sender, EventArgs e)
+        {
+            ObrisiRadionicuForma rad=new ObrisiRadionicuForma();
+            rad.ShowDialog();
+        }
     }
 }

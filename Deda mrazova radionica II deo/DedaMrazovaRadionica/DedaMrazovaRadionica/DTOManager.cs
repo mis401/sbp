@@ -16,6 +16,7 @@ using FluentNHibernate.Conventions;
 using NHibernate.Context;
 using FluentNHibernate;
 using FluentNHibernate.Utils;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
 
 namespace DedaMrazovaRadionica
 {
@@ -502,6 +503,31 @@ namespace DedaMrazovaRadionica
             finally { s?.Flush(); s?.Close(); }
             return pisma;
 
+        }
+
+        public static IList<DeteBasic> vratiSvuDecu()
+        {
+            IList<DeteBasic> deca = new List<DeteBasic>();
+            ISession s = null;
+            try
+            {
+                s = DataLayer.GetSession();
+
+
+
+                deca = s.Query<Dete>()
+                .Select(d => new DeteBasic(d.Ime, d.Prezime, d.Grad, d.Drzava, d.Adresa, d.DatumRodjenja))
+                .ToList();
+
+
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Neuspelo!");
+            }
+            finally { s?.Flush(); s?.Close(); }
+            return deca;
         }
 
 
@@ -1116,11 +1142,11 @@ namespace DedaMrazovaRadionica
             {
                 s = DataLayer.GetSession();
                 var vilenjak = s.Query<Vilenjak>().Where(v => v.JedinstvenoIme.Equals(ime)).FirstOrDefault();
-                
+
                 if (vilenjak is VilenjakZaIzraduIgracaka)
                 {
                     var ucenici = s.Query<VilenjakZaIzraduIgracaka>().Where(v => v.ImaMentora.ID == vilenjak.ID).ToList();
-                    foreach(var ucenik in ucenici)
+                    foreach (var ucenik in ucenici)
                     {
                         ucenik.ImaMentora = null;
                         s.SaveOrUpdate(ucenik);
@@ -1129,8 +1155,8 @@ namespace DedaMrazovaRadionica
                 s.Flush();
                 s.Delete(vilenjak);
             }
-            catch (Exception ex) { MessageBox.Show(ex.Message);  return false; }
-            finally { s?.Flush(); s?.Close();}
+            catch (Exception ex) { MessageBox.Show(ex.Message); return false; }
+            finally { s?.Flush(); s?.Close(); }
             return true;
         }
 
@@ -1178,6 +1204,138 @@ namespace DedaMrazovaRadionica
             return true;
         }
 
+        public static bool dodajDete(DeteBasic dete)
+        {
+            ISession s = null;
+            Dete d = new Dete();
+            try
+            {
+                s = DataLayer.GetSession();
+
+                d.Ime = dete.ime;
+                d.Prezime = dete.prezime;
+                d.Grad = dete.grad;
+                d.Drzava = dete.drzava;
+                d.Adresa = dete.adresa;
+                d.DatumRodjenja = dete.datumRodjenja;
+
+                s.SaveOrUpdate(d);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+            finally { s?.Flush(); s?.Close(); }
+            return true;
+        }
+
+        public static bool dodajPismo(PismoBasic pismo)
+        {
+            ISession s = null;
+            Pismo p = new Pismo();
+            try
+            {
+                s = DataLayer.GetSession();
+
+                p.Tekst = pismo.tekst;
+                p.IndeksDobrote = pismo.indDobrote;
+                p.DatumSlanja = pismo.datumSlanja;
+                p.DatumPrijema = pismo.datumPrijema;
+                p.PripadaDetetu = pismo.dete;
+
+
+                s.SaveOrUpdate(p);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+            finally { s?.Flush(); s?.Close(); }
+            return true;
+        }
+
+        public static bool dodajDeoRadionice(DeoRadioniceBasic dr)
+        {
+            ISession s = null;
+            DeoRadionice deoR = new DeoRadionice();
+            try
+            {
+                s = DataLayer.GetSession();
+
+                deoR.Naziv = dr.naziv;
+                deoR.TipIgracke = dr.tipIgr;
+
+
+                s.SaveOrUpdate(deoR);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+            finally { s?.Flush(); s?.Close(); }
+            return true;
+        }
+
+        public static IList<DeoRadioniceBasic> vratiSveRadionice()
+        {
+            IList<DeoRadioniceBasic> rad = new List<DeoRadioniceBasic>();
+            ISession s = null;
+            try
+            {
+                s = DataLayer.GetSession();
+
+                rad = s.Query<DeoRadionice>()
+                    .Select(r => new DeoRadioniceBasic(r.Naziv, r.TipIgracke))
+                    .ToList();
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Neuspelo dodavanje vilenjaka za izradu igracaka!");
+            }
+            finally { s?.Flush(); s?.Close(); }
+            return rad;
+        }
+
+        public static bool obrisiDeoRadionice(string naziv)
+        {
+            ISession s = null;
+            try
+            {
+                s = DataLayer.GetSession();
+                var radionica = s.Query<DeoRadionice>().Where(i => i.Naziv.Equals(naziv)).FirstOrDefault();
+
+                s.Flush();
+                s.Delete(radionica);
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+            finally { s?.Flush(); s?.Close(); }
+            return true;
+        }
+
+        public static DeoRadionice vratiRadionicu(string naziv)
+        {
+            ISession s = null;
+            DeoRadionice rad = null;
+            try
+            {
+                s = DataLayer.GetSession();
+                rad = s.Query<DeoRadionice>()
+                    .Where(v => v.Naziv.Equals(naziv))
+                    .ToList().First();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally { s?.Close(); }
+            return rad;
+        }
     }
-}
 
