@@ -542,7 +542,7 @@ namespace DedaMrazovaRadionica
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Ovo pismo vec ima svoju listu zelja!");
                 return null;
             }
             finally { s?.Close(); }
@@ -1133,7 +1133,51 @@ namespace DedaMrazovaRadionica
             finally { s?.Flush(); s?.Close();}
             return true;
         }
-        
+
+        public static IList<VilenjakZaIzraduIgracakaPoklon> vratiSveVilenjakeZaIgracke()
+        {
+            IList<VilenjakZaIzraduIgracakaPoklon> vilenjak = new List<VilenjakZaIzraduIgracakaPoklon>();
+            ISession s = null;
+            try
+            {
+                s = DataLayer.GetSession();
+
+
+
+                vilenjak = s.Query<VilenjakZaIzraduIgracaka>()
+                .Select(v => new VilenjakZaIzraduIgracakaPoklon(v.ID, v.JedinstvenoIme, v.ZemljaPorekla, v.DatumZaposlenja))
+                .ToList();
+
+
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Neuspelo!");
+            }
+            finally { s?.Flush(); s?.Close(); }
+            return vilenjak;
+        }
+
+        public static bool obrisiPismo(int id)
+        {
+            ISession s = null;
+            try
+            {
+                s = DataLayer.GetSession();
+                Pismo pismo = s.Get<Pismo>(id);
+                if (pismo != null)
+                    s.Delete(pismo);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+            finally { s?.Flush(); s?.Close(); }
+            return true;
+        }
+
     }
 }
 
