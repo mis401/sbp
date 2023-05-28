@@ -31,6 +31,17 @@ INSERT INTO PISMO (Tekst, Indeks_dobrote, ID_Deteta, Datum_slanja, Datum_prijema
 VALUES 
 ('Dragi Deda Mraze, ja bih zelela novi bicikl', 10, 5,TO_DATE('05.12.2021', 'DD.MM.YYYY'),TO_DATE('22.12.2021', 'DD.MM.YYYY'));
 
+
+-- Unos torki u tabelu DEO_RADIONICE
+INSERT INTO DEO_RADIONICE (ID, Naziv, Tip_igracke) VALUES
+(1, 'Radionica1', 'Metalna');
+INSERT INTO DEO_RADIONICE (ID, Naziv, Tip_igracke) VALUES
+(2, 'Radionica2', 'Drvena');
+INSERT INTO DEO_RADIONICE (ID, Naziv, Tip_igracke) VALUES
+(3, 'Radionica3', 'Plisana');
+INSERT INTO DEO_RADIONICE (ID, Naziv, Tip_igracke) VALUES
+(4, 'Radionica4', 'Plasticna');
+
 INSERT INTO LISTA_ZELJA (ID, ID_Pisma)
 VALUES 
 (1, 1);
@@ -46,16 +57,6 @@ VALUES
 INSERT INTO LISTA_ZELJA (ID, ID_Pisma)
 VALUES 
 (5, 5);
-
--- Unos torki u tabelu DEO_RADIONICE
-INSERT INTO DEO_RADIONICE (ID, Naziv, Tip_igracke) VALUES
-(1, 'Radionica1', 'Metalna');
-INSERT INTO DEO_RADIONICE (ID, Naziv, Tip_igracke) VALUES
-(2, 'Radionica2', 'Drvena');
-INSERT INTO DEO_RADIONICE (ID, Naziv, Tip_igracke) VALUES
-(3, 'Radionica3', 'Plisana');
-INSERT INTO DEO_RADIONICE (ID, Naziv, Tip_igracke) VALUES
-(4, 'Radionica4', 'Plasticna');
 
 -- Unos torki u tabelu MAGIcNA_VEsTINA
 INSERT INTO MAGICNA_VESTINA (Naziv, ID_Dela_radionice) VALUES
@@ -387,31 +388,27 @@ INSERT INTO PAKOVANJE_POKLONA (ID_Vilenjaka_za_poklone, ID_Poklona)
 VALUES
 	(1,3);
 	
+
+INSERT INTO ZA_IGRACKE_POSEDUJE_VESTINU(ID_Vilenjaka_za_igracke, ID_Vestine)
+VALUES
+	(1,1);
+INSERT INTO ZA_IGRACKE_POSEDUJE_VESTINU(ID_Vilenjaka_za_igracke, ID_Vestine)
+VALUES
+	(2,3);
+INSERT INTO ZA_IGRACKE_POSEDUJE_VESTINU(ID_Vilenjaka_za_igracke, ID_Vestine)
+VALUES
+	(5,2);
 	
--- INSERT INTO VILENJAK_POSEDUJE_VESTINU (ID_Vilenjaka, ID_Vestine)
--- VALUES
-	-- (9,3);
--- INSERT INTO VILENJAK_POSEDUJE_VESTINU (ID_Vilenjaka, ID_Vestine)
--- VALUES
-	-- (10,2);
--- INSERT INTO VILENJAK_POSEDUJE_VESTINU (ID_Vilenjaka, ID_Vestine)
--- VALUES
-	-- (7,5);
--- INSERT INTO VILENJAK_POSEDUJE_VESTINU (ID_Vilenjaka, ID_Vestine)
--- VALUES
-	-- (2,3);
--- INSERT INTO VILENJAK_POSEDUJE_VESTINU (ID_Vilenjaka, ID_Vestine)
--- VALUES
-	-- (7,3);
--- INSERT INTO VILENJAK_POSEDUJE_VESTINU (ID_Vilenjaka, ID_Vestine)
--- VALUES
-	-- (9,2);
--- INSERT INTO VILENJAK_POSEDUJE_VESTINU (ID_Vilenjaka, ID_Vestine)
--- VALUES
-	-- (2,6);
--- INSERT INTO VILENJAK_POSEDUJE_VESTINU (ID_Vilenjaka, ID_Vestine)
--- VALUES
-	-- (8,6);
+	
+INSERT INTO ZA_IRVASE_POSEDUJE_VESTINU(ID_Vilenjaka_za_irvase, ID_Vestine)
+VALUES 
+	(1,3);
+
+
+INSERT INTO ZA_POKLON_POSEDUJE_VESTINU(ID_Vilenjaka_za_poklone, ID_Vestine)
+VALUES 
+	(1,6);
+
 
 INSERT INTO DETE_RODITELJ (ID_Deteta, Ime_roditelja)
 VALUES
