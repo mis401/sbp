@@ -41,8 +41,8 @@
             this.label6 = new System.Windows.Forms.Label();
             this.btnDodajNovoPismo = new System.Windows.Forms.Button();
             this.btnObrisiRadionicu = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.btnDodajTim = new System.Windows.Forms.Button();
+            this.btnObrisiTim = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
@@ -69,7 +69,7 @@
             // 
             // btnDodajNovogVilenjaka
             // 
-            this.btnDodajNovogVilenjaka.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.btnDodajNovogVilenjaka.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.btnDodajNovogVilenjaka.Font = new System.Drawing.Font("Segoe Script", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDodajNovogVilenjaka.Location = new System.Drawing.Point(32, 111);
             this.btnDodajNovogVilenjaka.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -82,7 +82,7 @@
             // 
             // btnObrisiPostojecegVilenjaka
             // 
-            this.btnObrisiPostojecegVilenjaka.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.btnObrisiPostojecegVilenjaka.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.btnObrisiPostojecegVilenjaka.Font = new System.Drawing.Font("Segoe Script", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnObrisiPostojecegVilenjaka.Location = new System.Drawing.Point(32, 181);
             this.btnObrisiPostojecegVilenjaka.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -95,7 +95,7 @@
             // 
             // btnAzurirajPodatkeOVilenjaku
             // 
-            this.btnAzurirajPodatkeOVilenjaku.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.btnAzurirajPodatkeOVilenjaku.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.btnAzurirajPodatkeOVilenjaku.Font = new System.Drawing.Font("Segoe Script", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAzurirajPodatkeOVilenjaku.Location = new System.Drawing.Point(32, 252);
             this.btnAzurirajPodatkeOVilenjaku.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -118,7 +118,7 @@
             // 
             // btnDodajIrvasa
             // 
-            this.btnDodajIrvasa.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.btnDodajIrvasa.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.btnDodajIrvasa.Font = new System.Drawing.Font("Segoe Script", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDodajIrvasa.Location = new System.Drawing.Point(369, 111);
             this.btnDodajIrvasa.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -131,7 +131,7 @@
             // 
             // btnObrisiIrvasa
             // 
-            this.btnObrisiIrvasa.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.btnObrisiIrvasa.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.btnObrisiIrvasa.Font = new System.Drawing.Font("Segoe Script", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnObrisiIrvasa.Location = new System.Drawing.Point(369, 181);
             this.btnObrisiIrvasa.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -144,7 +144,7 @@
             // 
             // btnAzurirajIrvasa
             // 
-            this.btnAzurirajIrvasa.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.btnAzurirajIrvasa.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.btnAzurirajIrvasa.Font = new System.Drawing.Font("Segoe Script", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAzurirajIrvasa.Location = new System.Drawing.Point(369, 253);
             this.btnAzurirajIrvasa.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -177,7 +177,7 @@
             // 
             // btnDodajNovoPismo
             // 
-            this.btnDodajNovoPismo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.btnDodajNovoPismo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.btnDodajNovoPismo.Font = new System.Drawing.Font("Segoe Script", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDodajNovoPismo.Location = new System.Drawing.Point(749, 111);
             this.btnDodajNovoPismo.Name = "btnDodajNovoPismo";
@@ -189,7 +189,7 @@
             // 
             // btnObrisiRadionicu
             // 
-            this.btnObrisiRadionicu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.btnObrisiRadionicu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.btnObrisiRadionicu.Font = new System.Drawing.Font("Segoe Script", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnObrisiRadionicu.Location = new System.Drawing.Point(43, 483);
             this.btnObrisiRadionicu.Name = "btnObrisiRadionicu";
@@ -199,27 +199,29 @@
             this.btnObrisiRadionicu.UseVisualStyleBackColor = false;
             this.btnObrisiRadionicu.Click += new System.EventHandler(this.btnObrisiRadionicu_Click);
             // 
-            // button3
+            // btnDodajTim
             // 
-            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.button3.Font = new System.Drawing.Font("Segoe Script", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(370, 407);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(271, 39);
-            this.button3.TabIndex = 15;
-            this.button3.Text = "Dodaj tim";
-            this.button3.UseVisualStyleBackColor = false;
+            this.btnDodajTim.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btnDodajTim.Font = new System.Drawing.Font("Segoe Script", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDodajTim.Location = new System.Drawing.Point(370, 407);
+            this.btnDodajTim.Name = "btnDodajTim";
+            this.btnDodajTim.Size = new System.Drawing.Size(271, 39);
+            this.btnDodajTim.TabIndex = 15;
+            this.btnDodajTim.Text = "Dodaj tim";
+            this.btnDodajTim.UseVisualStyleBackColor = false;
+            this.btnDodajTim.Click += new System.EventHandler(this.btnDodajTim_Click);
             // 
-            // button4
+            // btnObrisiTim
             // 
-            this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.button4.Font = new System.Drawing.Font("Segoe Script", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.Location = new System.Drawing.Point(370, 483);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(272, 37);
-            this.button4.TabIndex = 16;
-            this.button4.Text = "Obrisi tim";
-            this.button4.UseVisualStyleBackColor = false;
+            this.btnObrisiTim.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btnObrisiTim.Font = new System.Drawing.Font("Segoe Script", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnObrisiTim.Location = new System.Drawing.Point(370, 483);
+            this.btnObrisiTim.Name = "btnObrisiTim";
+            this.btnObrisiTim.Size = new System.Drawing.Size(272, 37);
+            this.btnObrisiTim.TabIndex = 16;
+            this.btnObrisiTim.Text = "Obrisi tim";
+            this.btnObrisiTim.UseVisualStyleBackColor = false;
+            this.btnObrisiTim.Click += new System.EventHandler(this.btnObrisiTim_Click);
             // 
             // pictureBox1
             // 
@@ -279,7 +281,7 @@
             // 
             // btnDodajRadionicu
             // 
-            this.btnDodajRadionicu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.btnDodajRadionicu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.btnDodajRadionicu.Font = new System.Drawing.Font("Segoe Script", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDodajRadionicu.Location = new System.Drawing.Point(43, 409);
             this.btnDodajRadionicu.Name = "btnDodajRadionicu";
@@ -302,8 +304,8 @@
             this.Controls.Add(this.btnDodajNovoPismo);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.pictureBox3);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.btnObrisiTim);
+            this.Controls.Add(this.btnDodajTim);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.btnAzurirajIrvasa);
             this.Controls.Add(this.btnObrisiIrvasa);
@@ -343,8 +345,8 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btnDodajNovoPismo;
         private System.Windows.Forms.Button btnObrisiRadionicu;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button btnDodajTim;
+        private System.Windows.Forms.Button btnObrisiTim;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox3;

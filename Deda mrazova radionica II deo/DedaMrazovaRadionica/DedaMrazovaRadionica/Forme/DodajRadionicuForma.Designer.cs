@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DodajRadionicuForma));
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.txtNaziv = new System.Windows.Forms.TextBox();
@@ -35,11 +36,14 @@
             this.btnDodajRadionicu = new System.Windows.Forms.Button();
             this.labNaziv = new System.Windows.Forms.Label();
             this.labTipIgracke = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.White;
             this.label2.Font = new System.Drawing.Font("Segoe Script", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(31, 147);
             this.label2.Name = "label2";
@@ -50,6 +54,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.White;
             this.label1.Font = new System.Drawing.Font("Segoe Script", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(56, 51);
             this.label1.Name = "label1";
@@ -73,7 +78,7 @@
             // 
             // btnDodajRadionicu
             // 
-            this.btnDodajRadionicu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.btnDodajRadionicu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.btnDodajRadionicu.Font = new System.Drawing.Font("Segoe Script", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDodajRadionicu.Location = new System.Drawing.Point(151, 261);
             this.btnDodajRadionicu.Name = "btnDodajRadionicu";
@@ -86,6 +91,7 @@
             // labNaziv
             // 
             this.labNaziv.AutoSize = true;
+            this.labNaziv.BackColor = System.Drawing.Color.White;
             this.labNaziv.Font = new System.Drawing.Font("Segoe Script", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labNaziv.ForeColor = System.Drawing.Color.Red;
             this.labNaziv.Location = new System.Drawing.Point(52, 92);
@@ -97,6 +103,7 @@
             // labTipIgracke
             // 
             this.labTipIgracke.AutoSize = true;
+            this.labTipIgracke.BackColor = System.Drawing.Color.White;
             this.labTipIgracke.Font = new System.Drawing.Font("Segoe Script", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labTipIgracke.ForeColor = System.Drawing.Color.Red;
             this.labTipIgracke.Location = new System.Drawing.Point(43, 188);
@@ -104,6 +111,15 @@
             this.labTipIgracke.Size = new System.Drawing.Size(450, 27);
             this.labTipIgracke.TabIndex = 7;
             this.labTipIgracke.Text = "Radionica za izradu ovog tipa igracaka vec postoji!";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(36, 12);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(468, 356);
+            this.pictureBox1.TabIndex = 8;
+            this.pictureBox1.TabStop = false;
             // 
             // DodajRadionicuForma
             // 
@@ -117,8 +133,10 @@
             this.Controls.Add(this.txtNaziv);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label2);
+            this.Controls.Add(this.pictureBox1);
             this.Name = "DodajRadionicuForma";
             this.Text = "DodajRadionicuForma";
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -132,5 +150,6 @@
         private System.Windows.Forms.Button btnDodajRadionicu;
         private System.Windows.Forms.Label labNaziv;
         private System.Windows.Forms.Label labTipIgracke;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

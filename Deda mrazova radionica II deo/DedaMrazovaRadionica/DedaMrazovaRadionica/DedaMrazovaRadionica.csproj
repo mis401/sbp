@@ -181,6 +181,12 @@
     <Compile Include="Forme\DodajRadionicuForma.Designer.cs">
       <DependentUpon>DodajRadionicuForma.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forme\DodajTimForma.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forme\DodajTimForma.Designer.cs">
+      <DependentUpon>DodajTimForma.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forme\DodavanjeIgracakaForma.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -192,6 +198,12 @@
     </Compile>
     <Compile Include="Forme\ObrisiRadionicuForma.Designer.cs">
       <DependentUpon>ObrisiRadionicuForma.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forme\ObrisiTimForma.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forme\ObrisiTimForma.Designer.cs">
+      <DependentUpon>ObrisiTimForma.cs</DependentUpon>
     </Compile>
     <Compile Include="PocetnaStranica.cs">
       <SubType>Form</SubType>
@@ -251,11 +263,17 @@
     <EmbeddedResource Include="Forme\DodajRadionicuForma.resx">
       <DependentUpon>DodajRadionicuForma.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forme\DodajTimForma.resx">
+      <DependentUpon>DodajTimForma.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forme\DodavanjeIgracakaForma.resx">
       <DependentUpon>DodavanjeIgracakaForma.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forme\ObrisiRadionicuForma.resx">
       <DependentUpon>ObrisiRadionicuForma.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forme\ObrisiTimForma.resx">
+      <DependentUpon>ObrisiTimForma.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PocetnaStranica.resx">
       <DependentUpon>PocetnaStranica.cs</DependentUpon>

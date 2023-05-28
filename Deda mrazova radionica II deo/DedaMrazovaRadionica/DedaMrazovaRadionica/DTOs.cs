@@ -154,6 +154,8 @@ namespace DedaMrazovaRadionica
         }
     }
 
+    
+
     public class TimID
     {
         public int id;
@@ -162,6 +164,11 @@ namespace DedaMrazovaRadionica
         public TimID(int id, string naziv)
         {
             this.id = id;
+            this.naziv = naziv;
+        }
+
+        public TimID(string naziv)
+        {
             this.naziv = naziv;
         }
     }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DodajNovogVilenjakaForma));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txtIme = new System.Windows.Forms.TextBox();
@@ -50,8 +51,10 @@
             this.numDuzinaObuke = new System.Windows.Forms.NumericUpDown();
             this.label10 = new System.Windows.Forms.Label();
             this.numOcena = new System.Windows.Forms.NumericUpDown();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.numDuzinaObuke)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numOcena)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -168,8 +171,8 @@
             // 
             // btnDodajMagicneVestine
             // 
-            this.btnDodajMagicneVestine.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.btnDodajMagicneVestine.Location = new System.Drawing.Point(15, 672);
+            this.btnDodajMagicneVestine.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnDodajMagicneVestine.Location = new System.Drawing.Point(675, 423);
             this.btnDodajMagicneVestine.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnDodajMagicneVestine.Name = "btnDodajMagicneVestine";
             this.btnDodajMagicneVestine.Size = new System.Drawing.Size(259, 51);
@@ -181,7 +184,7 @@
             // 
             this.comboDeoRadionice.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboDeoRadionice.FormattingEnabled = true;
-            this.comboDeoRadionice.Location = new System.Drawing.Point(354, 591);
+            this.comboDeoRadionice.Location = new System.Drawing.Point(661, 90);
             this.comboDeoRadionice.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.comboDeoRadionice.Name = "comboDeoRadionice";
             this.comboDeoRadionice.Size = new System.Drawing.Size(299, 28);
@@ -191,7 +194,7 @@
             // 
             this.comboTim.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboTim.FormattingEnabled = true;
-            this.comboTim.Location = new System.Drawing.Point(354, 678);
+            this.comboTim.Location = new System.Drawing.Point(661, 203);
             this.comboTim.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.comboTim.Name = "comboTim";
             this.comboTim.Size = new System.Drawing.Size(299, 28);
@@ -201,7 +204,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Segoe Script", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(350, 548);
+            this.label7.Location = new System.Drawing.Point(656, 40);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(134, 27);
@@ -212,7 +215,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Segoe Script", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(350, 648);
+            this.label8.Location = new System.Drawing.Point(656, 155);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(53, 27);
@@ -232,8 +235,8 @@
             // 
             // btnDodaj
             // 
-            this.btnDodaj.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.btnDodaj.Location = new System.Drawing.Point(15, 591);
+            this.btnDodaj.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btnDodaj.Location = new System.Drawing.Point(675, 347);
             this.btnDodaj.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnDodaj.Name = "btnDodaj";
             this.btnDodaj.Size = new System.Drawing.Size(259, 51);
@@ -282,11 +285,22 @@
             this.numOcena.Size = new System.Drawing.Size(282, 26);
             this.numOcena.TabIndex = 24;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(260, 12);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(716, 588);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 25;
+            this.pictureBox1.TabStop = false;
+            // 
             // DodajNovogVilenjakaForma
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 27F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(748, 770);
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(997, 581);
             this.Controls.Add(this.numOcena);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.numDuzinaObuke);
@@ -309,12 +323,14 @@
             this.Controls.Add(this.txtIme);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.pictureBox1);
             this.Font = new System.Drawing.Font("Segoe Script", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "DodajNovogVilenjakaForma";
             this.Text = "DodajNovogVilenjakaForma";
             ((System.ComponentModel.ISupportInitialize)(this.numDuzinaObuke)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numOcena)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -344,5 +360,6 @@
         private System.Windows.Forms.NumericUpDown numDuzinaObuke;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.NumericUpDown numOcena;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

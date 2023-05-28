@@ -1337,5 +1337,66 @@ namespace DedaMrazovaRadionica
             finally { s?.Close(); }
             return rad;
         }
+
+        public static IList<VilenjakZaIzraduIgracaka> vratiRadnike(int IDRadionice)
+        {
+            ISession s = null;
+            IList<VilenjakZaIzraduIgracaka> vilenjaci = new List<VilenjakZaIzraduIgracaka>();
+            try
+            {
+                s = DataLayer.GetSession();
+                vilenjaci = s.Query<VilenjakZaIzraduIgracaka>()
+                    .Where(v => v.DeoRadionice.ID.Equals(IDRadionice))
+                    .ToList();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally { s?.Close(); }
+            return vilenjaci;
+        }
+
+        public static bool dodajTim(TimID t)
+        {
+            ISession s = null;
+            Tim tim = new Tim();
+            try
+            {
+                s = DataLayer.GetSession();
+
+                tim.Naziv = t.naziv;
+
+
+                s.SaveOrUpdate(tim);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+            finally { s?.Flush(); s?.Close(); }
+            return true;
+        }
+
+        public static bool obrisiTim(string naziv)
+        {
+            ISession s = null;
+            try
+            {
+                s = DataLayer.GetSession();
+                var tim = s.Query<Tim>().Where(i => i.Naziv.Equals(naziv)).FirstOrDefault();
+
+                s.Flush();
+                s.Delete(tim);
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+            finally { s?.Flush(); s?.Close(); }
+            return true;
+        }
     }
+}
 

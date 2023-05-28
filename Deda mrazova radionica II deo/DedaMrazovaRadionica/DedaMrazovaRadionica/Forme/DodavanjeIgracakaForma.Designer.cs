@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DodavanjeIgracakaForma));
             this.listPisma = new System.Windows.Forms.ListView();
             this.columnID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnTekst = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -53,10 +54,13 @@
             this.labOpisIgracke = new System.Windows.Forms.Label();
             this.btnObrisiPismo = new System.Windows.Forms.Button();
             this.labDodajIgracku = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // listPisma
             // 
+            this.listPisma.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.listPisma.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnID,
             this.columnTekst,
@@ -163,7 +167,7 @@
             // 
             // btnKreirajPoklon
             // 
-            this.btnKreirajPoklon.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.btnKreirajPoklon.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.btnKreirajPoklon.Font = new System.Drawing.Font("Segoe Script", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnKreirajPoklon.Location = new System.Drawing.Point(559, 348);
             this.btnKreirajPoklon.Name = "btnKreirajPoklon";
@@ -196,7 +200,7 @@
             // 
             // btnDodajIgrackeUPoklon
             // 
-            this.btnDodajIgrackeUPoklon.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.btnDodajIgrackeUPoklon.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.btnDodajIgrackeUPoklon.Font = new System.Drawing.Font("Segoe Script", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDodajIgrackeUPoklon.Location = new System.Drawing.Point(559, 564);
             this.btnDodajIgrackeUPoklon.Name = "btnDodajIgrackeUPoklon";
@@ -261,7 +265,7 @@
             // 
             // btnObrisiPismo
             // 
-            this.btnObrisiPismo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.btnObrisiPismo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.btnObrisiPismo.Font = new System.Drawing.Font("Segoe Script", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnObrisiPismo.Location = new System.Drawing.Point(1072, 92);
             this.btnObrisiPismo.Name = "btnObrisiPismo";
@@ -281,6 +285,15 @@
             this.labDodajIgracku.Size = new System.Drawing.Size(289, 32);
             this.labDodajIgracku.TabIndex = 22;
             this.labDodajIgracku.Text = "Igracka je uspesno dodata!";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(24, 348);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(529, 353);
+            this.pictureBox1.TabIndex = 23;
+            this.pictureBox1.TabStop = false;
             // 
             // DodavanjeIgracakaForma
             // 
@@ -308,9 +321,11 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.listPisma);
+            this.Controls.Add(this.pictureBox1);
             this.Name = "DodavanjeIgracakaForma";
             this.Text = "DodavanjeIgracakaForma";
             this.Load += new System.EventHandler(this.DodavanjeIgracakaForma_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -343,5 +358,6 @@
         private System.Windows.Forms.Label labOpisIgracke;
         private System.Windows.Forms.Button btnObrisiPismo;
         private System.Windows.Forms.Label labDodajIgracku;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

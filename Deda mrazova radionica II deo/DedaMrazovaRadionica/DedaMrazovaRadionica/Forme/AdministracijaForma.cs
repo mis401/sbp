@@ -77,5 +77,17 @@ namespace DedaMrazovaRadionica.Forme
             ObrisiRadionicuForma rad=new ObrisiRadionicuForma();
             rad.ShowDialog();
         }
+
+        private void btnDodajTim_Click(object sender, EventArgs e)
+        {
+            DodajTimForma tim = new DodajTimForma();
+            tim.ShowDialog();
+        }
+
+        private void btnObrisiTim_Click(object sender, EventArgs e)
+        {
+            ObrisiTimForma tim = new ObrisiTimForma();
+            tim.ShowDialog();
+        }
     }
 }

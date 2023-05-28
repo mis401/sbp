@@ -193,7 +193,7 @@
             // 
             // btnDodajDete
             // 
-            this.btnDodajDete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.btnDodajDete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.btnDodajDete.Font = new System.Drawing.Font("Segoe Script", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDodajDete.Location = new System.Drawing.Point(217, 421);
             this.btnDodajDete.Name = "btnDodajDete";
@@ -283,7 +283,7 @@
             // 
             // btnDodajPismo
             // 
-            this.btnDodajPismo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.btnDodajPismo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.btnDodajPismo.Font = new System.Drawing.Font("Segoe Script", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDodajPismo.Location = new System.Drawing.Point(310, 548);
             this.btnDodajPismo.Name = "btnDodajPismo";

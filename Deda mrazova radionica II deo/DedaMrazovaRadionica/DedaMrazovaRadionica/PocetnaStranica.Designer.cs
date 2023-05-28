@@ -43,13 +43,15 @@
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(618, 490);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
             // btnAdministracija
             // 
-            this.btnAdministracija.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.btnAdministracija.Location = new System.Drawing.Point(658, 30);
+            this.btnAdministracija.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btnAdministracija.Font = new System.Drawing.Font("Segoe Script", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdministracija.Location = new System.Drawing.Point(659, 210);
             this.btnAdministracija.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAdministracija.Name = "btnAdministracija";
             this.btnAdministracija.Size = new System.Drawing.Size(277, 65);
@@ -60,8 +62,9 @@
             // 
             // btnSlanjePoklona
             // 
-            this.btnSlanjePoklona.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.btnSlanjePoklona.Location = new System.Drawing.Point(658, 160);
+            this.btnSlanjePoklona.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btnSlanjePoklona.Font = new System.Drawing.Font("Segoe Script", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSlanjePoklona.Location = new System.Drawing.Point(659, 349);
             this.btnSlanjePoklona.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSlanjePoklona.Name = "btnSlanjePoklona";
             this.btnSlanjePoklona.Size = new System.Drawing.Size(276, 72);

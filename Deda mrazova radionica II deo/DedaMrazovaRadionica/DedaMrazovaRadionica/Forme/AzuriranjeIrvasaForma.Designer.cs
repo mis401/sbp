@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AzuriranjeIrvasaForma));
             this.cmbIrvasi = new System.Windows.Forms.ComboBox();
             this.labelIme = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
@@ -41,7 +42,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.grupaInfo = new System.Windows.Forms.GroupBox();
             this.btnAzuriraj = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.grupaInfo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // cmbIrvasi
@@ -163,6 +166,7 @@
             this.grupaInfo.Controls.Add(this.labelNadimak);
             this.grupaInfo.Controls.Add(this.txtIme);
             this.grupaInfo.Controls.Add(this.label1);
+            this.grupaInfo.Controls.Add(this.pictureBox1);
             this.grupaInfo.Location = new System.Drawing.Point(406, 38);
             this.grupaInfo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grupaInfo.Name = "grupaInfo";
@@ -173,7 +177,7 @@
             // 
             // btnAzuriraj
             // 
-            this.btnAzuriraj.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.btnAzuriraj.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.btnAzuriraj.Font = new System.Drawing.Font("Segoe Script", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAzuriraj.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnAzuriraj.Location = new System.Drawing.Point(406, 486);
@@ -184,6 +188,16 @@
             this.btnAzuriraj.Text = "Azuriraj";
             this.btnAzuriraj.UseVisualStyleBackColor = false;
             this.btnAzuriraj.Click += new System.EventHandler(this.btnAzuriraj_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(-17, -29);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(351, 453);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox1.TabIndex = 20;
+            this.pictureBox1.TabStop = false;
             // 
             // AzuriranjeIrvasaForma
             // 
@@ -200,6 +214,7 @@
             this.Text = "AzuriranjeIrvasaForma";
             this.grupaInfo.ResumeLayout(false);
             this.grupaInfo.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -220,5 +235,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox grupaInfo;
         private System.Windows.Forms.Button btnAzuriraj;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

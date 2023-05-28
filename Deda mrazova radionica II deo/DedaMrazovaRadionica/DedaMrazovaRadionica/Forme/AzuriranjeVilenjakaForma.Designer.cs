@@ -68,7 +68,6 @@
             this.grupaIgracke.SuspendLayout();
             this.grupaIrvas.SuspendLayout();
             this.panelBasic.SuspendLayout();
-            this.grupaPokloni.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tabelaPoklona)).BeginInit();
             this.grupaTovari.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tabelaTovari)).BeginInit();
@@ -330,7 +329,7 @@
             // 
             // btnNadjiVilenjaka
             // 
-            this.btnNadjiVilenjaka.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.btnNadjiVilenjaka.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.btnNadjiVilenjaka.Font = new System.Drawing.Font("Segoe Script", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNadjiVilenjaka.Location = new System.Drawing.Point(274, 96);
             this.btnNadjiVilenjaka.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -379,7 +378,7 @@
             // 
             // btnPromeniIme
             // 
-            this.btnPromeniIme.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.btnPromeniIme.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.btnPromeniIme.Font = new System.Drawing.Font("Segoe Script", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPromeniIme.Location = new System.Drawing.Point(312, 12);
             this.btnPromeniIme.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -392,7 +391,7 @@
             // 
             // buttonUkloniVestinu
             // 
-            this.buttonUkloniVestinu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.buttonUkloniVestinu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.buttonUkloniVestinu.Font = new System.Drawing.Font("Segoe Script", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonUkloniVestinu.Location = new System.Drawing.Point(202, 343);
             this.buttonUkloniVestinu.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -405,7 +404,7 @@
             // 
             // btnDodajVestinu
             // 
-            this.btnDodajVestinu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.btnDodajVestinu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.btnDodajVestinu.Font = new System.Drawing.Font("Segoe Script", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDodajVestinu.Location = new System.Drawing.Point(202, 291);
             this.btnDodajVestinu.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -437,7 +436,6 @@
             // 
             // grupaPokloni
             // 
-            this.grupaPokloni.Controls.Add(this.tabelaPoklona);
             this.grupaPokloni.Location = new System.Drawing.Point(444, 30);
             this.grupaPokloni.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grupaPokloni.Name = "grupaPokloni";
@@ -449,7 +447,7 @@
             // tabelaPoklona
             // 
             this.tabelaPoklona.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.tabelaPoklona.Location = new System.Drawing.Point(0, 6);
+            this.tabelaPoklona.Location = new System.Drawing.Point(-14, 32);
             this.tabelaPoklona.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabelaPoklona.Name = "tabelaPoklona";
             this.tabelaPoklona.RowHeadersWidth = 51;
@@ -460,6 +458,7 @@
             // grupaTovari
             // 
             this.grupaTovari.Controls.Add(this.tabelaTovari);
+            this.grupaTovari.Controls.Add(this.tabelaPoklona);
             this.grupaTovari.Location = new System.Drawing.Point(475, 5);
             this.grupaTovari.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grupaTovari.Name = "grupaTovari";
@@ -471,7 +470,7 @@
             // tabelaTovari
             // 
             this.tabelaTovari.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.tabelaTovari.Location = new System.Drawing.Point(44, 40);
+            this.tabelaTovari.Location = new System.Drawing.Point(63, 58);
             this.tabelaTovari.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabelaTovari.Name = "tabelaTovari";
             this.tabelaTovari.RowHeadersWidth = 51;
@@ -483,7 +482,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1245, 638);
+            this.ClientSize = new System.Drawing.Size(1249, 638);
             this.Controls.Add(this.grupaTovari);
             this.Controls.Add(this.grupaIgracke);
             this.Controls.Add(this.grupaPokloni);
@@ -503,7 +502,6 @@
             this.grupaIrvas.PerformLayout();
             this.panelBasic.ResumeLayout(false);
             this.panelBasic.PerformLayout();
-            this.grupaPokloni.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.tabelaPoklona)).EndInit();
             this.grupaTovari.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.tabelaTovari)).EndInit();
