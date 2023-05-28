@@ -1204,7 +1204,7 @@ namespace DedaMrazovaRadionica
             return true;
         }
 
-        public static bool dodajDete(DeteBasic dete)
+        public static bool dodajDete(DeteRoditeljDTO dete)
         {
             ISession s = null;
             Dete d = new Dete();
@@ -1218,7 +1218,10 @@ namespace DedaMrazovaRadionica
                 d.Drzava = dete.drzava;
                 d.Adresa = dete.adresa;
                 d.DatumRodjenja = dete.datumRodjenja;
-
+                dete.roditelj1.Dete = d;
+                dete.roditelj2.Dete = d;
+                d.Roditelji.Add(dete.roditelj1);
+                d.Roditelji.Add(dete.roditelj2);
                 s.SaveOrUpdate(d);
             }
             catch (Exception ex)
@@ -1237,12 +1240,22 @@ namespace DedaMrazovaRadionica
             try
             {
                 s = DataLayer.GetSession();
+                var listaPisama = s.Query<Pismo>().Where(poslatoPismo => poslatoPismo.PripadaDetetu.ID == pismo.dete.ID).ToList();
+                foreach (var item in listaPisama)
+                {
+                    if (item.DatumSlanja.Year == pismo.datumSlanja.Year)
+                    {
+                        throw new Exception("Dete je vec slalo pesmo ove godine");
+                    }
+                }
+
+                var dete = s.Query<Dete>().Where(d => d.ID == pismo.dete.ID).FirstOrDefault();
 
                 p.Tekst = pismo.tekst;
                 p.IndeksDobrote = pismo.indDobrote;
                 p.DatumSlanja = pismo.datumSlanja;
                 p.DatumPrijema = pismo.datumPrijema;
-                p.PripadaDetetu = pismo.dete;
+                p.PripadaDetetu = dete;
 
 
                 s.SaveOrUpdate(p);
@@ -1307,6 +1320,19 @@ namespace DedaMrazovaRadionica
             {
                 s = DataLayer.GetSession();
                 var radionica = s.Query<DeoRadionice>().Where(i => i.Naziv.Equals(naziv)).FirstOrDefault();
+                var vilenjaci = radionica.VilenjaciZaIzraduIgracaka;
+                var nerasporedjen = s.Query<DeoRadionice>().Where(dr => dr.Naziv.Equals("Nerasporedjen")).FirstOrDefault();
+                foreach(var vilenjak in vilenjaci)
+                {
+                    vilenjak.DeoRadionice = nerasporedjen;
+                }
+                var magicnaVestina = s.Query<MagicnaVestina>().Where(mv => mv.PotrebnaDeluRadionice.ID == radionica.ID).ToList();
+                foreach(var mv in magicnaVestina)
+                {
+                    mv.PotrebnaDeluRadionice = nerasporedjen;
+                }
+                radionica.Sef = null;
+                radionica.VilenjaciZaIzraduIgracaka = null;
 
                 s.Flush();
                 s.Delete(radionica);
@@ -1386,6 +1412,12 @@ namespace DedaMrazovaRadionica
             {
                 s = DataLayer.GetSession();
                 var tim = s.Query<Tim>().Where(i => i.Naziv.Equals(naziv)).FirstOrDefault();
+                var vilenjaci = tim.Vilejnaci;
+                var nerasporedjen = s.Query<Tim>().Where(dr => dr.Naziv.Equals("Nerasporedjen")).FirstOrDefault();
+                foreach (var vilenjak in vilenjaci)
+                {
+                    vilenjak.PripadaTimu = nerasporedjen;
+                }
 
                 s.Flush();
                 s.Delete(tim);

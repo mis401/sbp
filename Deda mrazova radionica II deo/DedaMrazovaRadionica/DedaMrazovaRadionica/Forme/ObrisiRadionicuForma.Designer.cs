@@ -44,9 +44,10 @@
             // cbxDeoRadionice
             // 
             this.cbxDeoRadionice.FormattingEnabled = true;
-            this.cbxDeoRadionice.Location = new System.Drawing.Point(87, 85);
+            this.cbxDeoRadionice.Location = new System.Drawing.Point(77, 68);
+            this.cbxDeoRadionice.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbxDeoRadionice.Name = "cbxDeoRadionice";
-            this.cbxDeoRadionice.Size = new System.Drawing.Size(189, 28);
+            this.cbxDeoRadionice.Size = new System.Drawing.Size(168, 24);
             this.cbxDeoRadionice.TabIndex = 0;
             // 
             // label1
@@ -54,9 +55,9 @@
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.White;
             this.label1.Font = new System.Drawing.Font("Segoe Script", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(83, 37);
+            this.label1.Location = new System.Drawing.Point(74, 30);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(219, 30);
+            this.label1.Size = new System.Drawing.Size(187, 25);
             this.label1.TabIndex = 1;
             this.label1.Text = "Izaberi deo radionice:";
             // 
@@ -64,9 +65,10 @@
             // 
             this.btnObrisiRadionicu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.btnObrisiRadionicu.Font = new System.Drawing.Font("Segoe Script", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnObrisiRadionicu.Location = new System.Drawing.Point(88, 163);
+            this.btnObrisiRadionicu.Location = new System.Drawing.Point(79, 208);
+            this.btnObrisiRadionicu.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnObrisiRadionicu.Name = "btnObrisiRadionicu";
-            this.btnObrisiRadionicu.Size = new System.Drawing.Size(180, 41);
+            this.btnObrisiRadionicu.Size = new System.Drawing.Size(166, 33);
             this.btnObrisiRadionicu.TabIndex = 2;
             this.btnObrisiRadionicu.Text = "Obrisi";
             this.btnObrisiRadionicu.UseVisualStyleBackColor = false;
@@ -80,9 +82,10 @@
             this.colZemljaPor,
             this.colDatZap});
             this.listRadnici.HideSelection = false;
-            this.listRadnici.Location = new System.Drawing.Point(350, 24);
+            this.listRadnici.Location = new System.Drawing.Point(397, 18);
+            this.listRadnici.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.listRadnici.Name = "listRadnici";
-            this.listRadnici.Size = new System.Drawing.Size(582, 383);
+            this.listRadnici.Size = new System.Drawing.Size(491, 307);
             this.listRadnici.TabIndex = 4;
             this.listRadnici.UseCompatibleStateImageBehavior = false;
             this.listRadnici.View = System.Windows.Forms.View.Details;
@@ -106,9 +109,10 @@
             // 
             this.btnPrikaziRadnike.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.btnPrikaziRadnike.Font = new System.Drawing.Font("Segoe Script", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPrikaziRadnike.Location = new System.Drawing.Point(94, 249);
+            this.btnPrikaziRadnike.Location = new System.Drawing.Point(79, 144);
+            this.btnPrikaziRadnike.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnPrikaziRadnike.Name = "btnPrikaziRadnike";
-            this.btnPrikaziRadnike.Size = new System.Drawing.Size(174, 41);
+            this.btnPrikaziRadnike.Size = new System.Drawing.Size(166, 33);
             this.btnPrikaziRadnike.TabIndex = 5;
             this.btnPrikaziRadnike.Text = "Prikazi radnike";
             this.btnPrikaziRadnike.UseVisualStyleBackColor = false;
@@ -117,23 +121,25 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(42, 14);
+            this.pictureBox1.Location = new System.Drawing.Point(37, 11);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(302, 393);
+            this.pictureBox1.Size = new System.Drawing.Size(268, 314);
             this.pictureBox1.TabIndex = 6;
             this.pictureBox1.TabStop = false;
             // 
             // ObrisiRadionicuForma
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(991, 522);
+            this.ClientSize = new System.Drawing.Size(1034, 418);
             this.Controls.Add(this.btnPrikaziRadnike);
             this.Controls.Add(this.listRadnici);
             this.Controls.Add(this.btnObrisiRadionicu);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cbxDeoRadionice);
             this.Controls.Add(this.pictureBox1);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "ObrisiRadionicuForma";
             this.Text = "ObrisiRadionicuForma";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

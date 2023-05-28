@@ -242,14 +242,14 @@ namespace DedaMrazovaRadionica
 
         public DateTime datumPrijema;
 
-        public Dete dete;
+        public DeteBasic dete;
 
 
         public PismoBasic(int id)
         {
             this.ID = id;
         }
-        public PismoBasic(int iD, string tekst, float indDobrote, DateTime datumSlanja, DateTime datumPrijema, Dete dete)
+        public PismoBasic(int iD, string tekst, float indDobrote, DateTime datumSlanja, DateTime datumPrijema, DeteBasic dete)
 
         {
 
@@ -305,6 +305,19 @@ namespace DedaMrazovaRadionica
             this.drzava = drzava;
             this.adresa = adresa;
             this.datumRodjenja = datumRodjenja;
+        }
+    }
+
+    public class DeteRoditeljDTO : DeteBasic
+    {
+        public DeteRoditelj roditelj1;
+        public DeteRoditelj roditelj2;
+
+        public DeteRoditeljDTO (string ime, string prezime, string grad, string drzava, string adresa, DateTime datumRodjenja, DeteRoditelj r1, DeteRoditelj r2)
+            : base(ime, prezime, grad, drzava, adresa, datumRodjenja)
+        {
+            roditelj1 = r1;
+            roditelj2 = r2;
         }
     }
 

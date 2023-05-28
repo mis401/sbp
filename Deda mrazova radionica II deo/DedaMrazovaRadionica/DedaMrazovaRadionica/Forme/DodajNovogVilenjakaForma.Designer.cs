@@ -40,7 +40,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.txtTipMaterijala = new System.Windows.Forms.TextBox();
             this.comboMentor = new System.Windows.Forms.ComboBox();
-            this.btnDodajMagicneVestine = new System.Windows.Forms.Button();
             this.comboDeoRadionice = new System.Windows.Forms.ComboBox();
             this.comboTim = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -64,7 +63,7 @@
             this.label1.Location = new System.Drawing.Point(92, 40);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(157, 27);
+            this.label1.Size = new System.Drawing.Size(138, 22);
             this.label1.TabIndex = 0;
             this.label1.Text = "Izaberi vilenjaka:";
             // 
@@ -75,7 +74,7 @@
             this.label2.Location = new System.Drawing.Point(196, 100);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(46, 27);
+            this.label2.Size = new System.Drawing.Size(39, 22);
             this.label2.TabIndex = 2;
             this.label2.Text = "Ime:";
             // 
@@ -85,7 +84,7 @@
             this.txtIme.Location = new System.Drawing.Point(268, 92);
             this.txtIme.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtIme.Name = "txtIme";
-            this.txtIme.Size = new System.Drawing.Size(281, 26);
+            this.txtIme.Size = new System.Drawing.Size(281, 23);
             this.txtIme.TabIndex = 3;
             // 
             // txtZemljaPorekla
@@ -94,7 +93,7 @@
             this.txtZemljaPorekla.Location = new System.Drawing.Point(268, 155);
             this.txtZemljaPorekla.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtZemljaPorekla.Name = "txtZemljaPorekla";
-            this.txtZemljaPorekla.Size = new System.Drawing.Size(281, 26);
+            this.txtZemljaPorekla.Size = new System.Drawing.Size(281, 23);
             this.txtZemljaPorekla.TabIndex = 4;
             // 
             // datumZaposljavanja
@@ -103,7 +102,7 @@
             this.datumZaposljavanja.Location = new System.Drawing.Point(268, 228);
             this.datumZaposljavanja.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.datumZaposljavanja.Name = "datumZaposljavanja";
-            this.datumZaposljavanja.Size = new System.Drawing.Size(330, 26);
+            this.datumZaposljavanja.Size = new System.Drawing.Size(330, 23);
             this.datumZaposljavanja.TabIndex = 5;
             // 
             // label3
@@ -113,7 +112,7 @@
             this.label3.Location = new System.Drawing.Point(108, 163);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(145, 27);
+            this.label3.Size = new System.Drawing.Size(125, 22);
             this.label3.TabIndex = 6;
             this.label3.Text = "Zemlja porekla:";
             // 
@@ -124,7 +123,7 @@
             this.label4.Location = new System.Drawing.Point(54, 230);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(199, 27);
+            this.label4.Size = new System.Drawing.Size(172, 22);
             this.label4.TabIndex = 7;
             this.label4.Text = "Datum zaposljavanja:";
             // 
@@ -135,7 +134,7 @@
             this.label5.Location = new System.Drawing.Point(119, 300);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(121, 27);
+            this.label5.Size = new System.Drawing.Size(106, 22);
             this.label5.TabIndex = 8;
             this.label5.Text = "Ime mentora:";
             // 
@@ -146,7 +145,7 @@
             this.label6.Location = new System.Drawing.Point(115, 494);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(139, 27);
+            this.label6.Size = new System.Drawing.Size(123, 22);
             this.label6.TabIndex = 12;
             this.label6.Text = "Tip materijala:";
             // 
@@ -156,7 +155,7 @@
             this.txtTipMaterijala.Location = new System.Drawing.Point(268, 486);
             this.txtTipMaterijala.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtTipMaterijala.Name = "txtTipMaterijala";
-            this.txtTipMaterijala.Size = new System.Drawing.Size(281, 26);
+            this.txtTipMaterijala.Size = new System.Drawing.Size(281, 23);
             this.txtTipMaterijala.TabIndex = 13;
             // 
             // comboMentor
@@ -166,19 +165,8 @@
             this.comboMentor.Location = new System.Drawing.Point(268, 300);
             this.comboMentor.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.comboMentor.Name = "comboMentor";
-            this.comboMentor.Size = new System.Drawing.Size(281, 28);
+            this.comboMentor.Size = new System.Drawing.Size(281, 24);
             this.comboMentor.TabIndex = 14;
-            // 
-            // btnDodajMagicneVestine
-            // 
-            this.btnDodajMagicneVestine.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.btnDodajMagicneVestine.Location = new System.Drawing.Point(675, 423);
-            this.btnDodajMagicneVestine.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.btnDodajMagicneVestine.Name = "btnDodajMagicneVestine";
-            this.btnDodajMagicneVestine.Size = new System.Drawing.Size(259, 51);
-            this.btnDodajMagicneVestine.TabIndex = 11;
-            this.btnDodajMagicneVestine.Text = "Dodaj magicne vestine";
-            this.btnDodajMagicneVestine.UseVisualStyleBackColor = false;
             // 
             // comboDeoRadionice
             // 
@@ -187,7 +175,7 @@
             this.comboDeoRadionice.Location = new System.Drawing.Point(661, 90);
             this.comboDeoRadionice.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.comboDeoRadionice.Name = "comboDeoRadionice";
-            this.comboDeoRadionice.Size = new System.Drawing.Size(299, 28);
+            this.comboDeoRadionice.Size = new System.Drawing.Size(299, 24);
             this.comboDeoRadionice.TabIndex = 15;
             // 
             // comboTim
@@ -197,7 +185,7 @@
             this.comboTim.Location = new System.Drawing.Point(661, 203);
             this.comboTim.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.comboTim.Name = "comboTim";
-            this.comboTim.Size = new System.Drawing.Size(299, 28);
+            this.comboTim.Size = new System.Drawing.Size(299, 24);
             this.comboTim.TabIndex = 16;
             // 
             // label7
@@ -207,7 +195,7 @@
             this.label7.Location = new System.Drawing.Point(656, 40);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(134, 27);
+            this.label7.Size = new System.Drawing.Size(119, 22);
             this.label7.TabIndex = 17;
             this.label7.Text = "Deo radionice:";
             // 
@@ -218,7 +206,7 @@
             this.label8.Location = new System.Drawing.Point(656, 155);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(53, 27);
+            this.label8.Size = new System.Drawing.Size(47, 22);
             this.label8.TabIndex = 18;
             this.label8.Text = "Tim:";
             // 
@@ -229,7 +217,7 @@
             this.comboVrstaVilenjaka.Location = new System.Drawing.Point(268, 30);
             this.comboVrstaVilenjaka.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.comboVrstaVilenjaka.Name = "comboVrstaVilenjaka";
-            this.comboVrstaVilenjaka.Size = new System.Drawing.Size(281, 28);
+            this.comboVrstaVilenjaka.Size = new System.Drawing.Size(281, 24);
             this.comboVrstaVilenjaka.TabIndex = 19;
             this.comboVrstaVilenjaka.SelectedIndexChanged += new System.EventHandler(this.comboVrstaVilenjaka_SelectedIndexChanged);
             // 
@@ -252,7 +240,7 @@
             this.label9.Location = new System.Drawing.Point(109, 371);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(138, 27);
+            this.label9.Size = new System.Drawing.Size(121, 22);
             this.label9.TabIndex = 21;
             this.label9.Text = "Duzina obuke:";
             // 
@@ -262,7 +250,7 @@
             this.numDuzinaObuke.Location = new System.Drawing.Point(268, 367);
             this.numDuzinaObuke.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.numDuzinaObuke.Name = "numDuzinaObuke";
-            this.numDuzinaObuke.Size = new System.Drawing.Size(282, 26);
+            this.numDuzinaObuke.Size = new System.Drawing.Size(282, 23);
             this.numDuzinaObuke.TabIndex = 22;
             // 
             // label10
@@ -272,7 +260,7 @@
             this.label10.Location = new System.Drawing.Point(171, 435);
             this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(68, 27);
+            this.label10.Size = new System.Drawing.Size(59, 22);
             this.label10.TabIndex = 23;
             this.label10.Text = "Ocena:";
             // 
@@ -282,7 +270,7 @@
             this.numOcena.Location = new System.Drawing.Point(268, 427);
             this.numOcena.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.numOcena.Name = "numOcena";
-            this.numOcena.Size = new System.Drawing.Size(282, 26);
+            this.numOcena.Size = new System.Drawing.Size(282, 23);
             this.numOcena.TabIndex = 24;
             // 
             // pictureBox1
@@ -297,7 +285,7 @@
             // 
             // DodajNovogVilenjakaForma
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 27F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(997, 581);
@@ -314,7 +302,6 @@
             this.Controls.Add(this.comboMentor);
             this.Controls.Add(this.txtTipMaterijala);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.btnDodajMagicneVestine);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -349,7 +336,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtTipMaterijala;
         private System.Windows.Forms.ComboBox comboMentor;
-        private System.Windows.Forms.Button btnDodajMagicneVestine;
         private System.Windows.Forms.ComboBox comboDeoRadionice;
         private System.Windows.Forms.ComboBox comboTim;
         private System.Windows.Forms.Label label7;
