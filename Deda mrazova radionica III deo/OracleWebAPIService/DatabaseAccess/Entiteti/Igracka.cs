@@ -1,0 +1,22 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DatabaseAccess.Entiteti
+{
+    public class Igracka
+    {
+        public virtual int ID { get; set; }
+        public virtual int RedniBroj { get; set; }
+        public virtual string Tip { get; set; }
+        public virtual string Opis { get; set; }
+        public virtual Poklon PripadaPoklonu { get; set; }//
+        public virtual DeoRadionice IzradjenaUDeluRadionice { get; set; }//
+        public virtual ListaZelja PripadaListiZelja { get; set; }//
+        public virtual VilenjakZaIzraduIgracaka Vilenjak { get; set; }//
+        public Igracka() { }
+
+    }
+}
