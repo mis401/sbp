@@ -208,10 +208,12 @@ namespace DatabaseAccess
         public string tekst;
 
         public float indDobrote;
+        public DateTime datumPrijema;
+        public DateTime datumSlanja;
         public Dete dete;
 
 
-        public PismoPregled(int id, string t, float i, Dete dete)
+        public PismoPregled(int id, string t, float i, DateTime dp, DateTime ds, Dete dete)
 
         {
 
@@ -220,6 +222,8 @@ namespace DatabaseAccess
             this.tekst = t;
 
             this.indDobrote = i;
+            dp = datumPrijema;
+            ds = datumSlanja;
             this.dete = dete;
 
         }

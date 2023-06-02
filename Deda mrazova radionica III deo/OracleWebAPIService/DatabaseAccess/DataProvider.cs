@@ -14,6 +14,7 @@ using FluentNHibernate.Conventions;
 using NHibernate.Context;
 using FluentNHibernate;
 using FluentNHibernate.Utils;
+using DatabaseAccess.DTOs;
 
 namespace DatabaseAccess
 {
@@ -475,7 +476,8 @@ namespace DatabaseAccess
             finally { s?.Flush(); s?.Close(); }
             return true;
         }
-
+        
+        //dodala sam datum prijama i slanja
 
         public static IList<PismoPregled> vratiSvaPisma()
         {
@@ -488,7 +490,7 @@ namespace DatabaseAccess
 
 
                 pisma = s.Query<Pismo>()
-                .Select(pismo => new PismoPregled(pismo.ID, pismo.Tekst, pismo.IndeksDobrote, pismo.PripadaDetetu))
+                .Select(pismo => new PismoPregled(pismo.ID, pismo.Tekst, pismo.IndeksDobrote,pismo.DatumPrijema, pismo.DatumSlanja, pismo.PripadaDetetu))
                 .ToList();
 
 
@@ -1228,6 +1230,8 @@ namespace DatabaseAccess
             return true;
         }
 
+
+        //stara metoda
         public static bool dodajPismo(PismoBasic pismo)
         {
             ISession s = null;
@@ -1262,7 +1266,41 @@ namespace DatabaseAccess
             finally { s?.Flush(); s?.Close(); }
             return true;
         }
+        //nova metoda
+        public static bool dodajPismo(PismoView pismo)
+        {
+            ISession s = null;
+            Pismo p = new Pismo();
+            try
+            {
+                s = DataLayer.GetSession();
+                var listaPisama = s.Query<Pismo>().Where(poslatoPismo => poslatoPismo.PripadaDetetu.ID == pismo.PripadaDetetu.ID).ToList();
+                foreach (var item in listaPisama)
+                {
+                    if (item.DatumSlanja.Year == pismo.DatumSlanja.Year)
+                    {
+                        throw new Exception("Dete je vec slalo pesmo ove godine");
+                    }
+                }
 
+                var dete = s.Query<Dete>().Where(d => d.ID == pismo.PripadaDetetu.ID).FirstOrDefault();
+
+                p.Tekst = pismo.Tekst;
+                p.IndeksDobrote = pismo.IndeksDobrote;
+                p.DatumSlanja = pismo.DatumSlanja;
+                p.DatumPrijema = pismo.DatumPrijema;
+                p.PripadaDetetu = dete;
+
+
+                s.SaveOrUpdate(p);
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+            finally { s?.Flush(); s?.Close(); }
+            return true;
+        }
         public static bool dodajDeoRadionice(DeoRadioniceBasic dr)
         {
             ISession s = null;
