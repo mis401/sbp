@@ -25,7 +25,7 @@ namespace DatabaseAccess.DTOs
             DatumSlanja = p.DatumSlanja;
             DatumPrijema = p.DatumPrijema;
             PripadaDetetu = new DeteView(p.PripadaDetetu);
-            ListaZelja = new ListaZeljaView(p.ListaZelja);
+           // ListaZelja = new ListaZeljaView(p.ListaZelja);
         }
     }
 }

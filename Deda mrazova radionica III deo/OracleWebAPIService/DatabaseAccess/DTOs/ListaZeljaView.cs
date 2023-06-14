@@ -12,7 +12,7 @@ namespace DatabaseAccess.DTOs
     {
         public   int ID { get; set; }
         public IList<IgrackaView> ZeljeneIgracke { get; set; }
-        public PismoView? PripadaPismu { get; set; }//
+        public PismoView PripadaPismu { get; set; }//
 
         public  PoklonView? Poklon { get; set; }//
         public ListaZeljaView()
@@ -22,7 +22,7 @@ namespace DatabaseAccess.DTOs
         public ListaZeljaView(ListaZelja lz)
         {
             ID = lz.ID;
-            //PripadaPismu = new PismoView(lz.PripadaPismu);
+            PripadaPismu = new PismoView(lz.PripadaPismu);
             ZeljeneIgracke = new List<IgrackaView>();
             //Poklon = new PoklonView(lz.Poklon);
         }

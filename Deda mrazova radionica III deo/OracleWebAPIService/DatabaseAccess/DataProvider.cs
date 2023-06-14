@@ -15,6 +15,7 @@ using NHibernate.Context;
 using FluentNHibernate;
 using FluentNHibernate.Utils;
 using DatabaseAccess.DTOs;
+using System.Security.Cryptography.X509Certificates;
 
 namespace DatabaseAccess
 {
@@ -504,26 +505,43 @@ namespace DatabaseAccess
             return pisma;
         }
 
-        public static IList<DeteBasic> vratiSvuDecu()
+        public static IList<DeteView> vratiSvuDecu()
         {
-            IList<DeteBasic> deca = new List<DeteBasic>();
+            IList<DeteView> deca = new List<DeteView>();
+            IList<PismoView> pisma = new List<PismoView>();
+            IList<DeteRoditeljView> deteRoditelj = new List<DeteRoditeljView>();
             ISession s = null;
             try
             {
                 s = DataLayer.GetSession();
 
-
-
                 deca = s.Query<Dete>()
-                .Select(d => new DeteBasic(d.Ime, d.Prezime, d.Grad, d.Drzava, d.Adresa, d.DatumRodjenja))
+                .Select(d => new DeteView(d))
                 .ToList();
 
+                pisma = s.Query<Pismo>().Select(x=> new PismoView(x)).ToList();
+
+                deteRoditelj = s.Query<DeteRoditelj>().Select(x => new DeteRoditeljView(x)).ToList();
+
+                foreach(var d in deca)
+                {
+                    foreach(var p in pisma)
+                    {
+                        if (p.PripadaDetetu.ID == d.ID)
+                            d.Pisma.Add(p);
+                    }
+                    foreach(var dr in deteRoditelj)
+                    {
+                        if (dr.Dete.ID == d.ID)
+                            d.Roditelji.Add(dr);
+                    }
+                }
 
 
             }
             catch (Exception e)
             {
-                //MessageBox.Show("Neuspelo!");
+                throw new Exception(e.ToString());           
             }
             finally { s?.Flush(); s?.Close(); }
             return deca;
@@ -1188,18 +1206,38 @@ namespace DatabaseAccess
             try
             {
                 s = DataLayer.GetSession();
+
                 Pismo pismo = s.Get<Pismo>(id);
-                if (pismo != null)
-                    s.Delete(pismo);
+                if(pismo == null)
+                {
+                    throw new Exception("Ne postoji pismo sa zadatim ID-jem");
+                }
+
+                var zelje = s.Query<ListaZelja>().Where(z => z.PripadaPismu.ID == id).ToList();
+
+                foreach (var zelja in zelje)
+                {
+                    var poklon = s.Query<Poklon>().Where(x => x.ZaListuZelja.ID == zelja.ID).ToList();
+                    foreach(var p in poklon)
+                    {
+                        
+                        s.Delete(p);
+                    }
+                    s.Delete(zelja);
+                }
+
+                 s.Delete(pismo);
+                
+                
             }
             catch (Exception ex)
             {
-                //MessageBox.Show(ex.Message);
                 return false;
             }
             finally { s?.Flush(); s?.Close(); }
             return true;
         }
+
 
         public static bool dodajDete(DeteRoditeljDTO dete)
         {
@@ -1502,6 +1540,32 @@ namespace DatabaseAccess
                 s.SaveOrUpdate(irvas);
             }
             catch (Exception ex) { return false; }
+            finally { s?.Flush(); s?.Close(); }
+            return true;
+        }
+
+        //nova za azuriraj pismo
+        public static bool azurirajPismo(PismoView pismo)
+        {
+            ISession s = null;
+            try
+            {
+                s = DataLayer.GetSession();
+
+                Pismo p = s.Load<Pismo>(pismo.ID);
+
+                p.IndeksDobrote = pismo.IndeksDobrote;
+                p.Tekst = pismo.Tekst;
+                p.DatumSlanja = pismo.DatumSlanja;
+                p.DatumPrijema = pismo.DatumPrijema;
+
+                s.SaveOrUpdate(p);
+            }
+            catch (Exception ex) 
+            {
+                return false;
+              
+            }
             finally { s?.Flush(); s?.Close(); }
             return true;
         }

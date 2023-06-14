@@ -1,17 +1,29 @@
-using System.Runtime.InteropServices;
+﻿using DatabaseAccess;
+using Microsoft.AspNetCore.Mvc;
 
-// In SDK-style projects such as this one, several assembly attributes that were historically
-// defined in this file are now automatically added during build and populated with
-// values defined in project properties. For details of which attributes are included
-// and how to customise this process see: https://aka.ms/assembly-info-properties
+namespace OracleWebAPIService.Controllers
+{
+    [ApiController]
+    [Route("[controller]")]
+    public class DeteController:ControllerBase
+    {
+        [HttpGet]
+        [Route("PreuzmiDecu")]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public IActionResult GetDecu()
+        {
+            try
+            {
+                var pisma = DataProvider.vratiSvuDecu();
 
 
-// Setting ComVisible to false makes the types in this assembly not visible to COM
-// components.  If you need to access a type in this assembly from COM, set the ComVisible
-// attribute to true on that type.
 
-[assembly: ComVisible(false)]
-
-// The following GUID is for the ID of the typelib if this project is exposed to COM.
-
-[assembly: Guid("6ba2bc7d-f8a1-4bf6-8ca5-e71d61da7f8b")]
+                return new JsonResult(pisma);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.ToString());
+            }
+        }
+    }
+}
