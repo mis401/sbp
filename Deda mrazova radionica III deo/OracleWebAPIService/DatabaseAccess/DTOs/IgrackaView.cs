@@ -8,10 +8,10 @@ namespace DatabaseAccess.DTOs
         public  int RedniBroj { get; set; }
         public  string Tip { get; set; }
         public string Opis { get; set; }
-        public  PoklonView PripadaPoklonu { get; set; }
-        public DeoRadioniceView IzradjenaUDeluRadionice { get; set; }
-        public ListaZeljaView PripadaListiZelja { get; set; }
-        public VilenjakZaIzraduIgracakaView Vilenjak { get; set; }
+        public  PoklonView? PripadaPoklonu { get; set; }
+        public DeoRadioniceView? IzradjenaUDeluRadionice { get; set; }
+        public ListaZeljaView? PripadaListiZelja { get; set; }
+        public VilenjakZaIzraduIgracakaView? Vilenjak { get; set; }
 
         public IgrackaView() { }
         public IgrackaView(Igracka i)
@@ -20,10 +20,10 @@ namespace DatabaseAccess.DTOs
             RedniBroj = i.RedniBroj;
             Tip = i.Tip;
             Opis = i.Opis;
-            PripadaPoklonu = new PoklonView(i.PripadaPoklonu);
-            PripadaListiZelja = new ListaZeljaView(i.PripadaListiZelja);
-            IzradjenaUDeluRadionice = new DeoRadioniceView(i.IzradjenaUDeluRadionice);
-            Vilenjak = new VilenjakZaIzraduIgracakaView(i.Vilenjak);
+            //PripadaPoklonu = new PoklonView(i.PripadaPoklonu);
+            //PripadaListiZelja = new ListaZeljaView(i.PripadaListiZelja);
+            //IzradjenaUDeluRadionice = new DeoRadioniceView(i.IzradjenaUDeluRadionice);
+            //Vilenjak = new VilenjakZaIzraduIgracakaView(i.Vilenjak);
         }
     }
 }
