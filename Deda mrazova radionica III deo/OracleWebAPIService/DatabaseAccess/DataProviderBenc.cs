@@ -69,7 +69,7 @@ namespace DatabaseAccess
                 radionica = s.Get<DeoRadionice>(id);
             }
             catch (Exception ex) {// MessageBox.Show(ex.Message);
-                                  }
+            }
             finally { s?.Flush(); s?.Close(); }
             return radionica;
         }
@@ -111,25 +111,58 @@ namespace DatabaseAccess
             return deloviRadionice;
         }
 
-        public static bool dodajVilenjakaZaIgracke(VilenjakZaIzraduIgracaka form)
+        public static VilenjakZaIzraduIgracaka DodajVilenjakaZaIzraduIgracaka(VilenjakZaIzraduIgracakaView data)
         {
             ISession s = null;
             VilenjakZaIzraduIgracaka vie = new VilenjakZaIzraduIgracaka();
             try
             {
                 s = DataLayer.GetSession();
-                s.SaveOrUpdate(form);
+                vie.DatumPostavljanja = data.DatumPostavljanja;
+                vie.JedinstvenoIme = data.JedinstvenoIme;
+                vie.ZemljaPorekla = data.ZemljaPorekla;
+                vie.DatumZaposlenja = data.DatumZaposlenja;
+                vie.FlagKoordinator = data.FlagKoordinator;
+                vie.FlagSef = data.FlagSef;
+                VilenjakZaIzraduIgracaka mentor = null;
+                if (data.ImaMentora != null)
+                {
+                    mentor = s.Query<VilenjakZaIzraduIgracaka>().Where(m => m.ID == data.ImaMentora.ID).FirstOrDefault();
+                }
+                vie.ImaMentora= mentor;
+                vie.Ocena= data.Ocena;
+                vie.PripadaTimu = null;
+                if(data.PripadaTimu != null)
+                    vie.PripadaTimu = s.Query<Tim>().Where(t => t.ID == data.PripadaTimu.ID).FirstOrDefault();
+                vie.DeoRadionice = null;
+                if(data.DeoRadionice != null)
+                    vie.DeoRadionice = s.Query<DeoRadionice>().Where(t => t.ID == data.DeoRadionice.ID).FirstOrDefault();
+                foreach(var spoj in data.VilenjakZaIgrackeVestinaSpoj)
+                {
+                    var vestinaSpoj = new SpojVilenjakZaIgrackeVestina();
+                    vestinaSpoj.MagicnaVestina = s.Query<MagicnaVestina>().Where(v => v.ID == spoj.MagicnaVestina.ID).FirstOrDefault();
+                    vie.VilenjakZaIgrackeVestinaSpoj.Add(vestinaSpoj);
+                }
+                foreach(var igracka in data.Igracke)
+                {
+                    Igracka igrackaEntitet = new Igracka();
+                    igrackaEntitet.Tip = igracka.Tip;
+                    igrackaEntitet.Opis = igracka.Opis;
+                    vie.Igracke.Add(igrackaEntitet);
+                }
+                s.SaveOrUpdate(vie);
+                s?.Flush();
             }
             catch (Exception ex)
             {
                 //MessageBox.Show(ex.Message);
-                return false;
+                return null;
             }
             finally
             {
-                s?.Flush(); s?.Close();
+                s?.Close();
             }
-            return true;
+            return vie;
         }
 
         public static bool dodajVilenjakaZaIrvase(VilenjakZaIrvaseBasic vib)
@@ -172,26 +205,208 @@ namespace DatabaseAccess
             finally { s?.Flush(); s?.Close(); }
             return true;
         }
-        public static VilenjakBasic vratiVilenjakaSaVestinama(string ime)
-        {
-            VilenjakBasic vilenjak = null;
 
-            vilenjak = vratiVilenjakaZaIrvaseSaVestinama(ime);
+        public static List<VilenjakZaIrvaseView> VratiVilenjakeZaIrvaseView(string ime = "test")
+        {
+            ISession s = null;
+            List<VilenjakZaIrvaseView> vilenjaci = new List<VilenjakZaIrvaseView>();
+            try
+            {
+                s = DataLayer.GetSession();
+                List<VilenjakZaIrvase> listaVilenjaka;
+                if (ime.Equals("test"))
+                    listaVilenjaka = s.Query<VilenjakZaIrvase>().ToList();
+                else
+                    listaVilenjaka = s.Query<VilenjakZaIrvase>().Where(elf => elf.JedinstvenoIme.Equals(ime)).ToList();
+
+                foreach (var elf in listaVilenjaka)
+                {
+                    List<SpojVilenjakZaIrvaseVestinaView> vestine = new List<SpojVilenjakZaIrvaseVestinaView>();
+                    foreach (var irvasvestine in elf.VilenjakZaIrvaseVestinaSpoj)
+                    {
+                        vestine.Add(new SpojVilenjakZaIrvaseVestinaView(irvasvestine));
+                    }
+                    List<PesmaView> pesme = new List<PesmaView>();
+                    foreach (var pesma in elf.Pesme)
+                    {
+                        pesme.Add(new PesmaView(pesma));
+                    }
+                    VilenjakZaIrvaseView view = new VilenjakZaIrvaseView(elf);
+                    view.VilenjakZaIrvaseVestinaSpoj = vestine;
+                    view.Pesme = pesme;
+                    vilenjaci.Add(view);
+                }
+                return vilenjaci;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            finally { s?.Close(); }
+        }
+        public static List<VilenjakZaIsporukuPoklonaView> VratiSveVilenjakeZaIsporukuView(string ime = "test")
+        {
+            ISession s = null;
+            List<VilenjakZaIsporukuPoklonaView> vilenjaci = new List<VilenjakZaIsporukuPoklonaView>();
+            try
+            {
+                s = DataLayer.GetSession();
+                List<VilenjakZaIsporukuPoklona> listaVilenjaka; 
+                if(ime.Equals("test"))   
+                    listaVilenjaka = s.Query<VilenjakZaIsporukuPoklona>().ToList();
+                else
+                    listaVilenjaka = s.Query<VilenjakZaIsporukuPoklona>().Where(elf => elf.JedinstvenoIme.Equals(ime)).ToList();
+
+                foreach (var elf in listaVilenjaka)
+                {
+                    List<SpojVilenjakZaIsporukuVestinaView> vestine = new List<SpojVilenjakZaIsporukuVestinaView>();
+                    foreach (var irvasvestine in elf.VilenjakZaIsporukuVestinaSpoj)
+                    {
+                        vestine.Add(new SpojVilenjakZaIsporukuVestinaView(irvasvestine));
+                    }
+                    VilenjakZaIsporukuPoklonaView view = new VilenjakZaIsporukuPoklonaView(elf);
+                    view.VilenjakZaIsporukuVestinaSpoj = vestine;
+                    vilenjaci.Add(view);
+                }
+                return vilenjaci;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            finally { s?.Close(); }
+        }
+
+        public static List<VilenjakZaIzraduIgracakaView> VratiVilenjakeZaIzraduIgracakaView(string ime = "test")
+        {
+            ISession s = null;
+            List<VilenjakZaIzraduIgracakaView> vilenjaci = new List<VilenjakZaIzraduIgracakaView>();
+            try
+            {
+                s = DataLayer.GetSession();
+                List<VilenjakZaIzraduIgracaka> listaVilenjaka;
+                if(ime.Equals("test"))
+                    listaVilenjaka = s.Query<VilenjakZaIzraduIgracaka>().ToList();
+                else
+                    listaVilenjaka = s.Query<VilenjakZaIzraduIgracaka>().Where(elf => elf.JedinstvenoIme.Equals(ime)).ToList();
+
+                foreach (var elf in listaVilenjaka)
+                {
+
+                    List<SpojVilenjakZaIgrackeVestinaView> vestine = new List<SpojVilenjakZaIgrackeVestinaView>();
+                    foreach (var irvasvestine in elf.VilenjakZaIgrackeVestinaSpoj)
+                    {
+                        vestine.Add(new SpojVilenjakZaIgrackeVestinaView(irvasvestine));
+                    }
+                    List<IgrackaView> igracke = new List<IgrackaView>();
+                    foreach (var igracka in elf.Igracke)
+                    {
+                        igracke.Add(new IgrackaView(igracka));
+                    }
+
+                    VilenjakZaIzraduIgracakaView view = new VilenjakZaIzraduIgracakaView(elf);
+                    view.VilenjakZaIgrackeVestinaSpoj = vestine;
+                    view.Igracke = igracke;
+                    view.ImaMentora = null;
+                    view.ImaMentora = elf.ImaMentora != null ? new VilenjakZaIzraduIgracakaView(elf.ImaMentora) : null;
+                    vilenjaci.Add(view);
+                }
+                return vilenjaci;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            finally { s?.Close(); }
+        }
+
+        public static List<VilenjakZaPokloneView> VratiSveVilenjakeZaPokloneView(string ime = "test")
+        {
+            ISession s = null;
+            List<VilenjakZaPokloneView> vilenjaci = new List<VilenjakZaPokloneView>();
+            try
+            {
+                s = DataLayer.GetSession();
+                List<VilenjakZaPoklone> listaVilenjaka;
+                if(ime.Equals("test"))
+                    listaVilenjaka = s.Query<VilenjakZaPoklone>().ToList();
+                else
+                    listaVilenjaka = s.Query<VilenjakZaPoklone>().Where(elf => elf.JedinstvenoIme.Equals(ime)).ToList();
+
+                foreach (var elf in listaVilenjaka)
+                {
+                    List<SpojVilenjakZaPokloneVestinaView> vestine = new List<SpojVilenjakZaPokloneVestinaView>();
+                    List<PakovanjePoklonaView> pokloni = new List<PakovanjePoklonaView>();
+                    foreach (var irvasvestine in elf.VilenjakZaPokloneVestinaSpoj)
+                    {
+                        vestine.Add(new SpojVilenjakZaPokloneVestinaView(irvasvestine));
+                    }
+                    foreach (var poklon in elf.PakovanjePoklona)
+                    {
+                        pokloni.Add(new PakovanjePoklonaView(poklon));
+                    }
+                    VilenjakZaPokloneView view = new VilenjakZaPokloneView(elf);
+                    view.VilenjakZaPokloneVestinaSpoj = vestine;
+                    view.PakovanjePoklona = pokloni;
+                    vilenjaci.Add(view);
+                }
+                return vilenjaci;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            finally { s?.Close(); }
+        }
+        public static List<VilenjakView> VratiSveVilenjake()
+        {
+            List<VilenjakView> vilenjaci = new List<VilenjakView>();
+            var vilenjaciZaIzraduIgracaka = VratiVilenjakeZaIzraduIgracakaView();
+            var vilenjaciZaIrvase = VratiVilenjakeZaIrvaseView();
+            var vilenjaciZaPoklone = VratiSveVilenjakeZaPokloneView();
+            var vilenjaciZaIsporuku = VratiSveVilenjakeZaIsporukuView();
+            foreach(var vilenjak in vilenjaciZaIzraduIgracaka)
+            {
+                vilenjaci.Add(vilenjak);
+            }
+            foreach (var vilenjak in vilenjaciZaIrvase)
+            {
+                vilenjaci.Add(vilenjak);
+            }
+            foreach (var vilenjak in vilenjaciZaPoklone)
+            {
+                vilenjaci.Add(vilenjak);
+            }
+            foreach (var vilenjak in vilenjaciZaIsporuku)
+            {
+                vilenjaci.Add(vilenjak);
+            }
+            return vilenjaci;
+        }
+            
+
+        
+        public static VilenjakView VratiVilenjakaView(string ime)
+        {
+            VilenjakView vilenjak = null;
+
+            vilenjak = vratiVilenjakaZaIrvaseView(ime);
             //MessageBox.Show("1");
             if (vilenjak != null)
                 return vilenjak;
-            vilenjak = vratiVilenjakaZaIzraduIgracakaSaVestinama(ime);
+            vilenjak = vratiVilenjakaZaIzraduIgracakaView(ime);
             //MessageBox.Show("2");
             if (vilenjak != null)
                 return vilenjak;
-            vilenjak = vratiVilenjakaZaPokloneSaVestinama(ime);
+            vilenjak = vratiVilenjakaZaPokloneView(ime);
             //MessageBox.Show("3");
             if (vilenjak != null)
                 return vilenjak;
-            vilenjak = vratiVilenjakaZaIsporukuPoklonaSaVestinama(ime);
+            vilenjak = vratiVilenjakaZaIsporukuPoklonaView(ime);
             //MessageBox.Show("4");
-            return vilenjak;
-
+            if (vilenjak != null)
+                return vilenjak;
+            throw new Exception("Ne postoji vilenjak sa imenom " + ime);
         }
 
 
@@ -212,11 +427,11 @@ namespace DatabaseAccess
             return vilenjak;
         }
 
-        public static VilenjakZaIzraduIgracakaSaVestinama vratiVilenjakaZaIzraduIgracakaSaVestinama(string ime)
+        public static VilenjakZaIzraduIgracakaView vratiVilenjakaZaIzraduIgracakaView(string ime)
         {
             ISession s = null;
-            VilenjakZaIzraduIgracakaSaVestinama vilenjakDTO = null;
-            IList<MagicnaVestinaPrikaz> vestine = null;
+            VilenjakZaIzraduIgracakaView vilenjakDTO = null;
+            IList<SpojVilenjakZaIgrackeVestinaView> vestine = new List<SpojVilenjakZaIgrackeVestinaView>();
             try
             {
                 s = DataLayer.GetSession();
@@ -224,43 +439,32 @@ namespace DatabaseAccess
                 var vilenjak = s.Query<VilenjakZaIzraduIgracaka>()
                     .Where(v => v.JedinstvenoIme.Equals(ime))
                     .ToList().FirstOrDefault();
+
+                if (vilenjak == null)
+                {
+                    throw new Exception("Ne postoji vilenjak sa imenom " + ime);
+                }
                 if (!vilenjak.VilenjakZaIgrackeVestinaSpoj.IsEmpty())
                 {
                     var vestineSpojevi = vilenjak.VilenjakZaIgrackeVestinaSpoj;
-                    vestine = new List<MagicnaVestinaPrikaz>();
-                    foreach (var item in vestineSpojevi)
+                    foreach (var vestina in vestineSpojevi)
                     {
-                        vestine.Add(new MagicnaVestinaPrikaz(item.MagicnaVestina.Naziv, item.MagicnaVestina.ID));
+                        vestine.Add(new SpojVilenjakZaIgrackeVestinaView(vestina));
+
                     }
                 }
-                else
-                {
-                    vestine = new List<MagicnaVestinaPrikaz>();
-                }
+                
 
-
-                if (vilenjak.ImaMentora == null)
-                {
-                    vilenjak.ImaMentora = new VilenjakZaIzraduIgracaka();
-                    vilenjak.ImaMentora.ID = 0;
-                    vilenjak.ImaMentora.JedinstvenoIme = String.Empty;
-                    vilenjak.ImaMentora.ZemljaPorekla = String.Empty;
-                    vilenjak.ImaMentora.DatumZaposlenja = DateTime.MinValue;
-                }
-
-                vilenjakDTO = new VilenjakZaIzraduIgracakaSaVestinama
-                    (vilenjak.ID, vilenjak.JedinstvenoIme,
-                    vilenjak.ZemljaPorekla,
-                    vilenjak.DatumZaposlenja, vilenjak.TipMaterijala,
-                    new DeoRadioniceID(vilenjak.DeoRadionice.ID, vilenjak.DeoRadionice.Naziv), vilenjak.FlagSef,
-                    new TimID(vilenjak.PripadaTimu.ID, vilenjak.PripadaTimu.Naziv), vilenjak.FlagKoordinator, vilenjak.DuzinaObuke, vilenjak.Ocena,
-                    new VilenjakZaIzraduIgracakaMentor(vilenjak.ImaMentora.ID, vilenjak.ImaMentora.JedinstvenoIme, vilenjak.ImaMentora.ZemljaPorekla, vilenjak.ImaMentora.DatumZaposlenja),
-                    vestine
-                    );
+                VilenjakZaIzraduIgracakaView view = new VilenjakZaIzraduIgracakaView(vilenjak);
+                view.VilenjakZaIgrackeVestinaSpoj = vestine;
+                view.ImaMentora = null;
+                if(vilenjak.ImaMentora != null)
+                    view.ImaMentora = new VilenjakZaIzraduIgracakaView(vilenjak.ImaMentora);
 
             }
             catch (Exception ex)
             {
+                throw;
                 //MessageBox.Show(ex.Message);
             }
             finally
@@ -295,53 +499,73 @@ namespace DatabaseAccess
             }
             return v;
         }
-
+        //stara funkcija iz druge faze
         public static VilenjakZaIrvaseSaVestinama vratiVilenjakaZaIrvaseSaVestinama(string ime)
+        {
+            return null;
+        }
+
+        public static VilenjakZaIrvaseView vratiVilenjakaZaIrvaseView(string ime)
         {
             ISession s = null;
             VilenjakZaIrvase vilenjak = null;
-            VilenjakZaIrvaseSaVestinama v = null;
+            VilenjakZaIrvaseView v = null;
             try
             {
                 s = DataLayer.GetSession();
                 vilenjak = s.Query<VilenjakZaIrvase>().Where(elv => elv.JedinstvenoIme.Equals(ime)).ToList().FirstOrDefault();
-                IList<MagicnaVestinaPrikaz> vestine;
+                if (vilenjak == null)
+                    throw new Exception("Nema vilenjaka sa tim imenom");
+                IList<SpojVilenjakZaIrvaseVestinaView> vestine;
+                IList<PesmaView> pesmeViews =  new List<PesmaView>();
                 if (!vilenjak.VilenjakZaIrvaseVestinaSpoj.IsEmpty())
                 {
                     var vestineSpojevi = vilenjak.VilenjakZaIrvaseVestinaSpoj;
-                    vestine = new List<MagicnaVestinaPrikaz>();
-                    foreach (var item in vestineSpojevi)
+                    vestine = new List<SpojVilenjakZaIrvaseVestinaView>();
+                    foreach(var item in vestineSpojevi)
                     {
-                        vestine.Add(new MagicnaVestinaPrikaz(item.MagicnaVestina.Naziv, item.MagicnaVestina.ID));
+                        vestine.Add(new SpojVilenjakZaIrvaseVestinaView(item));
                     }
                 }
                 else
                 {
-                    vestine = new List<MagicnaVestinaPrikaz>();
+                    vestine = new List<SpojVilenjakZaIrvaseVestinaView>();
                 }
-                v = new VilenjakZaIrvaseSaVestinama
-                        (vilenjak.ID, vilenjak.JedinstvenoIme,
-                        vilenjak.ZemljaPorekla, vilenjak.DatumZaposlenja,
-                        vestine, new IrvasDTO(vilenjak.Irvas.ID, vilenjak.Irvas.Ime, vilenjak.Irvas.Nadimak, vilenjak.Irvas.Pol, vilenjak.Irvas.Starost));
+                if (!vilenjak.Pesme.IsEmpty())
+                {
+                    foreach(var pesma in vilenjak.Pesme)
+                    {
+                        var pesmaView = new PesmaView(pesma);
+                        pesmeViews.Add(pesmaView);
+                    }
+                }
+                else
+                {
+                    pesmeViews = new List<PesmaView>();
+                }
+                
+                v = new VilenjakZaIrvaseView(vilenjak);
+                v.VilenjakZaIrvaseVestinaSpoj = vestine;
+                v.Pesme = pesmeViews;
+
             }
             catch (Exception ex)
             {
-
+                throw;
             }
             finally
             {
-
                 s?.Close();
             }
             return v;
         }
 
-        public static VilenjakZaIsporukuPoklonaSaVestinama vratiVilenjakaZaIsporukuPoklonaSaVestinama(string ime)
+        public static VilenjakZaIsporukuPoklonaView vratiVilenjakaZaIsporukuPoklonaView(string ime)
         {
             ISession s = null;
             VilenjakZaIsporukuPoklona vilenjak = null;
-            IList<MagicnaVestinaPrikaz> vestine = null;
-            VilenjakZaIsporukuPoklonaSaVestinama ret = null;
+            IList<SpojVilenjakZaIsporukuVestinaView> vestine = null;
+            VilenjakZaIsporukuPoklonaView v = null;
             try
             {
                 s = DataLayer.GetSession();
@@ -349,39 +573,40 @@ namespace DatabaseAccess
                 vilenjak = s.Query<VilenjakZaIsporukuPoklona>()
                     .Where(v => v.JedinstvenoIme.Equals(ime))
                     .ToList().First();
+
+
                 if (!vilenjak.VilenjakZaIsporukuVestinaSpoj.IsEmpty())
                 {
                     var vestineSpojevi = vilenjak.VilenjakZaIsporukuVestinaSpoj;
-                    vestine = new List<MagicnaVestinaPrikaz>();
-                    foreach (var item in vestineSpojevi)
+                    vestine = new List<SpojVilenjakZaIsporukuVestinaView>();
+                    foreach (var spoj in vestineSpojevi)
                     {
-                        vestine.Add(new MagicnaVestinaPrikaz(item.MagicnaVestina.Naziv, item.MagicnaVestina.ID));
+                        vestine.Add(new SpojVilenjakZaIsporukuVestinaView(spoj));
                     }
                 }
-                else
-                {
-                    vestine = new List<MagicnaVestinaPrikaz>();
-                }
 
-                ret = new VilenjakZaIsporukuPoklonaSaVestinama(vilenjak.ID, vilenjak.JedinstvenoIme, vilenjak.ZemljaPorekla, vilenjak.DatumZaposlenja, new TovarBasic(vilenjak.Tovar.Grad));
+
+                v = new VilenjakZaIsporukuPoklonaView(vilenjak);
+                v.VilenjakZaIsporukuVestinaSpoj = vestine;
             }
             catch (Exception ex)
             {
+                throw;
                 //MessageBox.Show(ex.Message);
             }
             finally
             {
                 s?.Close();
             }
-            return ret;
+            return v;
         }
 
-        public static VilenjakZaPokloneSaVestinama vratiVilenjakaZaPokloneSaVestinama(string ime)
+        public static VilenjakZaPokloneView vratiVilenjakaZaPokloneView(string ime)
         {
             ISession s = null;
             VilenjakZaPoklone vilenjak = null;
-            IList<MagicnaVestinaPrikaz> vestine = null;
-            VilenjakZaPokloneSaVestinama v = null;
+            IList<SpojVilenjakZaPokloneVestinaView> vestine = new List<SpojVilenjakZaPokloneVestinaView>();
+            VilenjakZaPokloneView v = null;
             try
             {
                 s = DataLayer.GetSession();
@@ -389,35 +614,42 @@ namespace DatabaseAccess
                 vilenjak = s.Query<VilenjakZaPoklone>()
                     .Where(elf => elf.JedinstvenoIme.Equals(ime))
                     .ToList().First();
+                if(vilenjak == null)
+                {
+                    throw new Exception("Nema vilenjaka sa imenom" + ime);
+                }
 
                 if (!vilenjak.VilenjakZaPokloneVestinaSpoj.IsEmpty())
                 {
                     var vestineSpojevi = vilenjak.VilenjakZaPokloneVestinaSpoj;
-                    vestine = new List<MagicnaVestinaPrikaz>();
+                    vestine = new List<SpojVilenjakZaPokloneVestinaView>();
                     foreach (var item in vestineSpojevi)
                     {
-                        vestine.Add(new MagicnaVestinaPrikaz(item.MagicnaVestina.Naziv, item.MagicnaVestina.ID));
+                        vestine.Add(new SpojVilenjakZaPokloneVestinaView(item));
                     }
                 }
                 else
                 {
-                    vestine = new List<MagicnaVestinaPrikaz>();
+                    vestine = new List<SpojVilenjakZaPokloneVestinaView>();
+                }
+                
+                var pokloni = new List<PakovanjePoklonaView>();
+                if(vilenjak.PakovanjePoklona != null)
+                {
+                    foreach(var poklon in vilenjak.PakovanjePoklona)
+                    {
+                        pokloni.Add(new PakovanjePoklonaView(poklon));
+                    }
                 }
 
-                IList<PoklonBasic> poklonBasics = new List<PoklonBasic>();
-                foreach (var item in vilenjak.PakovanjePoklona)
-                {
-                    var poklon = s.Query<Poklon>().Where(p => p.ID == item.Poklon.ID).FirstOrDefault();
-                    var lz = s.Query<ListaZelja>().Where(l => l.ID == poklon.ZaListuZelja.ID).FirstOrDefault();
-                    var pismo = s.Query<Pismo>().Where(p => p.ID == lz.ID).FirstOrDefault();
-                    var dete = s.Query<Dete>().Where(d => d.ID == pismo.PripadaDetetu.ID).FirstOrDefault();
-                    var grad = item.Poklon.PripadaTovaru.Grad;
-                    poklonBasics.Add(new PoklonBasic(poklon.ID, poklon.Boja, poklon.Posveta, poklon.ZaListuZelja, poklon.PripadaTovaru, grad, dete.Ime));
-                }
-                v = new VilenjakZaPokloneSaVestinama(vilenjak.ID, vilenjak.JedinstvenoIme, vilenjak.ZemljaPorekla, vilenjak.DatumZaposlenja, poklonBasics, vestine);
+                v = new VilenjakZaPokloneView(vilenjak);
+                v.PakovanjePoklona = pokloni;
+                v.VilenjakZaPokloneVestinaSpoj = vestine;
+
             }
             catch (Exception ex)
             {
+                throw;
                 //MessageBox.Show(ex.Message);
             }
             finally
