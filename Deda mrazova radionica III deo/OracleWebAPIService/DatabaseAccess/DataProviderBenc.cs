@@ -18,7 +18,7 @@ using DatabaseAccess.DTOs;
 
 namespace DatabaseAccess
 {
-    public class DataProvider
+    public class DataProviderBenc
     {
         public static IList<VilenjakZaIzraduIgracakaMentor> vratiSveMentore()
         {
@@ -479,9 +479,9 @@ namespace DatabaseAccess
         
         //dodala sam datum prijama i slanja
 
-        public static IList<PismoView> vratiSvaPisma()
+        public static IList<PismoPregled> vratiSvaPisma()
         {
-            IList<PismoView> pisma = new List<PismoView>();
+            IList<PismoPregled> pisma = new List<PismoPregled>();
             ISession s = null;
             try
             {
@@ -490,18 +490,19 @@ namespace DatabaseAccess
 
 
                 pisma = s.Query<Pismo>()
-                .Select(pismo => new PismoView(pismo))
+                .Select(pismo => new PismoPregled(pismo.ID, pismo.Tekst, pismo.IndeksDobrote,pismo.DatumPrijema, pismo.DatumSlanja, pismo.PripadaDetetu))
                 .ToList();
 
 
-                s?.Flush();
+
             }
             catch (Exception e)
             {
                 //MessageBox.Show("Neuspelo!");
             }
-            finally { s?.Close(); }
+            finally { s?.Flush(); s?.Close(); }
             return pisma;
+
         }
 
         public static IList<DeteBasic> vratiSvuDecu()
@@ -1230,6 +1231,41 @@ namespace DatabaseAccess
         }
 
 
+        //stara metoda
+        public static bool dodajPismo(PismoBasic pismo)
+        {
+            ISession s = null;
+            Pismo p = new Pismo();
+            try
+            {
+                s = DataLayer.GetSession();
+                var listaPisama = s.Query<Pismo>().Where(poslatoPismo => poslatoPismo.PripadaDetetu.ID == pismo.dete.ID).ToList();
+                foreach (var item in listaPisama)
+                {
+                    if (item.DatumSlanja.Year == pismo.datumSlanja.Year)
+                    {
+                        throw new Exception("Dete je vec slalo pesmo ove godine");
+                    }
+                }
+
+                var dete = s.Query<Dete>().Where(d => d.ID == pismo.dete.ID).FirstOrDefault();
+
+                p.Tekst = pismo.tekst;
+                p.IndeksDobrote = pismo.indDobrote;
+                p.DatumSlanja = pismo.datumSlanja;
+                p.DatumPrijema = pismo.datumPrijema;
+                p.PripadaDetetu = dete;
+
+
+                s.SaveOrUpdate(p);
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+            finally { s?.Flush(); s?.Close(); }
+            return true;
+        }
         //nova metoda
         public static bool dodajPismo(PismoView pismo)
         {
@@ -1249,11 +1285,6 @@ namespace DatabaseAccess
 
                 var dete = s.Query<Dete>().Where(d => d.ID == pismo.PripadaDetetu.ID).FirstOrDefault();
 
-                if (dete == null)
-                {
-                    throw new Exception("Dete ne postoji");
-                }
-
                 p.Tekst = pismo.Tekst;
                 p.IndeksDobrote = pismo.IndeksDobrote;
                 p.DatumSlanja = pismo.DatumSlanja;
@@ -1262,14 +1293,12 @@ namespace DatabaseAccess
 
 
                 s.SaveOrUpdate(p);
-                pismo.ID = p.ID;
-                s?.Flush();
             }
             catch (Exception ex)
             {
-                throw;
+                return false;
             }
-            finally { s?.Close(); }
+            finally { s?.Flush(); s?.Close(); }
             return true;
         }
         public static bool dodajDeoRadionice(DeoRadioniceBasic dr)

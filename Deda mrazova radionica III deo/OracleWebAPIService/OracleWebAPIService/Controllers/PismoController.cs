@@ -18,9 +18,9 @@ namespace OracleWebAPIService.Controllers
             {
                 var pisma = DataProvider.vratiSvaPisma();
 
-                var all = pisma.Select(p => new { p.ID, p.tekst, p.indDobrote }).ToList();
+                
 
-                return new JsonResult(all);
+                return new JsonResult(pisma);
             }
             catch (Exception ex)
             {
@@ -37,6 +37,9 @@ namespace OracleWebAPIService.Controllers
             try
             {
                 DataProvider.dodajPismo(pismo);
+                
+                    
+                
                 return Ok("Uspesno uneseno pismo sa IDjem" + pismo.ID);
             }
             catch(Exception ex)

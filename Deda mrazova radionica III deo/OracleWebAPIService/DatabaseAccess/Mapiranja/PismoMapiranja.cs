@@ -18,6 +18,8 @@ namespace DatabaseAccess.Mapiranja
 
             Map(x => x.Tekst, "TEKST");
             Map(x => x.IndeksDobrote, "INDEKS_DOBROTE");
+            Map(x => x.DatumSlanja).Column("DATUM_SLANJA").CustomType("date");
+            Map(x => x.DatumPrijema).Column("DATUM_PRIJEMA").CustomType("date");
 
             References(x => x.PripadaDetetu).Column("ID_DETETA").LazyLoad();
 

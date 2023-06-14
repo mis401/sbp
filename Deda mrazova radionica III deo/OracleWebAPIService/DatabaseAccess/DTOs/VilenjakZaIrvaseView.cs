@@ -4,7 +4,7 @@ namespace DatabaseAccess.DTOs
 {
     public class VilenjakZaIrvaseView :VilenjakView
     {
-        public Irvas Irvas { get; set; }//
+        public IrvasView Irvas { get; set; }//
         public IList<PesmaView> Pesme { get; set; }//
 
         public IList<SpojVilenjakZaIrvaseVestinaView> VilenjakZaIrvaseVestinaSpoj { get; set; }
@@ -15,7 +15,7 @@ namespace DatabaseAccess.DTOs
         }
         public VilenjakZaIrvaseView(VilenjakZaIrvase v) : base(v)
         {
-            Irvas = v.Irvas;
+            Irvas = new IrvasView(v.Irvas);
             VilenjakZaIrvaseVestinaSpoj = new List<SpojVilenjakZaIrvaseVestinaView>();
             Pesme = new List<PesmaView>();
         }

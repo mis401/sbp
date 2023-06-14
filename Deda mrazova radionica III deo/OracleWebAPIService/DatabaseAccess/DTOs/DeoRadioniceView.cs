@@ -13,7 +13,7 @@ namespace DatabaseAccess.DTOs
         public  string Naziv { get; set; }
         public string TipIgracke { get; set; }
         public int BrojAngazovanihVilenjaka { get; set; }
-        public VilenjakZaIzraduIgracakaView Sef { get; set; }
+        public VilenjakZaIzraduIgracakaView? Sef { get; set; }
         public IList<IgrackaView> IgrackeIstogTipa { get; set; }
         public IList<MagicnaVestinaView> ZahtevaVestinu { get; set; }
         public IList<VilenjakZaIzraduIgracakaView> VilenjaciZaIzraduIgracaka { get; set; }
@@ -31,7 +31,7 @@ namespace DatabaseAccess.DTOs
             Naziv = dr.Naziv;
             TipIgracke = dr.TipIgracke;
             BrojAngazovanihVilenjaka = dr.BrojAngazovanihVilenjaka;
-            Sef = dr.Sef;
+            //Sef = new VilenjakZaIzraduIgracakaView(dr.Sef);
             IgrackeIstogTipa = new List<IgrackaView>();
             ZahtevaVestinu = new List<MagicnaVestinaView>();
             VilenjaciZaIzraduIgracaka = new List<VilenjakZaIzraduIgracakaView>();

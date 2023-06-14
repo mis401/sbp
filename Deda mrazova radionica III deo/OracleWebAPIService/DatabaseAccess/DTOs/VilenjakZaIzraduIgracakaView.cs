@@ -10,7 +10,7 @@ namespace DatabaseAccess.DTOs
         public int FlagSef { get; set; }
         public DeoRadioniceView DeoRadionice { get; set; }//je sef i gde radi
         public DateTime DatumPostavljanja { get; set; }
-        public VilenjakZaIzraduIgracakaView ImaMentora { get; set; }// ova dva su za 1:n unarnu
+        public VilenjakZaIzraduIgracakaView? ImaMentora { get; set; }// ova dva su za 1:n unarnu
         public IList<VilenjakZaIzraduIgracakaView> JeMentor { get; set; }//1:n unarna
         public int DuzinaObuke { get; set; }
         public int Ocena { get; set; }
@@ -33,7 +33,7 @@ namespace DatabaseAccess.DTOs
             FlagSef = v.FlagSef;
             DeoRadionice = new DeoRadioniceView(v.DeoRadionice);
             DatumPostavljanja = v.DatumPostavljanja;
-            ImaMentora = new VilenjakZaIzraduIgracakaView(v.ImaMentora);
+           // ImaMentora = new VilenjakZaIzraduIgracakaView(v.ImaMentora);
             DuzinaObuke = v.DuzinaObuke;
             Ocena = v.Ocena;
             Igracke = new List<IgrackaView>();

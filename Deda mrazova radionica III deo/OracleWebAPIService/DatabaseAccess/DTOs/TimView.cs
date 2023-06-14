@@ -7,7 +7,7 @@ namespace DatabaseAccess.DTOs
         public  int ID { get; set; }
         public string Naziv { get; set; }
         public IList<VilenjakZaIzraduIgracakaView> Vilenjaci { get; set; }//
-        public VilenjakZaIzraduIgracakaView Koordinator { get; set; }//
+        public VilenjakZaIzraduIgracakaView? Koordinator { get; set; }//
 
 
         public TimView()
@@ -20,7 +20,7 @@ namespace DatabaseAccess.DTOs
             ID = t.ID;
             Naziv = t.Naziv;
             Vilenjaci = new List<VilenjakZaIzraduIgracakaView>();
-            Koordinator = new VilenjakZaIzraduIgracakaView(t.Koordinator);
+            //Koordinator = new VilenjakZaIzraduIgracakaView(t.Koordinator);
         }
     }
 }
