@@ -20,16 +20,16 @@ namespace DatabaseAccess.DTOs
             IrvasIsporucujeTovar = new List<IrvasIsporucujeTovarView>();
         }
 
-        public IrvasView(int iD, string ime, string nadimak, char pol, DateTime datumRodjenja,int starost)
+        public IrvasView(Irvas i)
         {
-            ID = iD;
-            Ime = ime;
-            Nadimak = nadimak;
-            Pol = pol;
-            DatumRodjenja = datumRodjenja;
+            ID = i.ID;
+            Ime = i.Ime;
+            Nadimak = i.Nadimak;
+            Pol = i.Pol;
+            DatumRodjenja = i.DatumRodjenja;
             Vilenjaci = new List<VilenjakZaIrvaseView>();
             IrvasIsporucujeTovar = new List<IrvasIsporucujeTovarView>();
-            Starost = starost;
+            Starost = i.Starost;
         }
     }
 }

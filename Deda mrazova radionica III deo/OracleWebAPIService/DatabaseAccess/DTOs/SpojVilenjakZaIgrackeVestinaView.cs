@@ -13,11 +13,11 @@ namespace DatabaseAccess.DTOs
 
         }
 
-        public SpojVilenjakZaIgrackeVestinaView(int iD, VilenjakZaIzraduIgracakaView vilenjakZaIzraduIgracaka, MagicnaVestinaView magicnaVestina)
+        public SpojVilenjakZaIgrackeVestinaView(SpojVilenjakZaIgrackeVestina s)
         {
-            ID = iD;
-            VilenjakZaIzraduIgracaka = vilenjakZaIzraduIgracaka;
-            MagicnaVestina = magicnaVestina;
+            ID = s.ID;
+            VilenjakZaIzraduIgracaka = new VilenjakZaIzraduIgracakaView(s.VilenjakZaIzraduIgracaka);
+            MagicnaVestina = new MagicnaVestinaView(s.MagicnaVestina);
         }
     }
 }

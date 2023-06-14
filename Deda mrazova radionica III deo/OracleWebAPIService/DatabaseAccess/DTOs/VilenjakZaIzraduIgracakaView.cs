@@ -25,17 +25,17 @@ namespace DatabaseAccess.DTOs
             VilenjakZaIgrackeVestinaSpoj = new List<SpojVilenjakZaIgrackeVestinaView>();
         }
 
-        public VilenjakZaIzraduIgracakaView(int iD, string jedinstvenoIme, string zemljaPorekla, DateTime datumZaposlenja, string tipMaterijala, int flagKoordinator, TimView pripadaTimu, int flagSef, DeoRadioniceView deoRadionice, DateTime datumPostavljanja, VilenjakZaIzraduIgracakaView imaMentora, int duzinaObuke, int ocena) : base(iD, jedinstvenoIme, zemljaPorekla, datumZaposlenja)
+        public VilenjakZaIzraduIgracakaView(VilenjakZaIzraduIgracaka v) : base(v)
         {
-            TipMaterijala = tipMaterijala;
-            FlagKoordinator = flagKoordinator;
-            PripadaTimu = pripadaTimu;
-            FlagSef = flagSef;
-            DeoRadionice = deoRadionice;
-            DatumPostavljanja = datumPostavljanja;
-            ImaMentora = imaMentora;
-            DuzinaObuke = duzinaObuke;
-            Ocena = ocena;
+            TipMaterijala = v.TipMaterijala;
+            FlagKoordinator = v.FlagKoordinator;
+            PripadaTimu = new TimView(v.PripadaTimu);
+            FlagSef = v.FlagSef;
+            DeoRadionice = new DeoRadioniceView(v.DeoRadionice);
+            DatumPostavljanja = v.DatumPostavljanja;
+            ImaMentora = new VilenjakZaIzraduIgracakaView(v.ImaMentora);
+            DuzinaObuke = v.DuzinaObuke;
+            Ocena = v.Ocena;
             Igracke = new List<IgrackaView>();
             JeMentor = new List<VilenjakZaIzraduIgracakaView>();
             VilenjakZaIgrackeVestinaSpoj = new List<SpojVilenjakZaIgrackeVestinaView>();

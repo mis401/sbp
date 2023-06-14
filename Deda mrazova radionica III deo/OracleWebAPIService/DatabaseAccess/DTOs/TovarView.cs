@@ -16,10 +16,10 @@ namespace DatabaseAccess.DTOs
             IrvasIsporucujeTovar = new List<IrvasIsporucujeTovarView>();
             Vilenjaci = new List<VilenjakZaIsporukuPoklonaView>();
         }
-        public TovarView(int iD, string grad)
+        public TovarView(Tovar t)
         {
-            ID = iD;
-            Grad = grad;
+            ID = t.ID;
+            Grad = t.Grad;
             Pokloni = new List<PoklonView>();
             IrvasIsporucujeTovar = new List<IrvasIsporucujeTovarView>();
             Vilenjaci = new List<VilenjakZaIsporukuPoklonaView>();

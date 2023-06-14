@@ -25,15 +25,15 @@ namespace DatabaseAccess.DTOs
             Roditelji = new List<DeteRoditeljView>();
         }
 
-        public DeteView(int iD, string ime, string prezime, string adresa, string grad, string drzava, DateTime datumRodjenja)
+        public DeteView(Dete d)
         {
-            ID = iD;
-            Ime = ime;
-            Prezime = prezime;
-            Adresa = adresa;
-            Grad = grad;
-            Drzava = drzava;
-            DatumRodjenja = datumRodjenja;
+            ID = d.ID;
+            Ime = d.Ime;
+            Prezime = d.Prezime;
+            Adresa = d.Adresa;
+            Grad = d.Grad;
+            Drzava = d.Drzava;
+            DatumRodjenja = d.DatumRodjenja;
             Pisma = new List<PismoView>();
             Roditelji = new List<DeteRoditeljView>();
         }

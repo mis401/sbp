@@ -12,12 +12,12 @@ namespace DatabaseAccess.DTOs
         {
 
         }
-        public PesmaView(int iD, string naziv, string tekst, VilenjakZaIrvaseView vilenjakZaIrvase)
+        public PesmaView(Pesma p)
         {
-            ID = iD;
-            Naziv = naziv;
-            Tekst = tekst;
-            VilenjakZaIrvase = vilenjakZaIrvase;
+            ID = p.ID;
+            Naziv = p.Naziv;
+            Tekst = p.Tekst;
+            VilenjakZaIrvase = new VilenjakZaIrvaseView(p.VilenjakZaIrvase);
         }
     }
 }

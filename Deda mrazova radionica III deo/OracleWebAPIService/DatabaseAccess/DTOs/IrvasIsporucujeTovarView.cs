@@ -13,11 +13,11 @@ namespace DatabaseAccess.DTOs
 
         }
 
-        public IrvasIsporucujeTovarView(int iD, IrvasView irvas, TovarView tovar)
+        public IrvasIsporucujeTovarView(IrvasIsporucujeTovar i)
         {
-            ID = iD;
-            Irvas = irvas;
-            Tovar = tovar;
+            ID = i.ID;
+            Irvas = new IrvasView(i.Irvas);
+            Tovar = new TovarView(i.Tovar);
         }
     }
 }

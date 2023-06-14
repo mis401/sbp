@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DatabaseAccess.Entiteti;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,12 +19,12 @@ namespace DatabaseAccess.DTOs
 
         }
 
-        public VilenjakView(int iD, string jedinstvenoIme, string zemljaPorekla, DateTime datumZaposlenja)
+        public VilenjakView(Vilenjak v)
         {
-            ID = iD;
-            JedinstvenoIme = jedinstvenoIme;
-            ZemljaPorekla = zemljaPorekla;
-            DatumZaposlenja = datumZaposlenja;
+            ID = v.ID;
+            JedinstvenoIme = v.JedinstvenoIme;
+            ZemljaPorekla = v.ZemljaPorekla;
+            DatumZaposlenja = v.DatumZaposlenja;
         }
     }
 }

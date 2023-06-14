@@ -6,21 +6,21 @@ namespace DatabaseAccess.DTOs
     {
         public  int ID { get; set; }
         public string Naziv { get; set; }
-        public IList<VilenjakZaIzraduIgracakaView> Vilejnaci { get; set; }//
+        public IList<VilenjakZaIzraduIgracakaView> Vilenjaci { get; set; }//
         public VilenjakZaIzraduIgracakaView Koordinator { get; set; }//
 
 
         public TimView()
         {
-            Vilejnaci = new List<VilenjakZaIzraduIgracakaView>();
+            Vilenjaci = new List<VilenjakZaIzraduIgracakaView>();
         }
 
-        public TimView(int iD, string naziv,VilenjakZaIzraduIgracakaView koordinator)
+        public TimView(Tim t)
         {
-            ID = iD;
-            Naziv = naziv;
-            Vilejnaci = new List<VilenjakZaIzraduIgracakaView>();
-            Koordinator = koordinator;
+            ID = t.ID;
+            Naziv = t.Naziv;
+            Vilenjaci = new List<VilenjakZaIzraduIgracakaView>();
+            Koordinator = new VilenjakZaIzraduIgracakaView(t.Koordinator);
         }
     }
 }

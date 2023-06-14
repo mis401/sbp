@@ -8,12 +8,10 @@ namespace DatabaseAccess.DTOs
         public string Roditelj { get; set; }
         public DeteView Dete { get; set; }
 
-        DeteRoditeljView() { }
-        DeteRoditeljView(int iD, string roditelj, DeteView dete)
+        public DeteRoditeljView() { }
+        public DeteRoditeljView(DeteRoditelj d)
         {
-            ID = iD;
-            Roditelj = roditelj;
-            Dete = dete;
+            ID = d.ID; Roditelj = d.Roditelj; Dete = new DeteView(d.Dete);
         }
     }
 }

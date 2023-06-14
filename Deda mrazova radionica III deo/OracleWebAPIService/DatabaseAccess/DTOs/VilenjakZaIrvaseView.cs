@@ -13,9 +13,9 @@ namespace DatabaseAccess.DTOs
             VilenjakZaIrvaseVestinaSpoj = new List<SpojVilenjakZaIrvaseVestinaView>();
             Pesme = new List<PesmaView>();
         }
-        public VilenjakZaIrvaseView(int iD, string jedinstvenoIme, string zemljaPorekla, DateTime datumZaposlenja, Irvas irvas) : base(iD,jedinstvenoIme,zemljaPorekla, datumZaposlenja)
+        public VilenjakZaIrvaseView(VilenjakZaIrvase v) : base(v)
         {
-            Irvas = irvas;
+            Irvas = v.Irvas;
             VilenjakZaIrvaseVestinaSpoj = new List<SpojVilenjakZaIrvaseVestinaView>();
             Pesme = new List<PesmaView>();
         }

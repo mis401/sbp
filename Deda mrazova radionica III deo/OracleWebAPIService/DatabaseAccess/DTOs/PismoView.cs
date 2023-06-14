@@ -17,15 +17,15 @@ namespace DatabaseAccess.DTOs
         public DeteView PripadaDetetu { get; set; }//
         public ListaZeljaView ListaZelja { get; set; }//
         public PismoView() { }
-        public PismoView(int iD, float indeksDobrote, string tekst, DateTime datumSlanja, DateTime datumPrijema, DeteView pripadaDetetu, ListaZeljaView listaZelja)
+        public PismoView(Pismo p)
         {
-            ID = iD;
-            IndeksDobrote = indeksDobrote;
-            Tekst = tekst;
-            DatumSlanja = datumSlanja;
-            DatumPrijema = datumPrijema;
-            PripadaDetetu = pripadaDetetu;
-            ListaZelja = listaZelja;
+            ID = p.ID;
+            IndeksDobrote = p.IndeksDobrote;
+            Tekst = p.Tekst;
+            DatumSlanja = p.DatumSlanja;
+            DatumPrijema = p.DatumPrijema;
+            PripadaDetetu = new DeteView(p.PripadaDetetu);
+            ListaZelja = new ListaZeljaView(p.ListaZelja);
         }
     }
 }

@@ -25,13 +25,13 @@ namespace DatabaseAccess.DTOs
             VilenjaciZaIzraduIgracaka = new List<VilenjakZaIzraduIgracakaView>();
         }
 
-        public DeoRadioniceView(int iD, string naziv, string tipIgracke, int brojAngazovanihVilenjaka, VilenjakZaIzraduIgracakaView sef)
+        public DeoRadioniceView(DeoRadionice dr)
         {
-            ID = iD;
-            Naziv = naziv;
-            TipIgracke = tipIgracke;
-            BrojAngazovanihVilenjaka = brojAngazovanihVilenjaka;
-            Sef = sef;
+            ID = dr.ID;
+            Naziv = dr.Naziv;
+            TipIgracke = dr.TipIgracke;
+            BrojAngazovanihVilenjaka = dr.BrojAngazovanihVilenjaka;
+            Sef = dr.Sef;
             IgrackeIstogTipa = new List<IgrackaView>();
             ZahtevaVestinu = new List<MagicnaVestinaView>();
             VilenjaciZaIzraduIgracaka = new List<VilenjakZaIzraduIgracakaView>();

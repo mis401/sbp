@@ -23,11 +23,11 @@ namespace DatabaseAccess.DTOs
 
         }
 
-        public MagicnaVestinaView(int iD, string naziv, DeoRadioniceView potrebnaDeluRadionice)
+        public MagicnaVestinaView(MagicnaVestina m)
         {
-            ID = iD;
-            Naziv = naziv;
-            PotrebnaDeluRadionice = potrebnaDeluRadionice;
+            ID = m.ID;
+            Naziv = m.Naziv;
+            PotrebnaDeluRadionice = new DeoRadioniceView(m.PotrebnaDeluRadionice);
             VilenjakZaIrvaseVestinaSpoj = new List<SpojVilenjakZaIrvaseVestinaView>();
             VilenjakZaIsporukuVestinaSpoj = new List<SpojVilenjakZaIsporukuVestinaView>();
             VilenjakZaIgrackeVestinaSpoj = new List<SpojVilenjakZaIgrackeVestinaView>();

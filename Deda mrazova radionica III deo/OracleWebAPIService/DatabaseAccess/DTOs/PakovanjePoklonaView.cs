@@ -13,11 +13,11 @@ namespace DatabaseAccess.DTOs
 
         }
 
-        public PakovanjePoklonaView(int iD, VilenjakZaPokloneView vilenjakZaPoklone, PoklonView poklon)
+        public PakovanjePoklonaView(PakovanjePoklona p)
         {
-            ID = iD;
-            VilenjakZaPoklone = vilenjakZaPoklone;
-            Poklon = poklon;
+            ID = p.ID;
+            VilenjakZaPoklone = new VilenjakZaPokloneView(p.VilenjakZaPoklone);
+            Poklon = new PoklonView(p.Poklon);
         }
     }
 }

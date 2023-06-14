@@ -14,16 +14,16 @@ namespace DatabaseAccess.DTOs
         public VilenjakZaIzraduIgracakaView Vilenjak { get; set; }
 
         public IgrackaView() { }
-        public IgrackaView(int iD, int redniBroj, string tip, string opis, PoklonView pripadaPoklonu, DeoRadioniceView izradjenaUDeluRadionice, ListaZeljaView pripadaListiZelja, VilenjakZaIzraduIgracakaView vilenjak)
+        public IgrackaView(Igracka i)
         {
-            ID = iD;
-            RedniBroj = redniBroj;
-            Tip = tip;
-            Opis = opis;
-            PripadaPoklonu = pripadaPoklonu;
-            IzradjenaUDeluRadionice = izradjenaUDeluRadionice;
-            PripadaListiZelja = pripadaListiZelja;
-            Vilenjak = vilenjak;
+            ID = i.ID;
+            RedniBroj = i.RedniBroj;
+            Tip = i.Tip;
+            Opis = i.Opis;
+            PripadaPoklonu = new PoklonView(i.PripadaPoklonu);
+            PripadaListiZelja = new ListaZeljaView(i.PripadaListiZelja);
+            IzradjenaUDeluRadionice = new DeoRadioniceView(i.IzradjenaUDeluRadionice);
+            Vilenjak = new VilenjakZaIzraduIgracakaView(i.Vilenjak);
         }
     }
 }

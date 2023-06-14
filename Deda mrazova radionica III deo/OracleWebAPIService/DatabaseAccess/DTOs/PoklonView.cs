@@ -23,13 +23,13 @@ namespace DatabaseAccess.DTOs
             IgrackeZaPoklon = new List<IgrackaView>();
             PakovanjePoklona = new List<PakovanjePoklonaView>();
         }
-        public PoklonView(int iD, string boja, string posveta, TovarView pripadaTovaru, ListaZeljaView zaListuZelja)
+        public PoklonView(Poklon p)
         {
-            ID = iD;
-            Boja = boja;
-            Posveta = posveta;
-            PripadaTovaru = pripadaTovaru;
-            ZaListuZelja = zaListuZelja;
+            ID = p.ID;
+            Boja = p.Boja;
+            Posveta = p.Posveta;
+            PripadaTovaru = new TovarView(p.PripadaTovaru);
+            ZaListuZelja = new ListaZeljaView(p.ZaListuZelja);
             IgrackeZaPoklon = new List<IgrackaView>();
             PakovanjePoklona = new List<PakovanjePoklonaView>();
         }

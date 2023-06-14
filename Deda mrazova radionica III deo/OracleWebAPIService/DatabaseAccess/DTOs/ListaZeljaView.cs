@@ -1,6 +1,7 @@
 ﻿using DatabaseAccess.Entiteti;
 using System;
 using System.Collections.Generic;
+using System.IO.Compression;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,12 +19,12 @@ namespace DatabaseAccess.DTOs
         {
             ZeljeneIgracke = new List<IgrackaView>();
         }
-        public ListaZeljaView(int iD, PismoView pripadaPismu, PoklonView poklon)
+        public ListaZeljaView(ListaZelja lz)
         {
-            ID = iD;
-            PripadaPismu = pripadaPismu;
+            ID = lz.ID;
+            PripadaPismu = new PismoView(lz.PripadaPismu);
             ZeljeneIgracke = new List<IgrackaView>();
-            Poklon = poklon;    
+            Poklon = new PoklonView(lz.Poklon);    
         }
     }
 }
