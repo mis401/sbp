@@ -14,8 +14,8 @@ namespace DatabaseAccess.DTOs
         public string Tekst { get; set; }
         public DateTime DatumSlanja { get; set; }
         public DateTime DatumPrijema { get; set; }
-        public DeteView PripadaDetetu { get; set; }//
-        public ListaZeljaView ListaZelja { get; set; }//
+        public DeteView PripadaDetetu { get; set; }
+        public ListaZeljaView ListaZelja { get; set; }
         public PismoView() { }
         public PismoView(Pismo p)
         {
@@ -25,7 +25,7 @@ namespace DatabaseAccess.DTOs
             DatumSlanja = p.DatumSlanja;
             DatumPrijema = p.DatumPrijema;
             PripadaDetetu = new DeteView(p.PripadaDetetu);
-           // ListaZelja = new ListaZeljaView(p.ListaZelja);
+            //ListaZelja = new ListaZeljaView(p.ListaZelja);
         }
     }
 }

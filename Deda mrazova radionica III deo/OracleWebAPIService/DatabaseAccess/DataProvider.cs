@@ -16,6 +16,7 @@ using FluentNHibernate;
 using FluentNHibernate.Utils;
 using DatabaseAccess.DTOs;
 using System.Security.Cryptography.X509Certificates;
+using OracleInternal.SqlAndPlsqlParser.LocalParsing;
 
 namespace DatabaseAccess
 {
@@ -69,8 +70,9 @@ namespace DatabaseAccess
                 s = DataLayer.GetSession();
                 radionica = s.Get<DeoRadionice>(id);
             }
-            catch (Exception ex) {// MessageBox.Show(ex.Message);
-                                  }
+            catch (Exception ex)
+            {// MessageBox.Show(ex.Message);
+            }
             finally { s?.Flush(); s?.Close(); }
             return radionica;
         }
@@ -477,29 +479,40 @@ namespace DatabaseAccess
             finally { s?.Flush(); s?.Close(); }
             return true;
         }
-        
+
         //dodala sam datum prijama i slanja
 
         public static IList<PismoView> vratiSvaPisma()
         {
             IList<PismoView> pisma = new List<PismoView>();
+            IList<ListaZeljaView> listaZelja = new List<ListaZeljaView>();
             ISession s = null;
             try
             {
                 s = DataLayer.GetSession();
 
-
-
                 pisma = s.Query<Pismo>()
                 .Select(pismo => new PismoView(pismo))
                 .ToList();
 
+                listaZelja = s.Query<ListaZelja>()
+                          .Select(x => new ListaZeljaView(x))
+                          .ToList();
+
+                foreach (var pismo in pisma)
+                {
+                    var pripadajucaListaZelja = listaZelja.FirstOrDefault(l => l.PripadaPismu.ID == pismo.ID);
+                    if (pripadajucaListaZelja != null)
+                    {
+                        pismo.ListaZelja = pripadajucaListaZelja;
+                    }
+                }
 
                 s?.Flush();
             }
             catch (Exception e)
             {
-                //MessageBox.Show("Neuspelo!");
+                throw;
             }
             finally { s?.Close(); }
             return pisma;
@@ -519,18 +532,18 @@ namespace DatabaseAccess
                 .Select(d => new DeteView(d))
                 .ToList();
 
-                pisma = s.Query<Pismo>().Select(x=> new PismoView(x)).ToList();
+                pisma = s.Query<Pismo>().Select(x => new PismoView(x)).ToList();
 
                 deteRoditelj = s.Query<DeteRoditelj>().Select(x => new DeteRoditeljView(x)).ToList();
 
-                foreach(var d in deca)
+                foreach (var d in deca)
                 {
-                    foreach(var p in pisma)
+                    foreach (var p in pisma)
                     {
                         if (p.PripadaDetetu.ID == d.ID)
                             d.Pisma.Add(p);
                     }
-                    foreach(var dr in deteRoditelj)
+                    foreach (var dr in deteRoditelj)
                     {
                         if (dr.Dete.ID == d.ID)
                             d.Roditelji.Add(dr);
@@ -541,7 +554,7 @@ namespace DatabaseAccess
             }
             catch (Exception e)
             {
-                throw new Exception(e.ToString());           
+                throw new Exception(e.ToString());
             }
             finally { s?.Flush(); s?.Close(); }
             return deca;
@@ -613,6 +626,25 @@ namespace DatabaseAccess
             return liste;
         }
 
+        public static IList<DeteRoditeljView> vratiRoditelje()
+        {
+            IList<DeteRoditeljView> roditelji = new List<DeteRoditeljView>();
+            ISession s = null;
+            try
+            {
+                s = DataLayer.GetSession();
+
+                roditelji = s.Query<DeteRoditelj>().Select(x => new DeteRoditeljView()).ToList();
+
+
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            finally { s?.Flush(); ; s?.Close(); }
+            return roditelji;
+        }
         public static Tovar dodajTovar(TovarBasic tb)
         {
             ISession s = null;
@@ -930,23 +962,34 @@ namespace DatabaseAccess
             }
             return pokloni;
         }
-        public static Igracka dodajIgracka(IgrackaPregled igr)
+        public static Igracka dodajIgracka(IgrackaView igr)
         {
             ISession s = null;
             Igracka igracka = new Igracka();
             try
             {
                 s = DataLayer.GetSession();
-                igracka.RedniBroj = igr.redniBroj;
-                igracka.Tip = igr.tip;
-                igracka.Opis = igr.opis;
-                igracka.PripadaPoklonu = igr.pripadaPoklonu;
-                igracka.PripadaListiZelja = igr.pripadaListiZelja;
-                igracka.Vilenjak = igr.vilenjak;
-                igracka.IzradjenaUDeluRadionice = igr.izradjenaUDeluRadionice;
+
+                var poklon = s.Query<Poklon>().Where(d => d.ID == igr.PripadaPoklonu.ID).FirstOrDefault();
+                var deoRadionice = s.Query<DeoRadionice>().Where(d => d.ID == igr.IzradjenaUDeluRadionice.ID).FirstOrDefault();
+                var listaZelja = s.Query<ListaZelja>().Where(x => x.ID == igr.PripadaListiZelja.ID).FirstOrDefault();
+                var vilenjak = s.Query<VilenjakZaIzraduIgracaka>().Where(x => x.ID == igr.Vilenjak.ID).FirstOrDefault();
+
+                if (poklon == null) throw new Exception("Nema ovog poklona za datu igracku u bazi");
+                if (deoRadionice == null) throw new Exception("Nema ovog dela radionice u bazi");
+                if (listaZelja == null) throw new Exception("Nema ove liste zelja ju bazi");
+                if (vilenjak == null) throw new Exception("Nema trazenog vilenjaka u bazi");
+
+                igracka.RedniBroj = igr.RedniBroj;
+                igracka.Tip = igr.Tip;
+                igracka.Opis = igr.Opis;
+                igracka.PripadaPoklonu = poklon;
+                igracka.IzradjenaUDeluRadionice = deoRadionice;
+                igracka.PripadaListiZelja = listaZelja;
+                igracka.Vilenjak = vilenjak;
 
                 s.SaveOrUpdate(igracka);
-
+                igr.ID = igracka.ID;
             }
             catch (Exception ex)
             {
@@ -970,7 +1013,7 @@ namespace DatabaseAccess
             }
             catch (Exception ex)
             {
-                    //MessageBox.Show(ex.Message);
+                //MessageBox.Show(ex.Message);
             }
             finally
             {
@@ -1208,7 +1251,7 @@ namespace DatabaseAccess
                 s = DataLayer.GetSession();
 
                 Pismo pismo = s.Get<Pismo>(id);
-                if(pismo == null)
+                if (pismo == null)
                 {
                     throw new Exception("Ne postoji pismo sa zadatim ID-jem");
                 }
@@ -1218,17 +1261,17 @@ namespace DatabaseAccess
                 foreach (var zelja in zelje)
                 {
                     var poklon = s.Query<Poklon>().Where(x => x.ZaListuZelja.ID == zelja.ID).ToList();
-                    foreach(var p in poklon)
+                    foreach (var p in poklon)
                     {
-                        
+
                         s.Delete(p);
                     }
                     s.Delete(zelja);
                 }
 
-                 s.Delete(pismo);
-                
-                
+                s.Delete(pismo);
+
+
             }
             catch (Exception ex)
             {
@@ -1239,31 +1282,32 @@ namespace DatabaseAccess
         }
 
 
-        public static bool dodajDete(DeteRoditeljDTO dete)
+        public static bool dodajDete(DeteView dete)
         {
             ISession s = null;
             Dete d = new Dete();
+
             try
             {
                 s = DataLayer.GetSession();
 
-                d.Ime = dete.ime;
-                d.Prezime = dete.prezime;
-                d.Grad = dete.grad;
-                d.Drzava = dete.drzava;
-                d.Adresa = dete.adresa;
-                d.DatumRodjenja = dete.datumRodjenja;
-                dete.roditelj1.Dete = d;
-                dete.roditelj2.Dete = d;
-                d.Roditelji.Add(dete.roditelj1);
-                d.Roditelji.Add(dete.roditelj2);
+                d.Ime = dete.Ime;
+                d.Prezime = dete.Prezime;
+                d.Adresa = d.Adresa;
+                d.Grad = dete.Grad;
+                d.Drzava = dete.Drzava;
+                d.DatumRodjenja = dete.DatumRodjenja;
+
+
                 s.SaveOrUpdate(d);
+                dete.ID = d.ID;
+                s?.Flush();
             }
             catch (Exception ex)
             {
-                return false;
+                throw;
             }
-            finally { s?.Flush(); s?.Close(); }
+            finally { s?.Close(); }
             return true;
         }
 
@@ -1289,7 +1333,7 @@ namespace DatabaseAccess
 
                 if (dete == null)
                 {
-                    throw new Exception("Dete ne postoji");
+                    throw new Exception("Dete ne postoji! Morate uneti prvo dete koje je napisalo ovo pismo.");
                 }
 
                 p.Tekst = pismo.Tekst;
@@ -1347,7 +1391,7 @@ namespace DatabaseAccess
             }
             catch (Exception e)
             {
-               // MessageBox.Show("Neuspelo dodavanje vilenjaka za izradu igracaka!");
+                // MessageBox.Show("Neuspelo dodavanje vilenjaka za izradu igracaka!");
             }
             finally { s?.Flush(); s?.Close(); }
             return rad;
@@ -1362,12 +1406,12 @@ namespace DatabaseAccess
                 var radionica = s.Query<DeoRadionice>().Where(i => i.Naziv.Equals(naziv)).FirstOrDefault();
                 var vilenjaci = radionica.VilenjaciZaIzraduIgracaka;
                 var nerasporedjen = s.Query<DeoRadionice>().Where(dr => dr.Naziv.Equals("Nerasporedjen")).FirstOrDefault();
-                foreach(var vilenjak in vilenjaci)
+                foreach (var vilenjak in vilenjaci)
                 {
                     vilenjak.DeoRadionice = nerasporedjen;
                 }
                 var magicnaVestina = s.Query<MagicnaVestina>().Where(mv => mv.PotrebnaDeluRadionice.ID == radionica.ID).ToList();
-                foreach(var mv in magicnaVestina)
+                foreach (var mv in magicnaVestina)
                 {
                     mv.PotrebnaDeluRadionice = nerasporedjen;
                 }
@@ -1415,7 +1459,7 @@ namespace DatabaseAccess
                     .Where(v => v.DeoRadionice.ID.Equals(IDRadionice))
                     .ToList();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 ///MessageBox.Show(ex.Message);
             }
@@ -1517,10 +1561,22 @@ namespace DatabaseAccess
         {
             ISession s = null;
             IList<Irvas> list = new List<Irvas>();
+            IList<IrvasIsporucujeTovar> irvasTovar = new List<IrvasIsporucujeTovar>();
+            IList<VilenjakZaIrvase> vilenjak = new List<VilenjakZaIrvase>();
             try
             {
                 s = DataLayer.GetSession();
                 list = s.Query<Irvas>().ToList();
+
+                foreach(var irvas in list)
+                {
+                    irvasTovar = s.Query<IrvasIsporucujeTovar>().Where(x => x.Irvas.ID == irvas.ID).ToList();
+                    irvas.IrvasIsporucujeTovar = irvasTovar;
+
+                    vilenjak = s.Query<VilenjakZaIrvase>().Where(x=>x.ID == irvas.ID).ToList();
+                    irvas.Vilenjaci = vilenjak;
+                }
+
             }
             catch (Exception ex) { }
             finally { s?.Close(); }
@@ -1561,10 +1617,162 @@ namespace DatabaseAccess
 
                 s.SaveOrUpdate(p);
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 return false;
-              
+
+            }
+            finally { s?.Flush(); s?.Close(); }
+            return true;
+        }
+
+        public static bool azurirajDete(DeteView dete)
+        {
+            ISession s = null;
+            try
+            {
+                s = DataLayer.GetSession();
+
+                Dete p = s.Load<Dete>(dete.ID);
+
+                p.Ime = dete.Ime;
+                p.Prezime = dete.Prezime;
+                p.Grad = dete.Grad;
+                p.Adresa = dete.Adresa;
+                p.Drzava = dete.Drzava;
+
+                s.SaveOrUpdate(p);
+            }
+            catch (Exception ex)
+            {
+                return false;
+
+            }
+            finally { s?.Flush(); s?.Close(); }
+            return true;
+        }
+
+        public static bool obrisiDete(int id)
+        {
+            ISession s = null;
+            try
+            {
+                s = DataLayer.GetSession();
+
+                Dete dete = s.Get<Dete>(id);
+                if (dete == null)
+                {
+                    throw new Exception("Ne postoji dete sa zadatim ID-jem");
+                }
+
+                var pisma = s.Query<Pismo>().Where(z => z.PripadaDetetu.ID == id).ToList();
+
+                foreach (var pismo in pisma)
+                {
+                    var zelja = s.Query<ListaZelja>().FirstOrDefault(x => x.PripadaPismu.ID == pismo.ID);
+                    if (zelja != null) s.Delete(zelja);
+                    s.Delete(pismo);
+                }
+
+                s.Delete(dete);
+
+
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+            finally { s?.Flush(); s?.Close(); }
+            return true;
+        }
+
+        public static IList<IgrackaView> vratiSveIgracke()
+        {
+            IList<IgrackaView> igracke = new List<IgrackaView>();
+            IList<PoklonView> pokloni = new List<PoklonView>();
+            IList<DeoRadioniceView> dRad = new List<DeoRadioniceView>();
+            ISession s = null;
+            try
+            {
+                s = DataLayer.GetSession();
+
+                igracke = s.Query<Igracka>()
+                    .Select(r => new IgrackaView(r))
+                    .ToList();
+
+                pokloni = s.Query<Poklon>().Select(x => new PoklonView(x)).ToList();
+                dRad = s.Query<DeoRadionice>().Select(x => new DeoRadioniceView(x)).ToList();
+                foreach (var igracka in igracke)
+                {
+                    foreach (var poklon in pokloni)
+                    {
+                        if ((igracka.PripadaPoklonu.ID == poklon.ID))
+                            igracka.PripadaPoklonu = poklon;
+                    }
+
+                    foreach (var dr in dRad)
+                    {
+                        if (igracka.IzradjenaUDeluRadionice.ID == dr.ID)
+                            igracka.IzradjenaUDeluRadionice = dr;
+                    }
+                }
+
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
+            finally { s?.Flush(); s?.Close(); }
+            return igracke;
+        }
+
+        public static bool azurirajIgracku(IgrackaView igracka)
+        {
+            ISession s = null;
+            try
+            {
+                s = DataLayer.GetSession();
+
+                Igracka i = s.Load<Igracka>(igracka.ID);
+
+                i.RedniBroj = igracka.RedniBroj;
+                i.Tip = igracka.Tip;
+                i.Opis = igracka.Opis;
+                //da li reference i kako 
+
+                s.SaveOrUpdate(i);
+            }
+            catch (Exception ex)
+            {
+                return false;
+
+            }
+            finally { s?.Flush(); s?.Close(); }
+            return true;
+        }
+
+
+        public static bool obrisiIgracku(int id)
+        {
+            ISession s = null;
+            try
+            {
+                s = DataLayer.GetSession();
+
+                Igracka igr = s.Get<Igracka>(id);
+                if (igr == null)
+                {
+                    throw new Exception("Ne postoji dete sa zadatim ID-jem");
+                }
+
+
+                s.Delete(igr);
+
+
+            }
+            catch (Exception ex)
+            {
+                return false;
             }
             finally { s?.Flush(); s?.Close(); }
             return true;

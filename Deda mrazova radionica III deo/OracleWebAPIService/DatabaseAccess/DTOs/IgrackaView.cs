@@ -20,10 +20,10 @@ namespace DatabaseAccess.DTOs
             RedniBroj = i.RedniBroj;
             Tip = i.Tip;
             Opis = i.Opis;
-            //PripadaPoklonu = new PoklonView(i.PripadaPoklonu);
-            //PripadaListiZelja = new ListaZeljaView(i.PripadaListiZelja);
-            //IzradjenaUDeluRadionice = new DeoRadioniceView(i.IzradjenaUDeluRadionice);
-            //Vilenjak = new VilenjakZaIzraduIgracakaView(i.Vilenjak);
+            PripadaPoklonu = new PoklonView(i.PripadaPoklonu);
+            PripadaListiZelja = new ListaZeljaView(i.PripadaListiZelja);
+            IzradjenaUDeluRadionice = new DeoRadioniceView(i.IzradjenaUDeluRadionice);
+            Vilenjak = new VilenjakZaIzraduIgracakaView(i.Vilenjak);
         }
     }
 }

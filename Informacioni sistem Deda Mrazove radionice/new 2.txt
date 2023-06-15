@@ -1,0 +1,22 @@
+<div class="nav-item px-4">
+                            <NavLink class="nav-link" href="mapa" Match="NavLinkMatch.All" @onclick="TogglePanel1">
+                                <span class="mapaNav" aria-hidden="true"></span> @z.Tip
+                            </NavLink>
+                        </div>
+                        @*ove dalje*@
+                    }
+                    else if (z.ID == 1)
+                    {
+                        <div class="nav-item px-4">
+                            <NavLink class="nav-link" href="mapa" Match="NavLinkMatch.All">
+                                <span class="mapaNav" aria-hidden="true"></span> @z.Tip
+                            </NavLink>
+                        </div>
+                    }
+                    else if (z.ID == 2)
+                    {
+                        <div class="nav-item px-4">
+                            <NavLink class="nav-link" href="mapa" Match="NavLinkMatch.All" @onclick="TogglePanel3">
+                                <span class="mapaNav" aria-hidden="true"></span> @z.Tip
+                            </NavLink>
+                        </div>

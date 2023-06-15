@@ -16,7 +16,7 @@ namespace DatabaseAccess.DTOs
         public string Grad { get; set; }
         public string Drzava { get; set; }
         public DateTime DatumRodjenja { get; set; }
-        public  IList<PismoView> Pisma { get; set; }//
+        public  IList<PismoView> Pisma { get; set; }
         public IList<DeteRoditeljView> Roditelji { get; set; }
 
         public DeteView() {
