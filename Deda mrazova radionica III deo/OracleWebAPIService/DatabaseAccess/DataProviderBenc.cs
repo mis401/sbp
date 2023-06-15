@@ -2467,7 +2467,7 @@ namespace DatabaseAccess
                 v.DeoRadionice = s.Get<DeoRadionice>(view.DeoRadionice.ID);
                 v.DuzinaObuke = view.DuzinaObuke;
                 v.Ocena = view.Ocena;
-                v.ImaMentora = s.Get<VilenjakZaIzraduIgracaka>(view.ImaMentora);
+                v.ImaMentora = s.Get<VilenjakZaIzraduIgracaka>(view.ImaMentora.ID);
                 v.PripadaTimu = s.Get<Tim>(view.PripadaTimu.ID);
                 v.TipMaterijala = view.TipMaterijala;
                 v.Igracke = new List<Igracka>();
@@ -2487,6 +2487,7 @@ namespace DatabaseAccess
                 }
                 s.SaveOrUpdate(v);
                 s.Flush();
+                
 
             }
             catch (Exception ex)
