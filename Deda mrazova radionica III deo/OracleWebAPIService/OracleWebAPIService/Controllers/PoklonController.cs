@@ -1,17 +1,82 @@
-using System.Runtime.InteropServices;
+using DatabaseAccess;
+using DatabaseAccess.DTOs;
+using Microsoft.AspNetCore.Mvc;
 
-// In SDK-style projects such as this one, several assembly attributes that were historically
-// defined in this file are now automatically added during build and populated with
-// values defined in project properties. For details of which attributes are included
-// and how to customise this process see: https://aka.ms/assembly-info-properties
+[ApiController]
+[Route("[controller]")]
+
+public class PoklonController : ControllerBase
+{
+    [HttpGet]
+    [Route("PreuzmiPoklone")]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public IActionResult GetPoklone()
+    {
+        try
+        {
+            var pokloni = DataProviderBenc.VratiSvePoklone();
+
+            return new JsonResult(pokloni);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.ToString());
+        }
+    }
+
+    [HttpPost]
+    [Route("DodajPoklon")]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public IActionResult AddPoklon([FromBody] PoklonView poklon)
+    {
+        try
+        {
+            var data = DataProviderBenc.DodajPoklon(poklon);
+
+            return Ok("Uspesno unesen poklon sa IDjem" + data.ID);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.ToString());
+        }
+    }
+
+    [HttpPut]
+    [Route("AzurirajPoklon")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public IActionResult UpdatePoklon([FromBody] PoklonView poklon)
+    {
+        try
+        {
+            var data = DataProviderBenc.AzurirajPoklon(poklon);
+            if (data != null) return Ok($"Uspesno promenjen poklon sa IDjem {data.ID}");
+            else throw new Exception("Nesto nije dobro");
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.ToString());
+        }
+    }
+
+    [HttpDelete]
+    [Route("ObrisiPoklon")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public IActionResult DeletePoklon(int id)
+    {
+        try
+        {
+            var deleted = DataProviderBenc.ObrisiPoklon(id);
+            if (deleted) return Ok();
+            else throw new Exception("Neuspesno brisanje");
 
 
-// Setting ComVisible to false makes the types in this assembly not visible to COM
-// components.  If you need to access a type in this assembly from COM, set the ComVisible
-// attribute to true on that type.
-
-[assembly: ComVisible(false)]
-
-// The following GUID is for the ID of the typelib if this project is exposed to COM.
-
-[assembly: Guid("4db20828-2e10-4798-a8a7-17adb0125796")]
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.ToString());
+        }
+    }
+}

@@ -2303,7 +2303,153 @@ namespace DatabaseAccess
             }
             return true;
         }
+
+        public static List<PoklonView> VratiSvePoklone()
+        {
+            ISession s = null;
+            List<PoklonView> views = new List<PoklonView>();
+            try
+            {
+                s = DataLayer.GetSession();
+                var pokloni = s.Query<Poklon>().ToList();
+                foreach (var poklon in pokloni)
+                {
+                    var view = new PoklonView(poklon);
+
+                    foreach (var igracka in poklon.IgrackeZaPoklon)
+                    {
+                        var igrackaView = new IgrackaView(igracka);
+                        view.IgrackeZaPoklon.Add(igrackaView);
+                    }
+                    foreach (var pakovanje in poklon.PakovanjePoklona)
+                    {
+                        var pakovanjeView = new PakovanjePoklonaView(pakovanje);
+                        view.PakovanjePoklona.Add(pakovanjeView);
+                    }
+                    views.Add(view);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            finally
+            {
+                s?.Close();
+            }
+            return views;
+        }
+
+
+        public static Poklon DodajPoklon(PoklonView view)
+        {
+            ISession s = null;
+            Poklon p = null;
+            try
+            {
+                s = DataLayer.GetSession();
+                p = new Poklon();
+                p.ID = view.ID;
+                p.Boja = view.Boja;
+                p.Posveta = view.Posveta;
+                p.PripadaTovaru = new Tovar();
+                p.PripadaTovaru.ID = view.PripadaTovaru.ID;
+                p.ZaListuZelja = new ListaZelja();
+                p.ZaListuZelja.ID = view.ZaListuZelja.ID;
+                p.IgrackeZaPoklon = new List<Igracka>();
+                p.PakovanjePoklona = new List<PakovanjePoklona>();
+                foreach(var igracka in view.IgrackeZaPoklon)
+                {
+                    var igrackaEntitet = new Igracka();
+                    igrackaEntitet.ID = igracka.ID;
+                    igrackaEntitet.Tip = igracka.Tip;
+                    igrackaEntitet.Opis = igracka.Opis;
+                    p.IgrackeZaPoklon.Add(igrackaEntitet);
+                }
+                foreach (var pakovanje in view.PakovanjePoklona)
+                {
+                    var pakovanjeEntitet = new PakovanjePoklona();
+                    pakovanjeEntitet.ID = pakovanje.ID;
+                    p.PakovanjePoklona.Add(pakovanjeEntitet);
+                }
+                s.SaveOrUpdate(p);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            finally
+            {
+                s?.Close();
+            }
+            return p;
+        }
+
+        public static Poklon AzurirajPoklon(PoklonView view)
+        {
+            ISession s = null;
+            Poklon p = null;
+            try
+            {
+                s = DataLayer.GetSession();
+                p = s.Get<Poklon>(view.ID);
+                p.Boja = view.Boja;
+                p.Posveta = view.Posveta;
+                p.PripadaTovaru = new Tovar();
+                p.PripadaTovaru.ID = view.PripadaTovaru.ID;
+                p.ZaListuZelja = new ListaZelja();
+                p.ZaListuZelja.ID = view.ZaListuZelja.ID;
+                p.IgrackeZaPoklon = new List<Igracka>();
+                p.PakovanjePoklona = new List<PakovanjePoklona>();
+                foreach (var igracka in view.IgrackeZaPoklon)
+                {
+                    var igrackaEntitet = new Igracka();
+                    igrackaEntitet.ID = igracka.ID;
+                    igrackaEntitet.Tip = igracka.Tip;
+                    igrackaEntitet.Opis = igracka.Opis;
+                    p.IgrackeZaPoklon.Add(igrackaEntitet);
+                }
+                foreach (var pakovanje in view.PakovanjePoklona)
+                {
+                    var pakovanjeEntitet = new PakovanjePoklona();
+                    pakovanjeEntitet.ID = pakovanje.ID;
+                    p.PakovanjePoklona.Add(pakovanjeEntitet);
+                }
+                s.SaveOrUpdate(p);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            finally
+            {
+                s?.Close();
+            }
+            return p;
+        }
+
+
+        public static bool ObrisiPoklon(int id)
+        {
+            ISession s = null;
+            try
+            {
+                s = DataLayer.GetSession();
+
+                var p = s.Load<Poklon>(id);
+                s.Delete(p);
+                s.Flush();
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            finally { s?.Close(); }
+            return true;
+        }
     }
+
+    
 
 }
 
