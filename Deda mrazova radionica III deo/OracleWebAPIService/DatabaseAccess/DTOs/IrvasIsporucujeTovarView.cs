@@ -16,7 +16,7 @@ namespace DatabaseAccess.DTOs
         public IrvasIsporucujeTovarView(IrvasIsporucujeTovar i)
         {
             ID = i.ID;
-            //Irvas = new IrvasView(i.Irvas);
+            Irvas = new IrvasView(i.Irvas);
             Tovar = new TovarView(i.Tovar);
         }
     }

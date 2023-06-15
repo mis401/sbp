@@ -24,7 +24,7 @@ namespace DatabaseAccess.DTOs
             ID = lz.ID;
             PripadaPismu = new PismoView(lz.PripadaPismu);
             ZeljeneIgracke = new List<IgrackaView>();
-            //Poklon = new PoklonView(lz.Poklon);
+           // Poklon = new PoklonView(lz.Poklon);
         }
     }
 }

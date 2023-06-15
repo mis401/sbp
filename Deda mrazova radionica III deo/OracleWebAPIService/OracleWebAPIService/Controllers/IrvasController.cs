@@ -29,18 +29,18 @@ namespace OracleWebAPIService.Controllers
         }
 
         [HttpPost]
-        [Route("DodajIgracku")]
+        [Route("DodajIrvasa")]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public IActionResult AddPIgracka([FromBody] IgrackaView igracka)
+        public IActionResult AddIrvas([FromBody] IrvasView irvas)
         {
             try
             {
-                var data = DataProvider.dodajIgracka(igracka);
+                var data = DataProvider.dodajIrvasa(irvas);
 
 
 
-                return Ok("Uspesno uneseno pismo sa IDjem" + igracka.ID);
+                return Ok("Uspesno uneseno pismo sa IDjem" + irvas.ID);
             }
             catch (Exception ex)
             {
@@ -49,15 +49,15 @@ namespace OracleWebAPIService.Controllers
         }
 
         [HttpPut]
-        [Route("AzurirajIgracku")]
+        [Route("AzurirajIrvasa")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public IActionResult UpdateIgracka([FromBody] IgrackaView igracka)
+        public IActionResult UpdateIgracka([FromBody] IrvasView irvas)
         {
             try
             {
-                var data = DataProvider.azurirajIgracku(igracka);
-                if (data) return Ok($"Uspesno promenjeno pismo sa IDjem {igracka.ID}");
+                var data = DataProvider.azurirajIrvasa(irvas);
+                if (data) return Ok($"Uspesno promenjeno pismo sa IDjem {irvas.ID}");
                 else throw new Exception("Nesto nije dobro");
             }
             catch (Exception ex)
@@ -67,16 +67,16 @@ namespace OracleWebAPIService.Controllers
         }
 
         [HttpDelete]
-        [Route("ObrisiIgracka/{igrackaID}")]
+        [Route("ObrisiIrvasa/{irvasIme}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public IActionResult DeleteIgracka(int igrackaID)
+        public IActionResult DeleteIrvas(string irvasIme)
         {
             try
             {
-                var data = DataProvider.obrisiIgracku(igrackaID);
+                var data = DataProvider.obrisiIrvasa(irvasIme);
                 if (!data) throw new Exception("Nepostojeci Id pisma!");
-                return Ok($"Obrisano je pismo sa IDjem {igrackaID}");
+                return Ok($"Obrisano je pismo sa imenom {irvasIme}");
 
             }
             catch (Exception ex)

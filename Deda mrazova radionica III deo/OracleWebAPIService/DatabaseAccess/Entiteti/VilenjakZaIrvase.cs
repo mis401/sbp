@@ -9,8 +9,8 @@ namespace DatabaseAccess.Entiteti
 {
     public class VilenjakZaIrvase : Vilenjak
     {
-        public virtual Irvas Irvas { get; set; }//
-        public virtual IList<Pesma> Pesme { get; set; }//
+        public virtual Irvas Irvas { get; set; }
+        public virtual IList<Pesma> Pesme { get; set; }
 
         public virtual IList<SpojVilenjakZaIrvaseVestina> VilenjakZaIrvaseVestinaSpoj { get; set; }
         public VilenjakZaIrvase():base()

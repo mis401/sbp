@@ -15,7 +15,7 @@ namespace DatabaseAccess.DTOs
         }
         public VilenjakZaIrvaseView(VilenjakZaIrvase v) : base(v)
         {
-            //Irvas = new IrvasView(v.Irvas);
+            Irvas = new IrvasView(v.Irvas);
             VilenjakZaIrvaseVestinaSpoj = new List<SpojVilenjakZaIrvaseVestinaView>();
             Pesme = new List<PesmaView>();
         }
