@@ -140,15 +140,12 @@ namespace DatabaseAccess
                     vie.DeoRadionice = s.Query<DeoRadionice>().Where(t => t.ID == data.DeoRadionice.ID).FirstOrDefault();
                 foreach(var spoj in data.VilenjakZaIgrackeVestinaSpoj)
                 {
-                    var vestinaSpoj = new SpojVilenjakZaIgrackeVestina();
-                    vestinaSpoj.MagicnaVestina = s.Query<MagicnaVestina>().Where(v => v.ID == spoj.MagicnaVestina.ID).FirstOrDefault();
+                    var vestinaSpoj = s.Get<SpojVilenjakZaIgrackeVestina>(spoj.ID);
                     vie.VilenjakZaIgrackeVestinaSpoj.Add(vestinaSpoj);
                 }
                 foreach(var igracka in data.Igracke)
                 {
-                    Igracka igrackaEntitet = new Igracka();
-                    igrackaEntitet.Tip = igracka.Tip;
-                    igrackaEntitet.Opis = igracka.Opis;
+                    var igrackaEntitet = s.Get<Igracka>(igracka.ID);
                     vie.Igracke.Add(igrackaEntitet);
                 }
                 s.SaveOrUpdate(vie);
@@ -1783,8 +1780,7 @@ namespace DatabaseAccess
 
                 foreach (var spoj in v.VilenjakZaIsporukuVestinaSpoj)
                 {
-                    var vestinaSpoj = new SpojVilenjakZaIsporukuVestina();
-                    vestinaSpoj.MagicnaVestina = s.Query<MagicnaVestina>().Where(v => v.ID == spoj.MagicnaVestina.ID).FirstOrDefault();
+                    var vestinaSpoj = s.Get<SpojVilenjakZaIsporukuVestina>(spoj.ID);
                     v.VilenjakZaIsporukuVestinaSpoj.Add(vestinaSpoj);
                 }
                 s.SaveOrUpdate(v);
@@ -1815,10 +1811,7 @@ namespace DatabaseAccess
                 }
                 foreach(var spoj in vilenjak.VilenjakZaIrvaseVestinaSpoj)
                 {
-                    var spojEntitet = new SpojVilenjakZaIrvaseVestina();
-                    spojEntitet.ID = spoj.ID;
-                    spojEntitet.MagicnaVestina = new MagicnaVestina();
-                    spojEntitet.VilenjakZaIrvase = v;
+                    var spojEntitet = s.Get<SpojVilenjakZaIrvaseVestina>(spoj.ID);
                     v.VilenjakZaIrvaseVestinaSpoj.Add(spojEntitet);
                 }
                 s.SaveOrUpdate(vilenjak);
@@ -1846,17 +1839,12 @@ namespace DatabaseAccess
                 v.DatumZaposlenja = vilenjak.DatumZaposlenja;
                 foreach (var pakovanje in vilenjak.PakovanjePoklona)
                 {
-                    var pakovanjeEntitet = new PakovanjePoklona();
-                    pakovanjeEntitet.ID = pakovanje.ID;
-                    pakovanjeEntitet.VilenjakZaPoklone = v;
+                    var pakovanjeEntitet = s.Get<PakovanjePoklona>(pakovanje.ID);
                     v.PakovanjePoklona.Add(pakovanjeEntitet);
                 }
                 foreach (var spoj in vilenjak.VilenjakZaPokloneVestinaSpoj)
                 {
-                    var spojEntitet = new SpojVilenjakZaPokloneVestina();
-                    spojEntitet.ID = spoj.ID;
-                    spojEntitet.MagicnaVestina = new MagicnaVestina();
-                    spojEntitet.VilenjakZaPoklone = v;
+                    var spojEntitet = s.Get<SpojVilenjakZaPokloneVestina>(spoj.ID);
                     v.VilenjakZaPokloneVestinaSpoj.Add(spojEntitet);
                 }
             }
@@ -1927,19 +1915,10 @@ namespace DatabaseAccess
                 }
                 foreach(var vilenjak in view.Vilenjaci)
                 {
-                    var vilenjakEntitet = new VilenjakZaIsporukuPoklona();
-                    vilenjakEntitet.ID = vilenjak.ID;
-                    vilenjakEntitet.ZemljaPorekla = vilenjak.ZemljaPorekla;
-                    vilenjakEntitet.DatumZaposlenja = vilenjak.DatumZaposlenja;
-                    vilenjakEntitet.JedinstvenoIme = vilenjak.JedinstvenoIme;
-                    vilenjakEntitet.VilenjakZaIsporukuVestinaSpoj = new List<SpojVilenjakZaIsporukuVestina>();
+                    var vilenjakEntitet = s.Get<VilenjakZaIsporukuPoklona>(vilenjak.ID);
                     foreach(var spoj in vilenjak.VilenjakZaIsporukuVestinaSpoj)
                     {
-                        var spojEntitet = new SpojVilenjakZaIsporukuVestina();
-                        spojEntitet.ID = spoj.ID;
-                        spojEntitet.MagicnaVestina = new MagicnaVestina();
-                        spojEntitet.MagicnaVestina.ID = spoj.MagicnaVestina.ID;
-                        spojEntitet.VilenjakZaIsporukuPoklona = vilenjakEntitet;
+                        var spojEntitet = s.Get<SpojVilenjakZaIsporukuVestina>(spoj.ID);
                         vilenjakEntitet.VilenjakZaIsporukuVestinaSpoj.Add(spojEntitet);
                     }
                     vilenjakEntitet.Tovar = tovar;
@@ -1947,11 +1926,7 @@ namespace DatabaseAccess
                 }
                 foreach(var irvas in view.IrvasIsporucujeTovar)
                 {
-                    var irvasEntitet = new IrvasIsporucujeTovar();
-                    irvasEntitet.ID = irvas.ID;
-                    irvasEntitet.Tovar = tovar;
-                    irvasEntitet.Irvas = new Irvas();
-                    irvasEntitet.Irvas.ID = irvas.Irvas.ID;
+                    var irvasEntitet = s.Get<IrvasIsporucujeTovar>(irvas.ID);
                     tovar.IrvasIsporucujeTovar.Add(irvasEntitet);
                 }
                 s.Save(tovar);
@@ -1979,42 +1954,17 @@ namespace DatabaseAccess
                 tovar.Grad = view.Grad;
                 foreach (var poklon in view.Pokloni)
                 {
-                    var poklonEntitet = new Poklon();
-                    poklonEntitet.ID = poklon.ID;
-                    poklonEntitet.PripadaTovaru = tovar;
-                    poklonEntitet.Boja = poklon.Boja;
-                    poklonEntitet.Posveta = poklon.Posveta;
-                    poklonEntitet.ZaListuZelja = new ListaZelja();
-                    poklonEntitet.ZaListuZelja.ID = poklon.ZaListuZelja.ID;
+                    var poklonEntitet = s.Get<Poklon>(poklon.ID);
                     tovar.Pokloni.Add(poklonEntitet);
                 }
                 foreach(var isporuka in tovar.IrvasIsporucujeTovar)
                 {
-                    var irvasIsporucujeTovar = new IrvasIsporucujeTovar();
-                    irvasIsporucujeTovar.ID = isporuka.ID;
-                    irvasIsporucujeTovar.Tovar = tovar;
-                    irvasIsporucujeTovar.Irvas = new Irvas();
-                    irvasIsporucujeTovar.Irvas.ID = isporuka.Irvas.ID;
+                    var irvasIsporucujeTovar = s.Get<IrvasIsporucujeTovar>(isporuka.ID);
                     tovar.IrvasIsporucujeTovar.Add(irvasIsporucujeTovar);
                 }
                 foreach(var vilenjak in tovar.Vilenjaci)
                 {
-                    var v = new VilenjakZaIsporukuPoklona();
-                    v.ID = vilenjak.ID;
-                    v.ZemljaPorekla = vilenjak.ZemljaPorekla;
-                    v.DatumZaposlenja = vilenjak.DatumZaposlenja;
-                    v.JedinstvenoIme = vilenjak.JedinstvenoIme;
-                    v.VilenjakZaIsporukuVestinaSpoj = new List<SpojVilenjakZaIsporukuVestina>();
-                    foreach(var spoj in vilenjak.VilenjakZaIsporukuVestinaSpoj)
-                    {
-                        var spojEntitet = new SpojVilenjakZaIsporukuVestina();
-                        spojEntitet.ID = spoj.ID;
-                        spojEntitet.MagicnaVestina = new MagicnaVestina();
-                        spojEntitet.MagicnaVestina.ID = spoj.MagicnaVestina.ID;
-                        spojEntitet.VilenjakZaIsporukuPoklona = v;
-                        v.VilenjakZaIsporukuVestinaSpoj.Add(spojEntitet);
-                    }
-                    v.Tovar = tovar;
+                    var v = s.Get<VilenjakZaIsporukuPoklona>(vilenjak.ID);
                     tovar.Vilenjaci.Add(v);
                 }
                 s.SaveOrUpdate(tovar);
@@ -2097,22 +2047,7 @@ namespace DatabaseAccess
                 t.Vilejnaci = new List<VilenjakZaIzraduIgracaka>();
                 foreach (var elf in view.Vilenjaci)
                 {
-                    var vilenjak = new VilenjakZaIzraduIgracaka();
-                    vilenjak.ID = elf.ID;
-                    vilenjak.JedinstvenoIme = elf.JedinstvenoIme;
-                    vilenjak.DatumZaposlenja = elf.DatumZaposlenja;
-                    vilenjak.ZemljaPorekla = elf.ZemljaPorekla;
-                    vilenjak.PripadaTimu = t;
-                    vilenjak.VilenjakZaIgrackeVestinaSpoj = new List<SpojVilenjakZaIgrackeVestina>();
-                    foreach (var spoj in elf.VilenjakZaIgrackeVestinaSpoj)
-                    {
-                        var spojEntitet = new SpojVilenjakZaIgrackeVestina();
-                        spojEntitet.ID = spoj.ID;
-                        spojEntitet.MagicnaVestina = new MagicnaVestina();
-                        spojEntitet.MagicnaVestina.ID = spoj.MagicnaVestina.ID;
-                        spojEntitet.VilenjakZaIzraduIgracaka = vilenjak;
-                        vilenjak.VilenjakZaIgrackeVestinaSpoj.Add(spojEntitet);
-                    }
+                    var vilenjak = s.Get<VilenjakZaIzraduIgracaka>(elf.ID);
                     t.Vilejnaci.Add(vilenjak);
                 }
                 s.SaveOrUpdate(t);
@@ -2141,22 +2076,7 @@ namespace DatabaseAccess
                 t.Vilejnaci = new List<VilenjakZaIzraduIgracaka>();
                 foreach (var elf in view.Vilenjaci)
                 {
-                    var vilenjak = new VilenjakZaIzraduIgracaka();
-                    vilenjak.ID = elf.ID;
-                    vilenjak.JedinstvenoIme = elf.JedinstvenoIme;
-                    vilenjak.DatumZaposlenja = elf.DatumZaposlenja;
-                    vilenjak.ZemljaPorekla = elf.ZemljaPorekla;
-                    vilenjak.PripadaTimu = t;
-                    vilenjak.VilenjakZaIgrackeVestinaSpoj = new List<SpojVilenjakZaIgrackeVestina>();
-                    foreach (var spoj in elf.VilenjakZaIgrackeVestinaSpoj)
-                    {
-                        var spojEntitet = new SpojVilenjakZaIgrackeVestina();
-                        spojEntitet.ID = spoj.ID;
-                        spojEntitet.MagicnaVestina = new MagicnaVestina();
-                        spojEntitet.MagicnaVestina.ID = spoj.MagicnaVestina.ID;
-                        spojEntitet.VilenjakZaIzraduIgracaka = vilenjak;
-                        vilenjak.VilenjakZaIgrackeVestinaSpoj.Add(spojEntitet);
-                    }
+                    var vilenjak = s.Get<VilenjakZaIzraduIgracaka>(elf.ID);
                     t.Vilejnaci.Add(vilenjak);
                 }
                 s.SaveOrUpdate(t);
@@ -2233,12 +2153,7 @@ namespace DatabaseAccess
                 p.ID = view.ID;
                 p.Naziv = view.Naziv;
                 p.Tekst = view.Tekst;
-                p.VilenjakZaIrvase = new VilenjakZaIrvase();
-                p.VilenjakZaIrvase.ID = view.VilenjakZaIrvase.ID;
-                p.VilenjakZaIrvase.JedinstvenoIme = view.VilenjakZaIrvase.JedinstvenoIme;
-                p.VilenjakZaIrvase.DatumZaposlenja = view.VilenjakZaIrvase.DatumZaposlenja;
-                p.VilenjakZaIrvase.ZemljaPorekla = view.VilenjakZaIrvase.ZemljaPorekla;
-                p.VilenjakZaIrvase.Pesme.Add(p);
+                p.VilenjakZaIrvase = s.Get<VilenjakZaIrvase>(p.VilenjakZaIrvase.ID);
                 s.SaveOrUpdate(p);
                 s.Flush();
             }
@@ -2263,7 +2178,7 @@ namespace DatabaseAccess
                 pesma = s.Get<Pesma>(view.ID);
                 pesma.Naziv = view.Naziv;
                 pesma.Tekst = view.Tekst;
-                pesma.VilenjakZaIrvase = new VilenjakZaIrvase();
+                pesma.VilenjakZaIrvase = s.Get<VilenjakZaIrvase>(view.VilenjakZaIrvase.ID);
                 pesma.VilenjakZaIrvase.ID = view.VilenjakZaIrvase.ID;
                 pesma.VilenjakZaIrvase.JedinstvenoIme = view.VilenjakZaIrvase.JedinstvenoIme;
                 pesma.VilenjakZaIrvase.DatumZaposlenja = view.VilenjakZaIrvase.DatumZaposlenja;
@@ -2352,24 +2267,18 @@ namespace DatabaseAccess
                 p.ID = view.ID;
                 p.Boja = view.Boja;
                 p.Posveta = view.Posveta;
-                p.PripadaTovaru = new Tovar();
-                p.PripadaTovaru.ID = view.PripadaTovaru.ID;
-                p.ZaListuZelja = new ListaZelja();
-                p.ZaListuZelja.ID = view.ZaListuZelja.ID;
+                p.PripadaTovaru = s.Get<Tovar>(view.PripadaTovaru.ID);
+                p.ZaListuZelja = s.Get<ListaZelja>(view.ZaListuZelja.ID);
                 p.IgrackeZaPoklon = new List<Igracka>();
                 p.PakovanjePoklona = new List<PakovanjePoklona>();
                 foreach(var igracka in view.IgrackeZaPoklon)
                 {
-                    var igrackaEntitet = new Igracka();
-                    igrackaEntitet.ID = igracka.ID;
-                    igrackaEntitet.Tip = igracka.Tip;
-                    igrackaEntitet.Opis = igracka.Opis;
+                    var igrackaEntitet = s.Get<Igracka>(igracka.ID);
                     p.IgrackeZaPoklon.Add(igrackaEntitet);
                 }
                 foreach (var pakovanje in view.PakovanjePoklona)
                 {
-                    var pakovanjeEntitet = new PakovanjePoklona();
-                    pakovanjeEntitet.ID = pakovanje.ID;
+                    var pakovanjeEntitet = s.Get<PakovanjePoklona>(pakovanje.ID);
                     p.PakovanjePoklona.Add(pakovanjeEntitet);
                 }
                 s.SaveOrUpdate(p);
@@ -2395,24 +2304,19 @@ namespace DatabaseAccess
                 p = s.Get<Poklon>(view.ID);
                 p.Boja = view.Boja;
                 p.Posveta = view.Posveta;
-                p.PripadaTovaru = new Tovar();
-                p.PripadaTovaru.ID = view.PripadaTovaru.ID;
-                p.ZaListuZelja = new ListaZelja();
-                p.ZaListuZelja.ID = view.ZaListuZelja.ID;
+                p.PripadaTovaru = s.Get<Tovar>(view.PripadaTovaru.ID);
+                p.ZaListuZelja = s.Get<ListaZelja>(view.ZaListuZelja.ID);
                 p.IgrackeZaPoklon = new List<Igracka>();
                 p.PakovanjePoklona = new List<PakovanjePoklona>();
                 foreach (var igracka in view.IgrackeZaPoklon)
                 {
-                    var igrackaEntitet = new Igracka();
-                    igrackaEntitet.ID = igracka.ID;
-                    igrackaEntitet.Tip = igracka.Tip;
-                    igrackaEntitet.Opis = igracka.Opis;
+                    var igrackaEntitet = s.Get<Igracka>(igracka.ID);
                     p.IgrackeZaPoklon.Add(igrackaEntitet);
                 }
                 foreach (var pakovanje in view.PakovanjePoklona)
                 {
-                    var pakovanjeEntitet = new PakovanjePoklona();
-                    pakovanjeEntitet.ID = pakovanje.ID;
+                    var pakovanjeEntitet = s.Get<PakovanjePoklona>(pakovanje.ID);
+
                     p.PakovanjePoklona.Add(pakovanjeEntitet);
                 }
                 s.SaveOrUpdate(p);
