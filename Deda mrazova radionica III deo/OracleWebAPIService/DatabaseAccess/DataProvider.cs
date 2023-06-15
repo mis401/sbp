@@ -430,18 +430,18 @@ namespace DatabaseAccess
             return v;
         }
 
-        public static IList<MagicnaVestina> vratiMagicneVestine()
+        public static IList<MagicnaVestinaView> vratiMagicneVestine()
         {
             ISession s = null;
-            IList<MagicnaVestina> lista = null;
+            IList<MagicnaVestinaView> lista = new List<MagicnaVestinaView>();
             try
             {
                 s = DataLayer.GetSession();
-                lista = s.Query<MagicnaVestina>().ToList();
+                lista = s.Query<MagicnaVestina>().Select(x=> new MagicnaVestinaView(x)).ToList();
             }
             catch (Exception ex)
             {
-
+                throw;
             }
             finally { s?.Flush(); s?.Close(); }
             return lista;
@@ -603,8 +603,6 @@ namespace DatabaseAccess
                 }
                 else throw new Exception("Morate dodati novo pismo. Lista zelja je vezana za samo jedno pismo.");
 
-             
-                else throw new Exception("Dodajte poklon. Poklon je vezan za jednu listu zelja");
                 s.SaveOrUpdate(listazelja);
                 lz.ID = listazelja.ID;
                 

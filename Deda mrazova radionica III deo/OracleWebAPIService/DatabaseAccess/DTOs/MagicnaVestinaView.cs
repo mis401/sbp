@@ -6,7 +6,7 @@ namespace DatabaseAccess.DTOs
     {
         public int ID { get; set; }
         public string Naziv { get; set; }
-        public DeoRadioniceView PotrebnaDeluRadionice { get; set; }//
+        public DeoRadioniceView PotrebnaDeluRadionice { get; set; }
         public IList<SpojVilenjakZaIrvaseVestinaView> VilenjakZaIrvaseVestinaSpoj { get; set; }
         public IList<SpojVilenjakZaIsporukuVestinaView> VilenjakZaIsporukuVestinaSpoj { get; set; }
         public IList<SpojVilenjakZaIgrackeVestinaView> VilenjakZaIgrackeVestinaSpoj { get; set; }
