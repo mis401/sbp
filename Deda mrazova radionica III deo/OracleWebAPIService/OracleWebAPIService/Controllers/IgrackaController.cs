@@ -40,7 +40,7 @@ namespace OracleWebAPIService.Controllers
 
 
 
-                return Ok("Uspesno uneseno pismo sa IDjem" + igracka.ID);
+                return Ok("Uspesno unesena igracka sa IDjem" + igracka.ID);
             }
             catch (Exception ex)
             {
@@ -57,7 +57,7 @@ namespace OracleWebAPIService.Controllers
             try
             {
                 var data = DataProvider.azurirajIgracku(igracka);
-                if (data) return Ok($"Uspesno promenjeno pismo sa IDjem {igracka.ID}");
+                if (data) return Ok($"Uspesno promenjena igracka sa IDjem {igracka.ID}");
                 else throw new Exception("Nesto nije dobro");
             }
             catch (Exception ex)
@@ -75,8 +75,8 @@ namespace OracleWebAPIService.Controllers
             try
             {
                 var data = DataProvider.obrisiIgracku(igrackaID);
-                if (!data) throw new Exception("Nepostojeci Id pisma!");
-                return Ok($"Obrisano je pismo sa IDjem {igrackaID}");
+                if (!data) throw new Exception("Nepostojeci Id igracke!");
+                return Ok($"Obrisana je igracka sa IDjem {igrackaID}");
 
             }
             catch (Exception ex)

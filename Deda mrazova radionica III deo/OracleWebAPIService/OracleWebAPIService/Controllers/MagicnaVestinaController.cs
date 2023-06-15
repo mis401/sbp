@@ -39,7 +39,7 @@ namespace OracleWebAPIService.Controllers
 
 
 
-                return Ok("Uspesno uneseno pismo sa IDjem" + irvas.ID);
+                return Ok("Uspesno unesena vestina sa IDjem" + irvas.ID);
             }
             catch (Exception ex)
             {
@@ -56,7 +56,7 @@ namespace OracleWebAPIService.Controllers
             try
             {
                 var data = DataProvider.azurirajIrvasa(irvas);
-                if (data) return Ok($"Uspesno promenjeno pismo sa IDjem {irvas.ID}");
+                if (data) return Ok($"Uspesno promenjena vestina sa IDjem {irvas.ID}");
                 else throw new Exception("Nesto nije dobro");
             }
             catch (Exception ex)
@@ -74,8 +74,8 @@ namespace OracleWebAPIService.Controllers
             try
             {
                 var data = DataProvider.obrisiIrvasa(irvasIme);
-                if (!data) throw new Exception("Nepostojeci Id pisma!");
-                return Ok($"Obrisano je pismo sa imenom {irvasIme}");
+                if (!data) throw new Exception("Nepostojeci Id vesitne!");
+                return Ok($"Obrisan je vesitna sa imenom {irvasIme}");
 
             }
             catch (Exception ex)

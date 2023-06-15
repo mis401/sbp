@@ -37,7 +37,7 @@ namespace OracleWebAPIService.Controllers
             try
             {
                 var data = DataProvider.dodajDeoRadionice(deoRad);
-                return Ok("Uspesno uneseno pismo sa IDjem" + deoRad.ID);
+                return Ok("Uspesno unesena radionica sa IDjem" + deoRad.ID);
             }
             catch (Exception ex)
             {
@@ -54,7 +54,7 @@ namespace OracleWebAPIService.Controllers
             try
             {
                 var data = DataProvider.azurirajDeoRadionice(dr);
-                if (data) return Ok($"Uspesno promenjeno pismo sa IDjem {dr.ID}");
+                if (data) return Ok($"Uspesno promenjena radionica sa IDjem {dr.ID}");
                 else throw new Exception("Nesto nije dobro");
             }
             catch (Exception ex)
@@ -73,7 +73,7 @@ namespace OracleWebAPIService.Controllers
             {
                 var data = DataProvider.obrisiDeoRadionice(ime);
                 if (!data) throw new Exception("Nepostojeci Id radionice!");
-                return Ok($"Obrisano je pismo sa imenom {ime}");
+                return Ok($"Obrisan je deo radionice sa imenom {ime}");
 
             }
             catch (Exception ex)
