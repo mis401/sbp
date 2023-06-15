@@ -10,13 +10,13 @@ namespace OracleWebAPIService.Controllers
     public class DeoRadioniceController:ControllerBase
     {
         [HttpGet]
-        [Route("Preuzmi")]
+        [Route("PreuzmiDeoRadionice")]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public IActionResult GetIrvase()
+        public IActionResult GetDeoRadionice()
         {
             try
             {
-                var igracka = DataProvider.vratiSveIrvase();
+                var igracka = DataProvider.vratiSveRadionice();
 
 
 
@@ -29,18 +29,15 @@ namespace OracleWebAPIService.Controllers
         }
 
         [HttpPost]
-        [Route("DodajIrvasa")]
+        [Route("DodajDeoRadionice")]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public IActionResult AddIrvas([FromBody] IrvasView irvas)
+        public IActionResult AddDeoRadionice([FromBody] DeoRadioniceView deoRad)
         {
             try
             {
-                var data = DataProvider.dodajIrvasa(irvas);
-
-
-
-                return Ok("Uspesno uneseno pismo sa IDjem" + irvas.ID);
+                var data = DataProvider.dodajDeoRadionice(deoRad);
+                return Ok("Uspesno uneseno pismo sa IDjem" + deoRad.ID);
             }
             catch (Exception ex)
             {
@@ -49,15 +46,15 @@ namespace OracleWebAPIService.Controllers
         }
 
         [HttpPut]
-        [Route("AzurirajIrvasa")]
+        [Route("AzurirajDeoRadionice")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public IActionResult UpdateIgracka([FromBody] IrvasView irvas)
+        public IActionResult UpdateDeoRadionice([FromBody] DeoRadioniceView dr)
         {
             try
             {
-                var data = DataProvider.azurirajIrvasa(irvas);
-                if (data) return Ok($"Uspesno promenjeno pismo sa IDjem {irvas.ID}");
+                var data = DataProvider.azurirajDeoRadionice(dr);
+                if (data) return Ok($"Uspesno promenjeno pismo sa IDjem {dr.ID}");
                 else throw new Exception("Nesto nije dobro");
             }
             catch (Exception ex)
@@ -67,16 +64,16 @@ namespace OracleWebAPIService.Controllers
         }
 
         [HttpDelete]
-        [Route("ObrisiIrvasa/{irvasIme}")]
+        [Route("ObrisiDeoRadionice/{ime}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public IActionResult DeleteIrvas(string irvasIme)
+        public IActionResult DeleteIrvas(string ime)
         {
             try
             {
-                var data = DataProvider.obrisiIrvasa(irvasIme);
-                if (!data) throw new Exception("Nepostojeci Id pisma!");
-                return Ok($"Obrisano je pismo sa imenom {irvasIme}");
+                var data = DataProvider.obrisiDeoRadionice(ime);
+                if (!data) throw new Exception("Nepostojeci Id radionice!");
+                return Ok($"Obrisano je pismo sa imenom {ime}");
 
             }
             catch (Exception ex)

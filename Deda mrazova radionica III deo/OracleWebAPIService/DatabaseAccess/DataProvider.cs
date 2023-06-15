@@ -649,6 +649,7 @@ namespace DatabaseAccess
             ISession s = null;
             try
             {
+
                 s = DataLayer.GetSession();
 
                 liste = s.Query<ListaZelja>()
@@ -1403,7 +1404,7 @@ namespace DatabaseAccess
             finally { s?.Close(); }
             return true;
         }
-        public static bool dodajDeoRadionice(DeoRadioniceBasic dr)
+        public static bool dodajDeoRadionice(DeoRadioniceView dr)
         {
             ISession s = null;
             DeoRadionice deoR = new DeoRadionice();
@@ -1411,11 +1412,14 @@ namespace DatabaseAccess
             {
                 s = DataLayer.GetSession();
 
-                deoR.Naziv = dr.naziv;
-                deoR.TipIgracke = dr.tipIgr;
+                deoR.Naziv = dr.Naziv;
+                deoR.TipIgracke = dr.TipIgracke;
+                deoR.BrojAngazovanihVilenjaka = dr.BrojAngazovanihVilenjaka;
+
 
 
                 s.SaveOrUpdate(deoR);
+                dr.ID = deoR.ID;
             }
             catch (Exception ex)
             {
@@ -1425,22 +1429,24 @@ namespace DatabaseAccess
             return true;
         }
 
-        public static IList<DeoRadioniceBasic> vratiSveRadionice()
+        public static IList<DeoRadioniceView> vratiSveRadionice()
         {
-            IList<DeoRadioniceBasic> rad = new List<DeoRadioniceBasic>();
+            IList<DeoRadioniceView> rad = new List<DeoRadioniceView>();
+            IList<VilenjakZaIzraduIgracakaView> vilenjak = new List<VilenjakZaIzraduIgracakaView>();
             ISession s = null;
             try
             {
                 s = DataLayer.GetSession();
 
                 rad = s.Query<DeoRadionice>()
-                    .Select(r => new DeoRadioniceBasic(r.Naziv, r.TipIgracke))
+                    .Select(r => new DeoRadioniceView(r))
                     .ToList();
+
 
             }
             catch (Exception e)
             {
-                // MessageBox.Show("Neuspelo dodavanje vilenjaka za izradu igracaka!");
+                throw new Exception(e.ToString());
             }
             finally { s?.Flush(); s?.Close(); }
             return rad;
@@ -1882,6 +1888,33 @@ namespace DatabaseAccess
             catch (Exception ex)
             {
                 return false;
+            }
+            finally { s?.Flush(); s?.Close(); }
+            return true;
+        }
+
+        public static bool azurirajDeoRadionice(DeoRadioniceView deoR)
+        {
+            ISession s = null;
+            try
+            {
+                s = DataLayer.GetSession();
+
+                DeoRadionice d = s.Load<DeoRadionice>(deoR.ID);
+
+
+                d.Naziv = deoR.Naziv;
+                d.TipIgracke = deoR.TipIgracke;
+                d.BrojAngazovanihVilenjaka = deoR.BrojAngazovanihVilenjaka;
+
+               
+
+                s.SaveOrUpdate(d);
+            }
+            catch (Exception ex)
+            {
+                return false;
+
             }
             finally { s?.Flush(); s?.Close(); }
             return true;
