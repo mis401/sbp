@@ -2194,6 +2194,115 @@ namespace DatabaseAccess
             }
             return true;
         }
+
+
+        public static List<PesmaView> vratiSvePesme()
+        {
+            ISession s = null;
+            List<PesmaView> views = new List<PesmaView>();
+            try
+            {
+                s = DataLayer.GetSession();
+                var pesme = s.Query<Pesma>().ToList();
+                foreach(var pesma in pesme)
+                {
+                    var view = new PesmaView(pesma);
+                    view.VilenjakZaIrvase = new VilenjakZaIrvaseView(pesma.VilenjakZaIrvase);
+                    views.Add(view);
+                }
+            }
+            catch(Exception ex)
+            {
+                throw;
+            }
+            finally
+            {
+                s?.Close();
+            }
+            return views;
+        }
+
+        public static Pesma dodajPesmu(PesmaView view)
+        {
+            ISession s = null;
+            Pesma p = null;
+            try
+            {
+                s = DataLayer.GetSession();
+                p = new Pesma();
+                p.ID = view.ID;
+                p.Naziv = view.Naziv;
+                p.Tekst = view.Tekst;
+                p.VilenjakZaIrvase = new VilenjakZaIrvase();
+                p.VilenjakZaIrvase.ID = view.VilenjakZaIrvase.ID;
+                p.VilenjakZaIrvase.JedinstvenoIme = view.VilenjakZaIrvase.JedinstvenoIme;
+                p.VilenjakZaIrvase.DatumZaposlenja = view.VilenjakZaIrvase.DatumZaposlenja;
+                p.VilenjakZaIrvase.ZemljaPorekla = view.VilenjakZaIrvase.ZemljaPorekla;
+                p.VilenjakZaIrvase.Pesme.Add(p);
+                s.SaveOrUpdate(p);
+                s.Flush();
+            }
+            catch(Exception ex)
+            {
+                throw;
+            }
+            finally
+            {
+                s?.Close();
+            }
+            return p;
+        }
+
+        public static Pesma azurirajPesmu(PesmaView view)
+        {
+            ISession s = null;
+            Pesma pesma = null;
+            try
+            {
+                s = DataLayer.GetSession();
+                pesma = s.Get<Pesma>(view.ID);
+                pesma.Naziv = view.Naziv;
+                pesma.Tekst = view.Tekst;
+                pesma.VilenjakZaIrvase = new VilenjakZaIrvase();
+                pesma.VilenjakZaIrvase.ID = view.VilenjakZaIrvase.ID;
+                pesma.VilenjakZaIrvase.JedinstvenoIme = view.VilenjakZaIrvase.JedinstvenoIme;
+                pesma.VilenjakZaIrvase.DatumZaposlenja = view.VilenjakZaIrvase.DatumZaposlenja;
+                pesma.VilenjakZaIrvase.ZemljaPorekla = view.VilenjakZaIrvase.ZemljaPorekla;
+                s.SaveOrUpdate(pesma);
+                s.Flush();
+            }
+            catch(Exception ex)
+            {
+                throw;
+            }
+            finally
+            {
+                s?.Close();
+            }
+            return pesma;
+        }
+
+
+        public static bool obrisiPesmu(int id)
+        {
+            ISession s = null;
+            try
+            {
+                s = DataLayer.GetSession();
+                var pesma = s.Get<Pesma>(id);
+                s.Delete(pesma);
+                s.Flush();
+            }
+            catch(Exception ex)
+            {
+                throw;
+            }
+            finally
+            {
+                s?.Close();
+            }
+            return true;
+        }
     }
 
 }
