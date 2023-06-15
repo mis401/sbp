@@ -2447,9 +2447,60 @@ namespace DatabaseAccess
             finally { s?.Close(); }
             return true;
         }
-    }
 
-    
+
+
+        public static VilenjakZaIzraduIgracaka IzmeniVilenjakaZaIzraduIgracaka(VilenjakZaIzraduIgracakaView view)
+        {
+            ISession s = null;
+            VilenjakZaIzraduIgracaka v = null;
+            try
+            {
+                s = DataLayer.GetSession();
+                v = s.Get<VilenjakZaIzraduIgracaka>(view.ID);
+                v.JedinstvenoIme = view.JedinstvenoIme;
+                v.ZemljaPorekla = view.ZemljaPorekla;
+                v.DatumPostavljanja = view.DatumPostavljanja;
+                v.DatumZaposlenja = view.DatumZaposlenja;
+                v.FlagSef = view.FlagSef;
+                v.FlagKoordinator = view.FlagKoordinator;
+                v.DeoRadionice = s.Get<DeoRadionice>(view.DeoRadionice.ID);
+                v.DuzinaObuke = view.DuzinaObuke;
+                v.Ocena = view.Ocena;
+                v.ImaMentora = s.Get<VilenjakZaIzraduIgracaka>(view.ImaMentora.ID);
+                v.PripadaTimu = s.Get<Tim>(view.PripadaTimu.ID);
+                v.TipMaterijala = view.TipMaterijala;
+                v.Igracke = new List<Igracka>();
+                v.JeMentor = new List<VilenjakZaIzraduIgracaka>();
+                v.VilenjakZaIgrackeVestinaSpoj = new List<SpojVilenjakZaIgrackeVestina>();
+                foreach(var igracka in view.Igracke)
+                {
+                    v.Igracke.Add(s.Get<Igracka>(igracka.ID));
+                }
+                foreach(var vilenjak in view.JeMentor)
+                {
+                    v.JeMentor.Add(s.Get<VilenjakZaIzraduIgracaka>(vilenjak.ID));
+                }
+                foreach(var spoj in view.VilenjakZaIgrackeVestinaSpoj)
+                {
+                    v.VilenjakZaIgrackeVestinaSpoj.Add(s.Get<SpojVilenjakZaIgrackeVestina>(spoj.ID));
+                }
+                s.SaveOrUpdate(v);
+                s.Flush();
+                
+
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            finally
+            {
+                s?.Close();
+            }
+            return v;
+        }
+    }
 
 }
 

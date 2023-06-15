@@ -18,7 +18,7 @@ namespace DatabaseAccess.Mapiranja
 
             References(x => x.Tovar).Column("ID_TOVARA").LazyLoad();
 
-            HasMany(x => x.VilenjakZaIsporukuVestinaSpoj).KeyColumn("ID_VILENJAKA_ZA_TOVAR").Cascade.AllDeleteOrphan();
+            HasMany(x => x.VilenjakZaIsporukuVestinaSpoj).KeyColumn("ID_VILENJAKA_ZA_TOVAR").Cascade.All();
 
 
         }

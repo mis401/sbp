@@ -433,18 +433,44 @@ namespace DatabaseAccess
         public static IList<MagicnaVestinaView> vratiMagicneVestine()
         {
             ISession s = null;
-            IList<MagicnaVestinaView> lista = new List<MagicnaVestinaView>();
+            IList<MagicnaVestina> lista = new List<MagicnaVestina>();
+            List<MagicnaVestinaView> views = new List<MagicnaVestinaView>();
             try
             {
                 s = DataLayer.GetSession();
-                lista = s.Query<MagicnaVestina>().Select(x=> new MagicnaVestinaView(x)).ToList();
+                lista = s.Query<MagicnaVestina>().ToList();
+                foreach(var magicnavestina in lista)
+                {
+                    var view = new MagicnaVestinaView(magicnavestina);
+                    foreach(var spoj in magicnavestina.VilenjakZaPokloneVestinaSpoj)
+                    {
+                        var spojView = new SpojVilenjakZaPokloneVestinaView(spoj);
+                        view.VilenjakZaPokloneVestinaSpoj.Add(spojView);
+                    }
+                    foreach(var spoj in magicnavestina.VilenjakZaIsporukuVestinaSpoj)
+                    {
+                        var spojView = new SpojVilenjakZaIsporukuVestinaView(spoj);
+                        view.VilenjakZaIsporukuVestinaSpoj.Add(spojView);
+                    }
+                    foreach(var spoj in magicnavestina.VilenjakZaIgrackeVestinaSpoj)
+                    {
+                        var spojView = new SpojVilenjakZaIgrackeVestinaView(spoj);
+                        view.VilenjakZaIgrackeVestinaSpoj.Add(spojView);
+                    }
+                    foreach(var spoj in magicnavestina.VilenjakZaIrvaseVestinaSpoj)
+                    {
+                        var spojView = new SpojVilenjakZaIrvaseVestinaView(spoj);
+                        view.VilenjakZaIrvaseVestinaSpoj.Add(spojView);
+                    }
+                    views.Add(view);
+                }
             }
             catch (Exception ex)
             {
                 throw;
             }
             finally { s?.Flush(); s?.Close(); }
-            return lista;
+            return views;
         }
 
         public static bool dodajVilenjakaZaIsporukuPoklona(VilenjakZaIsporukuPoklona v)

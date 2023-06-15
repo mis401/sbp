@@ -16,8 +16,8 @@ namespace DatabaseAccess.DTOs
         public SpojVilenjakZaIsporukuVestinaView(SpojVilenjakZaIsporukuVestina s)
         {
             ID = s.ID;
-            VilenjakZaIsporukuPoklona = new VilenjakZaIsporukuPoklonaView(s.VilenjakZaIsporukuPoklona);
-            MagicnaVestina = new MagicnaVestinaView(s.MagicnaVestina);
+            //VilenjakZaIsporukuPoklona = new VilenjakZaIsporukuPoklonaView(s.VilenjakZaIsporukuPoklona);
+            //MagicnaVestina = new MagicnaVestinaView(s.MagicnaVestina);
         }
     }
 }
