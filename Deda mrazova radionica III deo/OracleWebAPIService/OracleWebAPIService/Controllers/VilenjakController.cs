@@ -117,5 +117,61 @@ namespace OracleWebAPIService.Controllers
                 return BadRequest(ex.ToString());
             }
         }
+
+        [HttpPost]
+        [Route("DodajVilenjakaZaIsporukuPoklona")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public IActionResult DodajVilenjakaZaIsporukuPoklona([FromBody] VilenjakZaIsporukuPoklonaView vilenjak)
+        {
+            try
+            {
+                var vilenjakEntitet = DataProviderBenc.DodajVilenjakaZaIsporukuPoklona(vilenjak);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.ToString());
+            }
+        }
+
+        [HttpPost]
+        [Route("DodajVilenjakaZaIrvase")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public IActionResult DodajVilenjakaZaIrvase([FromBody] VilenjakZaIrvaseView vilenjak)
+        {
+            try
+            {
+                var vilenjakEntitet = DataProviderBenc.DodajVilenjakaZaIrvase(vilenjak);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.ToString());
+            }
+        }
+
+        [HttpPost]
+        [Route("DodajVilenjakaZaPoklone")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public IActionResult DodajVilenjakaZaPoklone([FromBody] VilenjakZaPokloneView vilenjak)
+        {
+            try
+            {
+                DataProviderBenc.DodajVilenjakaZaPoklone(vilenjak);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.ToString());
+            }
+        }
+
+
     }
 }
