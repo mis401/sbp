@@ -172,6 +172,23 @@ namespace OracleWebAPIService.Controllers
             }
         }
 
+        [HttpPut]
+        [Route("IzmeniVilenjakaZaIzraduIgracaka")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public IActionResult IzmeniVilenjakaZaIzraduIgracaka([FromBody] VilenjakZaIzraduIgracakaView vilenjak)
+        {
+            try
+            {
+                DataProviderBenc.IzmeniVilenjakaZaIzraduIgracaka(vilenjak);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.ToString());
+            }
+        }
+
 
     }
 }
