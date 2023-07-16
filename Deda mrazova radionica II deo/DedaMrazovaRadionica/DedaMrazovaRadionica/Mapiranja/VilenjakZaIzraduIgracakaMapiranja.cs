@@ -27,6 +27,7 @@ namespace DedaMrazovaRadionica.Mapiranja
             
             HasMany(x => x.JeMentor).KeyColumn("ID_MENTORA").Cascade.All().Inverse();
             HasMany(x => x.VilenjakZaIgrackeVestinaSpoj).KeyColumn("ID_VILENJAKA_ZA_IGRACKE").Cascade.AllDeleteOrphan().Inverse();
+            HasMany(x => x.Igracke).KeyColumn("ID_VILENJAKA_ZA_IGRACKE").Cascade.AllDeleteOrphan().Inverse();
 
             References(x => x.DeoRadionice).Column("ID_DELA_RADIONICE").LazyLoad();
             References(x => x.ImaMentora).Column("ID_MENTORA").LazyLoad();

@@ -77,6 +77,7 @@ namespace DedaMrazovaRadionica
         public int duzinaObuke;
         public int ocena;
         public VilenjakZaIzraduIgracakaMentor mentor;
+
         public VilenjakZaIzraduIgracakaBasic(int id,
             string jedIme, string zemPor, DateTime datZap, string materijal,
             DeoRadioniceID deoRadionice, int fs, TimID tim, int fk, int duzinaObuke, int ocena,
@@ -91,7 +92,11 @@ namespace DedaMrazovaRadionica
             this.flagSef = fs;
             this.flagKoordinator = fk;
         }
+
+        
     }
+
+ 
     public class VilenjakZaIrvaseSaVestinama: VilenjakZaIrvaseBasic
     {
         public IList<MagicnaVestinaPrikaz> vestine;
@@ -109,12 +114,17 @@ namespace DedaMrazovaRadionica
     {
         public int id;
         public string ime;
+        public string nadimak;
+        public char pol;
         public int starost;
+        public DateTime datumRodjenja;
         
-        public IrvasDTO (int id, string ime, int starost)
+        public IrvasDTO (int id, string ime, string nadimak, char pol, int starost)
         {
             this.id = id;
             this.ime = ime;
+            this.nadimak = nadimak;
+            this.pol = pol;
             this.starost = starost;
         }
     }
@@ -131,6 +141,21 @@ namespace DedaMrazovaRadionica
         }
     }
 
+    public class DeoRadioniceBasic
+    {
+        public int id;
+        public string naziv;
+        public string tipIgr;
+
+        public DeoRadioniceBasic(string naziv, string tipIgr)
+        {
+            this.naziv = naziv;
+            this.tipIgr = tipIgr;
+        }
+    }
+
+    
+
     public class TimID
     {
         public int id;
@@ -139,6 +164,11 @@ namespace DedaMrazovaRadionica
         public TimID(int id, string naziv)
         {
             this.id = id;
+            this.naziv = naziv;
+        }
+
+        public TimID(string naziv)
+        {
             this.naziv = naziv;
         }
     }
@@ -244,14 +274,14 @@ namespace DedaMrazovaRadionica
 
         public DateTime datumPrijema;
 
-        public Dete dete;
+        public DeteBasic dete;
 
 
         public PismoBasic(int id)
         {
             this.ID = id;
         }
-        public PismoBasic(int iD, string tekst, float indDobrote, DateTime datumSlanja, DateTime datumPrijema, Dete dete)
+        public PismoBasic(int iD, string tekst, float indDobrote, DateTime datumSlanja, DateTime datumPrijema, DeteBasic dete)
 
         {
 
@@ -287,6 +317,40 @@ namespace DedaMrazovaRadionica
         }
 
 
+    }
+
+    public class DeteBasic
+    {
+        public int ID;
+        public string ime;
+        public string prezime;
+        public string grad;
+        public string drzava;
+        public string adresa;
+        public DateTime datumRodjenja;
+
+        public DeteBasic(string ime, string prezime, string grad, string drzava, string adresa,  DateTime datumRodjenja)
+        {
+            this.ime = ime;
+            this.prezime = prezime;
+            this.grad = grad;
+            this.drzava = drzava;
+            this.adresa = adresa;
+            this.datumRodjenja = datumRodjenja;
+        }
+    }
+
+    public class DeteRoditeljDTO : DeteBasic
+    {
+        public DeteRoditelj roditelj1;
+        public DeteRoditelj roditelj2;
+
+        public DeteRoditeljDTO (string ime, string prezime, string grad, string drzava, string adresa, DateTime datumRodjenja, DeteRoditelj r1, DeteRoditelj r2)
+            : base(ime, prezime, grad, drzava, adresa, datumRodjenja)
+        {
+            roditelj1 = r1;
+            roditelj2 = r2;
+        }
     }
 
     public class ListaZeljaBasic
@@ -331,6 +395,15 @@ namespace DedaMrazovaRadionica
         public Tovar pripadaTovaru;
         public string destinacija;
         public string dete;
+
+        public PoklonBasic(string boja, string posveta, ListaZelja lz, Tovar tovar)
+        {
+            
+            this.boja = boja;
+            this.posveta = posveta;
+            pripadaListiZelja = lz;
+            pripadaTovaru = tovar;
+        }
 
         public PoklonBasic(int id, string boja, string posveta, ListaZelja lz, Tovar tovar, string destinacija, string dete)
         {
@@ -389,7 +462,7 @@ namespace DedaMrazovaRadionica
 
     public class VilenjakZaIsporukuPoklonaSaVestinama : VilenjakBasic
     {
-        TovarBasic tovar;
+        public TovarBasic tovar;
 
         public VilenjakZaIsporukuPoklonaSaVestinama(int id, string ime, string zemlja, DateTime dz, TovarBasic tovari) : base(id, ime, zemlja, dz)
         {
@@ -440,6 +513,11 @@ namespace DedaMrazovaRadionica
             this.ocena = ocena;
             this.mentor = mentor;
 >>>>>>> eea386a205e3fabf15af7496aa13cd7212f619f5
+        }
+
+        public VilenjakZaIzraduIgracakaPoklon(int id, string ime, string zemPor, DateTime datZap) : base(id, ime, zemPor, datZap)
+        {
+     
         }
     }
 }

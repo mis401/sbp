@@ -24,6 +24,7 @@ namespace DedaMrazovaRadionica.Forme
             grupaIgracke.Hide();
             grupaIrvas.Hide();
             grupaPokloni.Hide();
+            grupaTovari.Hide();
             panelBasic.Hide();
             labelPogresnoIme.Hide();
             vilenjak=new VilenjakBasic();
@@ -66,6 +67,7 @@ namespace DedaMrazovaRadionica.Forme
                 {
                     grupaIgracke.Hide();
                     grupaPokloni.Hide();
+                    grupaTovari.Hide();
                     grupaIrvas.Show();
                     foreach (var vestina in (vilenjak as VilenjakZaIrvaseSaVestinama).vestine)
                     {
@@ -83,6 +85,7 @@ namespace DedaMrazovaRadionica.Forme
                 {
                     grupaIrvas.Hide();
                     grupaPokloni.Hide();
+                    grupaTovari.Hide();
                     grupaIgracke.Show();
                     var radionice = DTOManager.vratiNaziveRadionica();
                     var timovi = DTOManager.vratiNaziveTimova();
@@ -113,12 +116,23 @@ namespace DedaMrazovaRadionica.Forme
                 {
                     grupaIrvas.Hide();
                     grupaIgracke.Hide();
+                    grupaTovari.Hide();
                     grupaPokloni.Show();
                     
                     //pokloni = DTOManager.vratiPokloneVilenjaka(vilenjak);
                     tabelaPoklona.DataSource = (vilenjak as VilenjakZaPokloneSaVestinama).listaPoklona.Select(x => new { x.ID, Boja = x.boja, Posveta = x.posveta, Destinacija = x.destinacija, Dete = x.dete }).ToList();
                 }
-                
+                else if (vilenjak is VilenjakZaIsporukuPoklonaSaVestinama)
+                {
+                    grupaIrvas.Hide();
+                    grupaIgracke.Hide();
+                    grupaPokloni.Hide();
+                    grupaTovari.Show();
+
+                    List<TovarBasic> tovari = new List<TovarBasic>();
+                    tovari.Add((vilenjak as VilenjakZaIsporukuPoklonaSaVestinama).tovar);
+                    tabelaTovari.DataSource = tovari.Select(tovar => new {tovar.ID, Grad = tovar.Grad}).ToList();
+                }
             }
             else
             {

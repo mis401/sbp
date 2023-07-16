@@ -1,0 +1,36 @@
+Paralelni sistemi 
+Predavanja -> 12
+Vezbe -> 9
+Sistemi baza podataka usmeni -> 27 pitanja -> Masina skripta
+Swe usmeni -> daj boze da moze za dan
+Kako da dodam ovde projekat iz mobilnih jebote 
+18.06. PRS P1,2,3 
+       MPI 
+19.06. Obnavljanje P1,2,3
+       MPI
+20.06. PRS P4,5,6
+21.06. Objavljanje P4,5,6
+       CUDA
+22.06. PRS P7
+       CUDA
+23.06. Obnabljanje P7
+24.06. Rip ovaj dan
+25.06. Sistemi baza usmeni -> jedan dan ti je dosta 
+26.06. Sistemi baza podataka - odbrana
+       PRS P8 
+       OPENMP
+27.06. Obnavljanje P8
+28.06. PRS P9,10,11
+       Sistemsko programiranje - III faza predaja
+29.06. Obnavljanje P9,10, 11
+30.06. Sistemsko programiranje odbrana
+       PRS P12
+01.07. Obnavljanje P12
+02.07. SWE usmeni -> i ovo ti je dosta jedan dan
+03.07. Softversko inzenjerstvo - usmeni
+       Obnavljanje paralelnih celokupno -> nece se desiti
+04.07.
+05.07.
+06.07. Paralelni sistemi - ispit
+Mobilni projekat -> jebo te projekat
+IZDRZI LEGENDO
